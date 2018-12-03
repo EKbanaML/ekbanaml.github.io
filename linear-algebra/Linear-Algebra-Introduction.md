@@ -66,11 +66,157 @@ Let `V` be a vector space over the `FIELD K`. For any vectors `v1, v2, v3, …�
 Since, we haven’t yet said anything about the vector field and vector space, let’s just understand that, we scale each vector in a particular vector space with some scalar, and summing all vectors in the vector space. We will come to the significance of these linear combination as we go along the further topics in vectors eg: vector space, basis vector, linear dependence and independence. 
 
 # A Line, Plane & Space: 
-
 A vector is something that has both magnitude and direction, that is as plain as the point representing two coordinate axes in the Euclidean space. Say, the co-ordinate, `(2,3)` can be a vector by drawing the line from the origin. If you graph it, you will get a vector with the magnitude of `sqrt(15)` and some direction theta. 
-
-
 
 The linear combination of a single vector as `(2,3)` which would be `cv` would form a line, similarly the linear combination of two vectors` v = (2, 3)` and` w = (4, 2) `
 `cv + dw`  would form a plane. 
-![Figure Reference 4]({{'/static/images/LRintro/image1.jpg.jpg'}})
+
+![Figure Reference:(4)](
+        ekbanaml.github.io/static/images/LRintro/image1.jpg.jpg
+      )
+
+Here, by plane we are referring to a flat, two-dimensional surface that extends infinitely far. A plane is the two-dimensional analogue of a point (zero dimensions), a line (one dimension) and three-dimensional space. Planes can arise as subspaces of some higher-dimensional space, as with a room's walls extended infinitely far, or they may enjoy an independent existence in their own right, as in the setting of Euclidean geometry. [3] A plane has no thickness and goes on forever. 
+
+![Figure reference:(5)](
+        ekbanaml.github.io/static/images/LRintro/image2.gif
+      )
+
+A plane is spanned by two independent vectors. (Mind this word, independent for it’s significance because we will come in the detail about this in the later articles. However if we have more than two independent vectors, or right here lets just understand with more than 2 non-collinear cartesian  points, would give us the space. Say, `u`, `v` and `w` were three independent vectors, then their linear combination `cu` + `dv` + `ew` would give us the space. Space is probably used here to denote the higher dimensional vectors. 
+
+Before we move further, let us see an interesting phenomenon we can get from vector addition. If two vectors acting simultaneously at a point can be represented both in magnitude and direction by the adjacent sides of a parallelogram drawn from a point, then the resultant vector is represented both in magnitude and direction by the diagonal of the parallelogram passing through that point. 
+
+This is called parallelogram law of vector addition. `[6] `
+
+
+the sum of the vectors `u = (3, 4)` and `v = (4, 1)` in the plane
+
+![Figure reference (7)](
+        ekbanaml.github.io/static/images/LRintro/image3.gif
+      )
+
+When we add two vectors, their resulting vector from their sum would also lie in the same plane, and this is true for in higher dimension as well.  
+
+
+# Dot Products, Norm & Unit Vectors:
+There are subtle reasons, why we’re putting dot products, vector norm and unit vector together; It is for the sake of simplicity and probably brings coherent clarity. 
+Consider two vectors `u` and `v`, the resulting value of `u.v` is known as dot product, it is a scalar value. 
+If the dot product between two vectors `u` and `v` is actually `0`, then both vectors are perpendicular to each other. The dot product gives us a scalar. 
+For example `u = (1, 4)` and `v = (2, 1)` then the dot product of these two vectors `u.v` would be: 
+
+	(1, 4) . (2, 1) = 1 x 2 + 4 x 1 = 6
+
+`|| v ||` Length or Norm or magnitude of a vector is the square root of dot product with itself. e.g 
+
+	|| v || = sqrt(v. v)
+	
+From the above vector v, it would be: 
+
+	|| v ||  = sqrt(sqr(2) + sqr(1)) = sqrt(5)
+
+A unit vector is any vector whose length or magnitude is actually `1`. For example:
+
+	v = (1, 0) 
+
+	sqrt(1 + 0) = 1. 
+	
+`u = v/ll v II` is a unit vector in the same direction as `v`. 
+From the above vector `v`, the unit vector would be 
+
+	(2, 1)/ sqrt(5) = (0.89443, 0.44721) 
+Calculating the norm of this resulting unit vector, we would derive `1`. 
+ 
+When `v` and `w` are perpendicular, they form two sides of a right triangle. The third side is `v - w` (the hypotenuse going across). 
+
+The Pythagoras Law for the sides of a right triangle is
+
+	a2 + b2 = c2 
+
+Perpendicular vectors `II v2 II  + ||w2 || = II v - w|| 2`
+
+The angle is less than `90°`when `v . w` is positive. The angle is above` 90°` when `v . w` is negative.
+
+
+If `u` and `v` are non-zero vectors then `cos(theta) = (u.v/ ||u|| ||v|| ) `
+
+
+Start with unit vectors `u` and `U`. The sign of `u • U` tells whether `theta < 90°` or `theta > 90°`. Because the vectors have length `1`, we learn more than that. The dot product `u • U` is the `cosine` of `d`. This is true in any number of dimensions.  
+Unit vector  `u . U` at angle `theta` we have `u· U = cos(theta)`. Remember that `cos(d)` is never greater than `1`. It is never less than `-1`. The dot product of unit vectors is between `-1 and 1` 
+
+
+
+![Figure reference: (8)](
+        ekbanaml.github.io/static/images/LRintro/image4.png
+      )
+            
+From the above backgrounds, now we can move onto another interesting concept. 
+# Inequalities: 
+
+Whatever the angle, this dot product of `v / II v II` with `w / II w II` never exceeds `1`. That is __"Schwarz inequality"__ `|v. w| =< ||v|| ||w||`
+Similarly the cosine formula gives us yet another interesting phenomenon, triangle inequality. `IIv + wll < II v ll + Il w ll`
+
+The __Schwarz__ inequality tells us that the magnitude of dot product of two vectors is always less than or equals to the multiplication of their norms. Extending this concept we get another inequality which is triangle inequality. 
+Geometrically, the right-hand part of the triangle inequality states that the sum of the lengths of any two sides of a triangle is greater than the length of the remaining side. `[9] `
+
+
+![Figure reference: [10]](
+        ekbanaml.github.io/static/images/LRintro/image5.png
+      )
+      
+
+Depicted as in the figure, the triangle inequality tells that, the magnitude of sum of two sides of the triangle would be less than or equal to the summation of their individual magnitude. Since mostly in machine learning problems we would work with Euclidean space, in which these inequalities are already the part of the space. For example the triangle inequality is used to accelerate the K-means clustering `[11]`. Citing a cross Validation: 
+
+“The optimized algorithm is based on the fact that most distance calculations in standard K-means are redundant. If a point is far away from a center, it is not necessary to calculate the exact distance between the point and the center in order to know that the point should not be assigned to this center. Conversely, if a point is much closer to one center than to any other, calculating exact distances is not necessary to know that the point should be assigned to the first center.”  `[12]`
+
+# Cross Product: 
+Finally, we’re on the final topic of this article, cross product of vectors. The cross product between two vectors u and v gives us the new vector w which is perpendicular to the both vectors u and v. There are some nice properties that the cross product can give us, which are listed below: 
+The cross product is defined by the formula
+
+	||a x b || = ||a|| ||b|| sin (theta) n
+where `θ` is the angle between`a` and `b` in the plane containing them (hence, it is between `0°` and `180°`), `‖a‖` and `‖b‖` are the magnitudes of vectors `a` and `b`, and n is a unit vector perpendicular to the plane containing `a` and `b` in the direction given by the right-hand rule. 
+
+The magnitude of cross product between two vectors would give us the whole area of a parallelogram. 
+As we had seen previously the sum would yield the diagonal. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Cross_product_parallelogram.svg/480px-Cross_product_parallelogram.svg.png "https://en.wikipedia.org/wiki/File:Cross_product_parallelogram.svg")
+
+
+Now let us be clear about the characteristics of cross product and dot product: 
+
+The cross product can be thought as the measure of perpendicularity and the dot product is the measure of parallelism. Given two unit vectors, their cross product has a magnitude of `1`, if they are perpendicular and magnitude of `0` if they are parallel. 
+The dot product of two unit vectors behave exactly opposite, it is `0`, when they are perpendicular and `1` if they are parallel. 
+The dot product of two unit vectors yields the `cosine` (which can be both positive and negative) of the angle between two unit vectors. The magnitude of the cross product of the two unit vectors yields the sine, which is always positive. 
+The self cross product of a vector is `0` vector. `a x a = 0`
+the cross product is defined to be the vector which is perpendicular to both vectors
+
+
+
+For next article, we will discuss about Vector Space, Subspace, Basis Vectors and the linear dependence and independence. 
+
+At last leaving you with this Image: 
+
+![Image](https://www.grc.nasa.gov/www/BGH/Images/vectpart.gif)
+
+
+#### References: 
+
+3. <https://en.wikipedia.org/wiki/Plane_(geometry)>
+
+4. Strang Gilbert Introduction to Linear Algebra p. 6
+
+5. <http://mathworld.wolfram.com/Plane.html> 
+
+6. <https://www.mathstopia.net/vectors/parallelogram-law-vector-addition> 
+
+7. <https://www.sparknotes.com/physics/vectors/vectoraddition/section2/> 
+
+8. Strang Gilbert Introduction to Linear Algebra p. 14
+
+9. <http://mathworld.wolfram.com/TriangleInequality.html> 
+
+10. <https://commons.wikimedia.org/wiki/File:Vector_triangle_inequality_vw.PNG> 
+
+11. <https://www.aaai.org/Papers/ICML/2003/ICML03-022.pdf> 
+
+12. <https://stats.stackexchange.com/questions/132736/k-means-triangle-inequality>
+
+
