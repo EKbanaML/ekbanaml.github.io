@@ -47,11 +47,11 @@ Here we can form a trivial linear combination of the purchases that we made:
 
 Now we have the quantity which are scalar, let us form the linear combination of our evening activities: 
 
-```2 V1 + 1 V2 
+2 V1 + 1 V2 
 2 (50g, blue) + 1 (200g, gray)  
 (100, 2 blue) + (200, gray) 
 (100+200, 2blue + gray)
-(300g, 2blue+gray)  ```
+(300g, 2blue+gray)
 
 
 This is a hypothetical vector having the magnitude of our total expenses. Combining addition with scalar multiplication, we now form "linear combinations" of vectors `V1` and `V2`. We multiply `V1` by `c` and multiply `V2` by `d` then add `cV1` + `dV2`.
