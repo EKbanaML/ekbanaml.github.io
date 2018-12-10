@@ -85,7 +85,7 @@ The linear combination of a single vector as `(2,3)` which would be `cv` would f
 
 ![Figure Reference: 4]({{'static/images/LRintro/image1.jpg' | absolute_url}})
 
-![Converted Image]({{'static/images/appletest.png' | absolute_url}})
+
 
 Here, by plane we are referring to a flat, two-dimensional surface that extends infinitely far. A plane is the two-dimensional analogue of a point (zero dimensions), a line (one dimension) and three-dimensional space. Planes can arise as subspaces of some higher-dimensional space, as with a room's walls extended infinitely far, or they may enjoy an independent existence in their own right, as in the setting of Euclidean geometry. [3] A plane has no thickness and goes on forever. 
 
