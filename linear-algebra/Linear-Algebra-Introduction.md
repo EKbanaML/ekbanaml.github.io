@@ -12,9 +12,10 @@ This is the first article of the Linear Algebra series, and in this article we w
 Before we move to the concepts of vector, let us start from the beautiful concept as of scalar. It is anything that is presented in terms of numbers. Mostly representing something physical as your weight, age or even the number of blood cells in your body. 
 However if we go into the more theoretical definition of the scalar, it is a physical quantity that can be described by a single element of a number field such as real numbers often accompanied by the unit of measurements. A scalar has a magnitude, like if I asked you about your age, and you happened to reply, 22. It is scalar, it describes the length of time you’ve lived. `[1] `
 
-Let us now, take a step further and add some more characteristics to the scalar, Let us assume that you’re a salesperson in the bakery shop beside the road where I usually eat in the evening. If I asked you about the price of a carrot cake, you would say Rs. 40, here 40 is scalar, now you've added another attribute to the carrot cake and said that for the 50g carrot cake, it would cost Rs 50, but for 25g carrot cake it would cost Rs 25. Then amazingly you just gave an answer in terms of a vector. Here the price is relative to the weight of carrot cake, and forms two vectors `(50g, Rs 40), (25g, Rs 25)` . Now this has both magnitude and direction. Weird words they are, which we will discuss later.  Let us say, we added another further characteristics in the carrot cake, say packaging, blue and green. We can keep on adding more attributes as much as we want,
-Our Vectors `V1` would be (`50g, Rs 40, Blue)`and `V2` would be (`25g`, `Rs 25`, `Green` 
-And`V3 = (50g, Rs 55, Green) `
+Let us now, take a step further and add some more characteristics to the scalar, Let us assume that you’re a salesperson in the bakery shop beside the road where I usually eat in the evening. If I asked you about the price of a carrot cake, you would say Rs. 50, here 50 is a scalar, now you added few other attributes to the carrot cake and said that for the 50g carrot cake having a blue color packaging, it would cost Rs 50, but for 25g carrot cake with green color packaging it would cost about Rs 25. Then amazingly you just gave an answer in terms of a vector. Here the price is relative of the weight and the package color of the carrot cake, and forms two vectors `(50g, blue)`, `(25g, green)`. Now this has both magnitude and direction. Weird word they are, which we will discuss later.  As we added further characteristics in the carrot cake- packaging, blue and green. We can keep on adding more attributes as much as we want,
+Our Vectors `V1` would be `(50g, Blue)` and `V2` would be `(25g, Green)` 
+And `V3 = (50g, Green)` 
+
 
 We could later change their unit measurement to make it scalar in regards to the third attributes packaging. 
 
@@ -31,33 +32,38 @@ In machine learning problems, a set of features representing some outcome is sup
 Now let us move on to another beautiful concept “Linear Combination” . Let us understand through a simple example before we move towards the theoretical explanation: 
 
 Let us again go to the bakery shop in the evening, when people are rushing towards home, and stay as you have no home to reach and order few things: 
-i) 2 pieces of carrot cake with the price Rs. `50`. 
-ii) 2 cups of black coffee with the price Rs `65` per cup.
-iii) 2 fruit salad with Rs `125` per plate. 
+i) 2 pieces of 50g carrot cake with blue packaging costing Rs. 50 per each.  
 
-After the bakery, we felt the growing winter and realized that we had to buy a few clothes as well. We would go to the retailers and buy a few things: 
+After the bakery, we felt the growing winter and realized that we had to buy socks. Let us go to the winter shop:  
 
-i) A pair of shocks with the price Rs `300`. 
-ii) A woolen sweater with price Rs `1200`. 
-iii) A muffler with price Rs `225`
+i) a gray jacket made using 200g of original plumes, costing Rs 1200. 
 
-So, let's do something interesting, from our purchases let's form two vectors.
 
-`V1 = (50, 65, 125)`  :vector of price we have to pay for each unit in the bakery shop.
-
-`V2 = (300, 1200, 225)` :vector of price we have to pay for each unit in the winter shop. 
+So let us do something interesting, from our purchase let us form two vectors: 
+`V1 = (50g, blue)`  :vector of the carrot cake
+`V2 = (200g, gray)` :vector of a socks that we bought. 
 
 Here we can form a trivial linear combination of the purchases that we made: 
 
-Now we have the quantity which are scalar, lets calculate the total money we expensed in the bakery shop. 
+Now we have the quantity which are scalar, let us form the linear combination of our evening activities: 
 
-`2 V1 + 1 V2 `
+```2 V1 + 1 V2 
+2 (50g, blue) + 1 (200g, gray)  
+(100, 2 blue) + (200, gray) 
+(100+200, 2blue + gray)
+(300g, 2blue+gray)  ```
 
-`2 (50, 65, 125) + 1 (300, 1200, 225)  = Rs 2205`
 
-Giving us a scalar `2205`. Combining addition with scalar multiplication, we now form "linear combinations" of vectors `V1` and `V2`. We multiply `V1` by `c` and multiply `V2` by `d` then add `cV1` + `dV2`.
+This is a hypothetical vector having the magnitude of our total expenses. Combining addition with scalar multiplication, we now form "linear combinations" of vectors `V1` and `V2`. We multiply `V1` by `c` and multiply `V2` by `d` then add `cV1` + `dV2`.
 
-This is the linear combination between the vectors that we created by entering into the  bakery shop and retailer. It is a trivial example and there could be a more scientific one to explain further. For now, let us go further towards a more theoretical definition of the linear combination. 
+This is the linear combination between the vectors that we created by entering into the  bakery shop and winter shop. It is a trivial example and there could be a more scientific one to explain further. Let’s suppose your position right now is the origin of a cartesian plane, you threw a ball and it reached the coordinate point `(7, 10)`. Again you threw another ball into another direction it hit a wall and descended further through the point you were standing, finally reaching a point `(-3, -5)`. Assume they are two vectors, having a magnitude of `$\sqrt{149}$` and `6` respectively. 
+
+If we add these two vectors, We would get another vector `(4, 5)`; a diagonal of the parallelogram formed by the original two vectors. If we choose 2, 3 as a scalar for the original vector then, their linear combination would fill a 2d plane. 
+`2( 7, 10) + 3 (-3, -5) = (5, 5)`   
+
+
+Now let us go further towards more theoretical definition of the linear combination. Something to note in the vector, vector can consists the component of different unitary measurement.
+
 
 # Linear Combination - A formal definition: 
 
@@ -71,15 +77,12 @@ A vector is something that has both magnitude and direction, that is as plain as
 The linear combination of a single vector as `(2,3)` which would be `cv` would form a line, similarly the linear combination of two vectors` v = (2, 3)` and` w = (4, 2) `
 `cv + dw`  would form a plane. 
 
-![Figure Reference:(4)](
-        ekbanaml.github.io/static/images/LRintro/image1.jpg.jpg
-      )
+
+![Figure Reference: 4]({{'static/images/LRintro/image1.jpg' | absolute_url}})
 
 Here, by plane we are referring to a flat, two-dimensional surface that extends infinitely far. A plane is the two-dimensional analogue of a point (zero dimensions), a line (one dimension) and three-dimensional space. Planes can arise as subspaces of some higher-dimensional space, as with a room's walls extended infinitely far, or they may enjoy an independent existence in their own right, as in the setting of Euclidean geometry. [3] A plane has no thickness and goes on forever. 
 
-![Figure reference:(5)](
-        ekbanaml.github.io/static/images/LRintro/image2.gif
-      )
+![Figure Reference: 5]({{'static/images/LRintro/image2.gif' | absolute_url}})
 
 A plane is spanned by two independent vectors. (Mind this word, independent for it’s significance because we will come in the detail about this in the later articles. However if we have more than two independent vectors, or right here lets just understand with more than 2 non-collinear cartesian  points, would give us the space. Say, `u`, `v` and `w` were three independent vectors, then their linear combination `cu` + `dv` + `ew` would give us the space. Space is probably used here to denote the higher dimensional vectors. 
 
@@ -90,10 +93,7 @@ This is called parallelogram law of vector addition. `[6] `
 
 the sum of the vectors `u = (3, 4)` and `v = (4, 1)` in the plane
 
-![Figure reference (7)](
-        ekbanaml.github.io/static/images/LRintro/image3.gif
-      )
-
+![Figure Reference: 7]({{'static/images/LRintro/image3.gif' | absolute_url}})
 When we add two vectors, their resulting vector from their sum would also lie in the same plane, and this is true for in higher dimension as well.  
 
 
@@ -103,35 +103,35 @@ Consider two vectors `u` and `v`, the resulting value of `u.v` is known as dot p
 If the dot product between two vectors `u` and `v` is actually `0`, then both vectors are perpendicular to each other. The dot product gives us a scalar. 
 For example `u = (1, 4)` and `v = (2, 1)` then the dot product of these two vectors `u.v` would be: 
 
-	(1, 4) . (2, 1) = 1 x 2 + 4 x 1 = 6
+	`(1, 4) . (2, 1) = 1 x 2 + 4 x 1 = 6`
 
 `|| v ||` Length or Norm or magnitude of a vector is the square root of dot product with itself. e.g 
 
-	|| v || = sqrt(v. v)
+	`|| v || = $\sqrt{(v. v)}$`
 	
 From the above vector v, it would be: 
 
-	|| v ||  = sqrt(sqr(2) + sqr(1)) = sqrt(5)
+	|| v ||  = $\sqrt{($2^2$ + $1^2$)}$ 
 
 A unit vector is any vector whose length or magnitude is actually `1`. For example:
 
-	v = (1, 0) 
-
-	sqrt(1 + 0) = 1. 
+	```v = (1, 0) 
+	$\sqrt{(1 + 0)}$ = 1. ```
+	 
 	
 `u = v/ll v II` is a unit vector in the same direction as `v`. 
 From the above vector `v`, the unit vector would be 
 
-	(2, 1)/ sqrt(5) = (0.89443, 0.44721) 
+	(2, 1)/ $\sqrt{5}$ = (0.89443, 0.44721) 
 Calculating the norm of this resulting unit vector, we would derive `1`. 
  
 When `v` and `w` are perpendicular, they form two sides of a right triangle. The third side is `v - w` (the hypotenuse going across). 
 
 The Pythagoras Law for the sides of a right triangle is
 
-	a2 + b2 = c2 
+	$a^2$ + $b^2$ = $c^2$ 
 
-Perpendicular vectors `II v2 II  + ||w2 || = II v - w|| 2`
+Perpendicular vectors `|| $v^2$ ||  + || $w^2$ || = $(|| v - w||)^2$`
 
 The angle is less than `90°`when `v . w` is positive. The angle is above` 90°` when `v . w` is negative.
 
@@ -144,24 +144,18 @@ Unit vector  `u . U` at angle `theta` we have `u· U = cos(theta)`. Remember tha
 
 
 
-![Figure reference: (8)](
-        ekbanaml.github.io/static/images/LRintro/image4.png
-      )
-            
+![Figure Reference: 8]({{'static/images/LRintro/image4.png' | absolute_url}})
+
 From the above backgrounds, now we can move onto another interesting concept. 
 # Inequalities: 
 
-Whatever the angle, this dot product of `v / II v II` with `w / II w II` never exceeds `1`. That is __"Schwarz inequality"__ `|v. w| =< ||v|| ||w||`
-Similarly the cosine formula gives us yet another interesting phenomenon, triangle inequality. `IIv + wll < II v ll + Il w ll`
+Whatever the angle, this dot product of `v / || v ||` with `w / || w ||` never exceeds `1`. That is __"Schwarz inequality"__ `|v. w| =< ||v|| ||w||`
+Similarly the cosine formula gives us yet another interesting phenomenon, triangle inequality. `|| v + w || < || v || + || w ||`
 
 The __Schwarz__ inequality tells us that the magnitude of dot product of two vectors is always less than or equals to the multiplication of their norms. Extending this concept we get another inequality which is triangle inequality. 
 Geometrically, the right-hand part of the triangle inequality states that the sum of the lengths of any two sides of a triangle is greater than the length of the remaining side. `[9] `
-
-
-![Figure reference: [10]](
-        ekbanaml.github.io/static/images/LRintro/image5.png
-      )
       
+![Figure Reference: 10]({{'static/images/LRintro/image5.png' | absolute_url}})
 
 Depicted as in the figure, the triangle inequality tells that, the magnitude of sum of two sides of the triangle would be less than or equal to the summation of their individual magnitude. Since mostly in machine learning problems we would work with Euclidean space, in which these inequalities are already the part of the space. For example the triangle inequality is used to accelerate the K-means clustering `[11]`. Citing a cross Validation: 
 
@@ -171,7 +165,7 @@ Depicted as in the figure, the triangle inequality tells that, the magnitude of 
 Finally, we’re on the final topic of this article, cross product of vectors. The cross product between two vectors u and v gives us the new vector w which is perpendicular to the both vectors u and v. There are some nice properties that the cross product can give us, which are listed below: 
 The cross product is defined by the formula
 
-	||a x b || = ||a|| ||b|| sin (theta) n
+	||a x b || = ||a|| ||b|| sin$\theta$ n
 where `θ` is the angle between`a` and `b` in the plane containing them (hence, it is between `0°` and `180°`), `‖a‖` and `‖b‖` are the magnitudes of vectors `a` and `b`, and n is a unit vector perpendicular to the plane containing `a` and `b` in the direction given by the right-hand rule. 
 
 The magnitude of cross product between two vectors would give us the whole area of a parallelogram. 
