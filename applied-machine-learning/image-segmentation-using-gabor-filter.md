@@ -1,7 +1,7 @@
 {% include head.html %}
 ## Image Texture Segmentation Using Gabor Filter
 
-**Gabor Filters** are known best to depict the mammalian multi-channel approach of vision for interpreting and segmenting textures. This notebook shows an implementation of gabor filters in python using sklearn and other libraries to  segment textures within an image. We will take an example of a slab image and segment the textures within the image using gabor filter. Our implementation shows three steps: pre-processing, gabor filter and post-processing.
+**Gabor Filters** are known best to depict the mammalian multi-channel approach of vision for interpreting and segmenting textures. This article shows an implementation of gabor filters in python using sklearn and other libraries to  segment textures within an image. We will take an example of a slab image and segment the textures within the image using gabor filter. Our implementation shows three steps: pre-processing, gabor filter and post-processing.
 <p>Now lets begin with the required imports.</p>
 
 ```
@@ -231,4 +231,4 @@ Author: [Ashuta](https://github.com/ashuta03)
 ## References
 [1] https://www.mathworks.com/help/images/texture-segmentation-using-gabor-filters.html
 <p>
-[2] https://www.mathworks.com/help/images/texture-segmentation-using-gabor-filters.html
+[2] https://pdfs.semanticscholar.org/a53b/78ff23daf515a344d47f4848e1f2528b3074.pdf
