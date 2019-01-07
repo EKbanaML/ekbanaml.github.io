@@ -1,4 +1,5 @@
 {% include head.html %}
+<title> Using Sphinx To Generate Documentation From Python Doc String</title>
 Sphinx is python recommended tool for generating documentation for python projects, it can generate the documentation of
  the project in various popular formats, like pdf, epub, latex, html, using readthedocs.io and github, even publishing the
  documentation has been made easy. For more about Sphinx, please follow [Sphinx master page](http://www.sphinx-doc.org/en/master/)
