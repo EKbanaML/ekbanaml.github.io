@@ -1,15 +1,9 @@
-## Welcome to GitHub Pages
+# Welcome to Ekbana's Machine Learning Github Page
 
-You can use the [editor on GitHub](https://github.com/EKbanaML/ekbanaml.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Machine Learning has been one of our core R&D sector for our company. With a team of 15+ members, we work on computer vision, Natural Language Processing and data analytics and processing.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+In this Github page, we will be creating a page for our team members to share code, learn and teach everyone about what interests them and what our ML team is currently researching and developing. 
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
 
 # Header 1
 ## Header 2
