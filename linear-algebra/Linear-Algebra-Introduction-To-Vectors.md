@@ -109,7 +109,7 @@ This is the four dimensional vector representing the various properly of the car
 ## Parallelogram law of vector addition:
 
 There is an interesting phenomenon in vector addition,
-let us have the two vectors formed by our travelling bus, one is `(2, 4)` and another is `(4, 8)`.
+let us have the two vectors formed by our travelling bus, one is `(2, 4)` and another is `(5, 2)`.
 Let’s add them together, this should give us the net displacement of the bus in both horizontal and the vertical direction.
 
 `(2, 4) + (5, 2) = (7, 6)`
@@ -120,7 +120,7 @@ Now let’s visualize that:
 Here the vector r is the resultant of the addition between vectors a and b.
 If we connect the points `A, B & C`, we will get a nice parallelogram.
 
-![Parallelogram law of Vector addition]({{'static/images/LRintro/Vector-Introduction-1 (4).png' | absolute_url}})
+![Parallelogram law of Vector addition]({{'static/images/LRintro/Vector-Introduction-Parrallogram-law.png' | absolute_url}})
 
 This is what is known as the parallelogram law of vector addition.
 If two vectors acting simultaneously at a point can be represented both in magnitude and
