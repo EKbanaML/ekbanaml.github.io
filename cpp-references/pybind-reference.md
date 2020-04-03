@@ -79,10 +79,10 @@ class Matrix{
 	int nc;
 	public:
 	enum INIT_PARAM{ONES = 1,ZEROS = 0};
-	std::vector&lt;std::vector&lt;int&gt;&gt; mat;
+	std::vector<std::vector<int>> mat;
 	Matrix();
 	Matrix(int r, int c, INIT_PARAM ini = ZEROS);
-	void setValues(std::vector&lt;int&gt; l);
+	void setValues(std::vector<int> l);
 	Matrix operator +(const Matrix&) const;
 	Matrix operator -( const Matrix&)const;
 	Matrix operator *( const Matrix &mat1)const;
@@ -142,7 +142,7 @@ PYBIND11_MODULE(matrix, m){
 ```
 This code includes the Matrix and exception (MatExp) classes declared in
 “matrix.hpp” and “matexp.hpp” files respectively. The pre-defined
-pybind11 types such as class\_, init (constructor) and enum\_ are
+pybind11 types such as ```class_```, ```init``` (constructor) and ```enum_``` are
 defined in “pybind11” namespace (accessed as “py”) in “pybind/pybind.h”
 header file. Similarly, operators such as “self”, used for accessing an
 object implicitly for purpose of operator overloading, are declared in
@@ -150,7 +150,7 @@ the same “pybind11” namespace in “pybind/operators.h” header file.
 
 **Module**
 
-The module can be named by using PYBIND11\_MODULE(matrix,m){} wrapper,
+The module can be named by using ```PYBIND11_MODULE(matrix,m){}``` wrapper,
 where the first argument “matrix” is the name to be used while importing
 the module in python, and the second argument “m” is the name used to
 access the module within this wrapper. All the classes, variables,
@@ -159,25 +159,25 @@ defined within this wrapper.
 
 **Class**
 
-The method class\_&lt;typename&gt;(access\_name, method\_class\_name)
+The method ```class<typename>(access_name, method_class_name)```
 can be used to create binding for a class. Every member of the class
-that requires binding has to be mentioned by using .def() attribute of
+that requires binding has to be mentioned by using ```.def()``` attribute of
 this method.
 
 **Constructors**
 
-The constructors can be mapped into init() method of pybind11 within
-.def() attribute of the class to be constructed, as shown in the code.
-Init() method may call any constructor defined by the given class.
+The constructors can be mapped into ```init()``` method of pybind11 within
+```.def()``` attribute of the class to be constructed, as shown in the code.
+```init()``` method may call any constructor defined by the given class.
 
 **Overloading**
 
 Operator overloading can be bound by defining the operation on implicit
-operator self, used to access the current class object, in pybind11.
+operator ```self```, used to access the current class object, in pybind11 namespace.
 
 **Other Methods**
 
-All other methods can be mapped by using .def() attribute of the class
+All other methods can be mapped by using ```.def()``` attribute of the class
 by passing two arguments: name of the method to be used for calling in
 python and the reference to the function to be called (using &
 operator).
@@ -185,16 +185,16 @@ operator).
 **Enumerations**
 
 The enumerations of a class can be provided python binding in a module
-by calling enum\_&lt;typename&gt;(reference\_names) method and its
+by calling ```enum_<typename>(reference_names)``` method and its
 attribute value() to define each value to be wrapped using the
-enumeration. The values must be exported using export\_values()
-attribute of the enum\_ method.
+enumeration. The values must be exported using ```export_values()```
+attribute of the ```enum_``` method.
 
 **Exceptions**
 
 The standard (built-in) and custom exceptions in C++ implementation can
-be mapped into python by using pybind11::exception&lt;typename&gt;
-exc(reference\_names) method. A custom translator can also be registered
+be mapped into python by using ```pybind11::exception<typename>
+exc(reference_names)``` method. A custom translator can also be registered
 for by calling the following wrapper.
 ```
 py::register_exception_translator([] (std::exception\_ptr p){}
@@ -204,7 +204,7 @@ py::register_exception_translator([] (std::exception\_ptr p){}
 Sometimes python objects such as list and dict defined in python might
 be needed to be accessed in C++, these can be translated into PyObject
 and its inherited classes defined by cpython. pybind11 also supports the
-following python objects (inheriting from PyObject class) that can be
+following python objects (inheriting from ```PyObject``` class) that can be
 handled from C++
 ```
 bool_, buffer, bytes, capsule, dict, dtype, exception<type>,
@@ -217,7 +217,7 @@ the python object from within C++.
 
 The python object (such as pybind11::list as shown in example) can be
 iterated by using Handle class that can be cast into desired C++ type
-using cast&lt;typename&gt;() method.
+using ```cast<typename>()``` method.
 
 Step 3: Building the Binding
 ----------------------------
@@ -238,9 +238,9 @@ add_executable (matrixop main.cpp matrix.cpp)
 pybind11_add_module(module_name SOURCES) is used to build the python
 module using the sources listed.
 ```
-Note: find\_package(pybind11 REQUIRED) may be used only when the
+Note: ```find_package(pybind11 REQUIRED)``` may be used only when the
 pybind11 library has been built globally. If the library is included as
-a sub-module, add\_subdirectory(pybind11) should be used instead.
+a sub-module, ```add_subdirectory(pybind11)``` should be used instead.
 
 ### Manual Build
 
