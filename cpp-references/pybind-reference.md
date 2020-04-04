@@ -104,7 +104,7 @@ class MatExp: public std::exception{
 ### Python Binding Implementation
 
 We implement python binding by using pybind11 header-only library to map
-each constructor, module and operation to python. This has been
+each constructor, method and operation to python. This has been
 performed in the code as follows, included in “mainpy.cpp” file.
 ```
 #include "matrix.hpp"
