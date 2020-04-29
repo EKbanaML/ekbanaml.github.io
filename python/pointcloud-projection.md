@@ -77,9 +77,9 @@ where a, b and c are the direction cosines of the line, and t is the direction r
 Here, ![r2](/static/images/pointcloud_projection/r2.svg) is the distance between the center of the sphere and the point in the Point Cloud.
 
 Now, we can substitute the equations of the line into the equations of the sphere to solve for t.
-	<p align="center"><img src="/static/images/pointcloud_projection/Sl.svg"></p>
+<p align="center"><img src="/static/images/pointcloud_projection/Sl.svg"></p>
 Solving this equation for t, we obtain the following relation.
-	<p align="center"><img src="/static/images/pointcloud_projection/tS.svg"></p>
+<p align="center"><img src="/static/images/pointcloud_projection/tS.svg"></p>
 Finally, substituting this value of t and the direction cosines into the equations of the line, we can obtain the projected points.
 <p align="center"><img src="/static/images/pointcloud_projection/xtS1.svg"><br>or, <img src="/static/images/pointcloud_projection/xtS2.svg"><br><img src="/static/images/pointcloud_projection/ytS.svg"><br><img src="/static/images/pointcloud_projection/ztS.svg"></p>
 
@@ -108,3 +108,5 @@ The resulting spherical projection of the cloud is as follows\
 References
 ----------
 The point of intersection between a line and a plane. http://www.ambrsoft.com/TrigoCalc/Plan3D/PlaneLineIntersection_.htm
+
+Authors : <a href="https://github.com/aashutosh1997">Aashutosh</a>, <a href="https://github.com/scimad">Madhav</a>
