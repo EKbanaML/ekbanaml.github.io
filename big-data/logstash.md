@@ -30,13 +30,16 @@ package. And version of the stack (Elasticsearch and kibana) that I am using cur
 - **https://www.elastic.co/downloads/past-releases
 Step 2: Install the package via command:**
 - sudo dpkg -i filebeat-7.5.0-amd64.deb
-**Expected output 1:**
+
+**Expected output :**
 ![filebeat](../static/images/logstash-article/Expected-output 1.jpg)
 
 **Step 3: Provide ownership**
+
 After you are done with installation you need to provide ownership to following files. If you don’t
 provide ownership to these files you will face the error of permission denied afterwards while running
 filebeat.
+
 Run the command below to provide ownership:
 
 - sudo chown -R $USER:$USER /etc/filebeat/
@@ -47,22 +50,25 @@ Run the command below to provide ownership:
 - sudo chown -R $USER:$USER /var/lib/filebeat/
 
 
-eg 2:
+eg :
 ![filebeat](../static/images/logstash-article/eg.2.jpg)
 
 **Step 4: Edit the filebeat.yml file located inside /etc/filebeat/filebeat.yml and make following
 changes.**
 
 - sudo nano /etc/filebeat/filebeat.yml
-eg 3:
+
+eg :
 ![filebeat](../static/images/logstash-article/eg:3.jpg)
 
 Here, in above configuration:
+
 
 ```
 enabled: true If not set to true then it won’t do any work.
 Paths:
 ```
+
 - _home_ /sajita/log
 
 ```
@@ -70,7 +76,7 @@ Here, we can list which log file we want to read. I
 have listed only one file log2 in this configuration.
 ```
 
-eg: 4
+eg: 
 ![filebeat](../static/images/logstash-article/eg 4.jpg)
 
 **document_type:** the type to be published in the ‘type’ field of logstash configuration.
@@ -82,7 +88,8 @@ As we will sent the log to the logstash so we need do the following task:
 - Unrem the Logstash lines.
 - Tell Beats where to find LogStash.
 - Make sure you rem out the line #output.elasticsearch too.
-Eg:
+
+eg:
 ![filebeat](../static/images/logstash-article/eg 5.jpg)
 
 **Step 5: Start filebeat**
@@ -93,34 +100,43 @@ Eg:
 ```
 -e tells to write logs to stdout, so we can see it working and check for errors.
 ```
-**Expected Output 2:**
+**Expected Output :**
+
 ![filebeat](../static/images/logstash-article/Expected-output 2.jpg)
 
 ## Logstash setup
 
 Before setup let’s discuss a little about logstash pipeline. A Logstash pipeline consists of three stages:
+
 **i. Input stage:** Input stage is how the Logstash receives the data. An input plugin could be a file
 so that the Logstash reads events from a file, It could be filebeat or any other beat or it could be
 even a Kafka queue.
+
 **ii. Filter Stage:** Filter stage is about how logstash would process the events receive from Input
 stage plugins. Here we can parse CSV, XML or JSON.
+
 **iii. Output Stage:** Output Stage is all about where we send the processed events to. These places
 can be an Elasticsearch instance, a Kafka queue or a File and so on.
+
 **Setup Process:
+
 Step 1: Download logstash debian package from:**
 
 - https://www.elastic.co/downloads/past-releases
+
 **Step 2: Install the package via command:**
 - sudo dpkg -i logstash-7.5.0-amd64.deb
 
 
-eg: 6
+eg: 
 ![logstash](../static/images/logstash-article/eg 6.jpg)
 
 **Step 3: Provide ownership**
+
 After you are done with installation you need to provide ownership to following files. If you don’t
 provide ownership to these files you will face the error of permission denied afterwards while running
 logstash.
+
 **Run the command below to provide ownership:**
 
 - sudo chown -R $USER:$USER /etc/logstash/
@@ -139,13 +155,16 @@ eg :
 
 
 **Step 5: Initialize a custom template inside /etc/logstash** with correct mappings.
+
 Here, the log that I am processing is in json format so I have configured pipeline and template
 accordingly.
 **My log format**
+
 eg : 9
 ![logstash](../static/images/logstash-article/eg 9.jpg)
 
 I have created a template named log_temp.json for above log format.
+
 eg:
 ![logstash](../static/images/logstash-article/eg 10.jpg)
 
@@ -154,15 +173,18 @@ eg:
 ![logstash](../static/images/logstash-article/eg 11.jpg)
 
 Logstash uses this template and creates index in elasticsearch according to the mapping provided.
+
 **Step 6: Configure Logstash pipeline inside /etc/logstash/conf.d to ingest data from filebeat.**
 
 - sudo nano /etc/logstash/conf.d/test1.conf
+
 eg:
 ![logstash](../static/images/logstash-article/eg 12.jpg)
 
 
 Test1.conf pipeline consist of following content:
-eg: 13
+
+eg: 
 ![logstash](../static/images/logstash-article/eg 13.jpg)
 
 **In above configuration:**
@@ -194,10 +216,13 @@ working.
 **Note:** we need to specify date format in both filter and template otherwise it will throw an error stating
 that it could not recognize the date format and logstash won’t be able to insert data to elasticsearch
 index.
+
 **Step7: Start logstash**
 
 - bin/logstash -f /etc/logstash/conf.d/logstash-log.conf --path.settings /etc/logstash/
-**Expected output 3:**
+
+**Expected output :**
+
 ![logstash](../static/images/logstash-article/Expected-output 3.jpg)
 
 Now our "stash" here is Elasticsearch. If we run the above configuration logstash will index the sample
@@ -205,7 +230,7 @@ documents into Elasticsearch according to the mapping provided by us. Now we can
 through the **Elasticsearch GET API**.
 
 
-**Expected Output 4** :
+**Expected Output ** :
 
 ![logstash](../static/images/logstash-article/Expected-output 4.jpg)
 
