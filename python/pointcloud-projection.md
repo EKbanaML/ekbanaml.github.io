@@ -14,22 +14,22 @@ Projection onto a Plane
 -----------------------
 We will try to achieve the perspective projection of a point cloud (i.e. from a fixed optical center) onto a plane given by the general equation:
 	
-<p align="center"><img src="/python/img/plane.svg"><br><img src="/python/img/plane.png"></p>
+<p align="center"><img src="/static/images/pointcloud_projection/plane.svg"><br><img src="/static/images/pointcloud_projection/plane.png"></p>
 
-The above demostration shows the persspective transform of a set of points onto the plane P from the optical center of the camera with arbitrary co-ordinates ![](/python/img/xyz0.svg). We can see that the projection ![](/python/img/xyz.svg) of a point ![](/python/img/xyz1.svg) on the plane P is nothing but the point of intersection between the said plane and the line L passing through the optical center and the given point in the cloud.
+The above demostration shows the persspective transform of a set of points onto the plane P from the optical center of the camera with arbitrary co-ordinates ![](/static/images/pointcloud_projection/xyz0.svg). We can see that the projection ![](/static/images/pointcloud_projection/xyz.svg) of a point ![](/static/images/pointcloud_projection/xyz1.svg) on the plane P is nothing but the point of intersection between the said plane and the line L passing through the optical center and the given point in the cloud.
 
 The line L in 3D-space can be represented as follows
-<p align="center"><img src="/python/img/x.svg"><br><img src="/python/img/y.svg"><br><img src="/python/img/z.svg"></p>
+<p align="center"><img src="/static/images/pointcloud_projection/x.svg"><br><img src="/static/images/pointcloud_projection/y.svg"><br><img src="/static/images/pointcloud_projection/z.svg"></p>
 where a, b and c are the direction cosines of the line L, and t is known as the direction ratio. 
 
 With the given optical center and the set of points in the cloud, we can compute the direction cosines for the lines passing through each of the points.
-<p align="center"><img src="/python/img/a.svg"><br><img src="/python/img/b.svg"><br><img src="/python/img/c.svg"></p>
+<p align="center"><img src="/static/images/pointcloud_projection/a.svg"><br><img src="/static/images/pointcloud_projection/b.svg"><br><img src="/static/images/pointcloud_projection/c.svg"></p>
 We can substitute the equations of the line in the equation of the plane P since we are solving for the point of intersection between the two.
-<p align="center"><img src="/python/img/pl.svg"></p>
+<p align="center"><img src="/static/images/pointcloud_projection/pl.svg"></p>
 Solving for t, we can deduce the above equation as follows
-<p align="center"><img src="/python/img/t.svg"></p>
+<p align="center"><img src="/static/images/pointcloud_projection/t.svg"></p>
 Finally, we can obtain the projection by substituting the value of t into the equations of the line L.
-<p align="center"><img src="/python/img/xt.svg"><br><img src="/python/img/yt.svg"><br><img src="/python/img/zt.svg"></p>
+<p align="center"><img src="/static/images/pointcloud_projection/xt.svg"><br><img src="/static/images/pointcloud_projection/yt.svg"><br><img src="/static/images/pointcloud_projection/zt.svg"></p>
 The above computation should be performed for each point in the Point Cloud to obtain the complete projection on the given plane.
 
 ### Python Implementation
@@ -57,31 +57,31 @@ def get_flattened_pcds2(source,A,B,C,D,x0,y0,z0):
 
 ### Output
 The resulting planar Point Cloud can be seen as follows
-![](/python/img/out1.png)
+![](/static/images/pointcloud_projection/out1.png)
 
 Projection onto a Sphere
 ------------------------
 A Point Cloud maybe projected onto geometrical surfaces other than a plane, such as a sphere. The spherical projection in particular maybe used to aproximate a 360 image of the Point Cloud since those are spherical or cylindrical photographs of a scene.
-<p align="center"><img src="/python/img/sphere.png"></p>
+<p align="center"><img src="/static/images/pointcloud_projection/sphere.png"></p>
 
-The figure above shows the spherical projection of a point onto the surface of a sphere with radius ![r1](/python/img/r1.svg) and with its center at the point ![xyz0](/python/img/xyz0.svg) Such a sphere can be represented by the following equation
+The figure above shows the spherical projection of a point onto the surface of a sphere with radius ![r1](/static/images/pointcloud_projection/r1.svg) and with its center at the point ![xyz0](/static/images/pointcloud_projection/xyz0.svg) Such a sphere can be represented by the following equation
 
-<p align="center"><img src="/python/img/S.svg"></p>
+<p align="center"><img src="/static/images/pointcloud_projection/S.svg"></p>
 Similar to projection on a plane, the projection of a point is the point of intersection between the given sphere S and line passing through the center of the sphere and the point.
 
 Again, the line L in 3D-space can be represented as follows
-<p align="center"><img src="/python/img/x.svg"><br><img src="/python/img/y.svg"><br><img src="/python/img/z.svg"></p>
+<p align="center"><img src="/static/images/pointcloud_projection/x.svg"><br><img src="/static/images/pointcloud_projection/y.svg"><br><img src="/static/images/pointcloud_projection/z.svg"></p>
 where a, b and c are the direction cosines of the line, and t is the direction ratio. With the given center of the sphere and the set of points in the cloud, we can compute the direction cosines for the lines passing through each of the points and the center.
-<p align="center"><img src="/python/img/aS.svg"><br><img src="/python/img/bS.svg"><br><img src="/python/img/cS.svg"></p>
+<p align="center"><img src="/static/images/pointcloud_projection/aS.svg"><br><img src="/static/images/pointcloud_projection/bS.svg"><br><img src="/static/images/pointcloud_projection/cS.svg"></p>
 
-Here, ![r2](/python/img/r2.svg) is the distance between the center of the sphere and the point in the Point Cloud.
+Here, ![r2](/static/images/pointcloud_projection/r2.svg) is the distance between the center of the sphere and the point in the Point Cloud.
 
 Now, we can substitute the equations of the line into the equations of the sphere to solve for t.
-	<p align="center"><img src="/python/img/Sl.svg"></p>
+	<p align="center"><img src="/static/images/pointcloud_projection/Sl.svg"></p>
 Solving this equation for t, we obtain the following relation.
-	<p align="center"><img src="/python/img/tS.svg"></p>
+	<p align="center"><img src="/static/images/pointcloud_projection/tS.svg"></p>
 Finally, substituting this value of t and the direction cosines into the equations of the line, we can obtain the projected points.
-<p align="center"><img src="/python/img/xtS1.svg"><br>or, <img src="/python/img/xtS2.svg"><br><img src="/python/img/ytS.svg"><br><img src="/python/img/ztS.svg"></p>
+<p align="center"><img src="/static/images/pointcloud_projection/xtS1.svg"><br>or, <img src="/static/images/pointcloud_projection/xtS2.svg"><br><img src="/static/images/pointcloud_projection/ytS.svg"><br><img src="/static/images/pointcloud_projection/ztS.svg"></p>
 
 ### Python Implementation
 The following python method takes an Open3D PointCloud geometry, and the radius and center of the sphere to project on. 
@@ -103,7 +103,7 @@ def get_spherical_pcd(source,x0,y0,z0,r1):
 
 ### Output
 The resulting spherical projection of the cloud is as follows\
-<img src="/python/img/out2.png">
+<img src="/static/images/pointcloud_projection/out2.png">
 
 References
 ----------
