@@ -135,7 +135,7 @@ eg :
 **Step 4: Check pipelines.yml file inside etc/logstash and make sure configuration looks like this:**
 
 eg :
-![logstash](../static/images/logstash-article/eg 8.jpg)
+![logstash](../static/images/logstash-article/eg%208%20.jpg)
 
 
 **Step 5: Initialize a custom template inside /etc/logstash** with correct mappings.
