@@ -1,6 +1,6 @@
 Planar and Spherical Projections of a Point Cloud
 =================================================
-A point cloud is a collection of points in 3D coordinate space represented by x, y and z axes. These points may just form a geometric shape, or more complex structures such as a 3-dimensional representation of the real world. Various libraries, even with open-sources, such as the <a href="http://pointclouds.org/">Point Cloud Library (PCL)</a> and Intel's <a href="http://www.open3d.org/">Open3D</a>, natively support data types to represent point clouds. These libraries not only allow simple geometric transformations of the cloud but also provide sophisticated functionalities such as reconstruction of a 3D scene from various images.  
+A point cloud is a collection of points in 3D coordinate space represented by x, y and z axes. These points may just form a geometric shape, or more complex structures such as a 3-dimensional representation of the real world. Various libraries, even with open-sources, such as the <a href="http://pointclouds.org/">Point Cloud Library (PCL)</a> and Intel's <a href="http://www.open3d.org/">Open3D</a>, provide native support data types to represent point clouds. These libraries not only allow simple geometric transformations of the cloud but also provide sophisticated functionalities such as reconstruction of a 3D scene from various images.  
 
 However, this article discusses simple geometric approach to achieve the reverse of 3D reconstruction, i.e generate an image from a point cloud. We will also see how to project the point cloud onto other non-planar geometries such as a sphere. Hence, our objective is the following
 * Project a point cloud from a certain perspective to a given plane, then store the projection as an image; and
@@ -73,6 +73,7 @@ Again, the line L in 3D-space can be represented as follows
 <p align="center"><img src="/python/img/x.svg"><br><img src="/python/img/y.svg"><br><img src="/python/img/z.svg"></p>
 where a, b and c are the direction cosines of the line, and t is the direction ratio. With the given center of the sphere and the set of points in the cloud, we can compute the direction cosines for the lines passing through each of the points and the center.
 <p align="center"><img src="/python/img/aS.svg"><br><img src="/python/img/bS.svg"><br><img src="/python/img/cS.svg"></p>
+
 Here, ![r2](/python/img/r2.svg) is the distance between the center of the sphere and the point in the Point Cloud.
 
 Now, we can substitute the equations of the line into the equations of the sphere to solve for t.
