@@ -26,13 +26,14 @@ package. And version of the stack (Elasticsearch and kibana) that I am using cur
 ## Filebeat setup
 
 **Step 1: Download filebeat debian package from:**
-
- **https://www.elastic.co/downloads/past-releases
- 
+```
+ https://www.elastic.co/downloads/past-releases
+ ```
 **Step 2: Install the package via command:**
 
+```
  sudo dpkg -i filebeat-7.5.0-amd64.deb
-
+```
 
 ![filebeat](../static/images/logstash-article/Expected-output 1.jpg)
 
@@ -43,7 +44,7 @@ provide ownership to these files you will face the error of permission denied af
 filebeat.
 
 Run the command below to provide ownership:
-
+```
 sudo chown -R $USER:$USER /etc/filebeat/
 
 sudo chown -R $USER:$USER /usr/share/filebeat
@@ -56,15 +57,16 @@ sudo chown -R $USER:$USER /etc/default/filebeat
 
 sudo chown -R $USER:$USER /var/lib/filebeat/
 
-
+```
 
 ![filebeat](../static/images/logstash-article/eg.2.jpg)
 
 **Step 4: Edit the filebeat.yml file located inside /etc/filebeat/filebeat.yml and make following
 changes.**
 
-sudo nano /etc/filebeat/filebeat.yml
-
+```
+ sudo nano /etc/filebeat/filebeat.yml
+```
 
 ![filebeat](../static/images/logstash-article/eg:3.jpg)
 
@@ -100,13 +102,13 @@ As we will sent the log to the logstash so we need do the following task:
 ![filebeat](../static/images/logstash-article/eg 5.jpg)
 
 **Step 5: Start filebeat**
-
+```
 bin/filebeat -c /etc/filebeat/filebeat.yml -e -d "*"
 
 
 ```
 -e tells to write logs to stdout, so we can see it working and check for errors.
-```
+
 
 
 ![filebeat](../static/images/logstash-article/Expected-output 2.jpg)
@@ -128,14 +130,14 @@ can be an Elasticsearch instance, a Kafka queue or a File and so on.
 **Setup Process:**
 
 **Step 1: Download logstash debian package from:**
-
+```
  https://www.elastic.co/downloads/past-releases
-
+```
 **Step 2: Install the package via command:**
-
+```
  sudo dpkg -i logstash-7.5.0-amd64.deb
 
-
+```
 
 ![logstash](../static/images/logstash-article/eg 6.jpg)
 
@@ -146,7 +148,7 @@ provide ownership to these files you will face the error of permission denied af
 logstash.
 
 **Run the command below to provide ownership:**
-
+```
 sudo chown -R $USER:$USER /etc/logstash/
 
 sudo chown -R $USER:$USER /usr/share/logstash/
@@ -158,6 +160,7 @@ sudo chown -R $USER:$USER /var/log/logstash/
 sudo chown -R $USER:$USER /etc/default/logstash
 
 sudo chown -R $USER:$USER /var/lib/logstash/
+```
 
 ![logstash](../static/images/logstash-article/eg 7.jpg)
 
@@ -189,9 +192,9 @@ Content of template looks like this according to my log file.
 Logstash uses this template and creates index in elasticsearch according to the mapping provided.
 
 **Step 6: Configure Logstash pipeline inside /etc/logstash/conf.d to ingest data from filebeat.**
-
+```
 sudo nano /etc/logstash/conf.d/test1.conf
-
+```
 
 ![logstash](../static/images/logstash-article/eg 12.jpg)
 
@@ -235,10 +238,10 @@ that it could not recognize the date format and logstash won’t be able to inse
 index.
 
 **Step7: Start logstash**
-
+```
 bin/logstash -f /etc/logstash/conf.d/logstash-log.conf --path.settings /etc/logstash/
 
-
+```
 
 ![logstash](../static/images/logstash-article/Expected-output 3.jpg)
 
