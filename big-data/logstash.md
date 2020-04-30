@@ -56,7 +56,6 @@ sudo chown -R $USER:$USER /var/log/filebeat/
 sudo chown -R $USER:$USER /etc/default/filebeat
 
 sudo chown -R $USER:$USER /var/lib/filebeat/
-
 ```
 
 ![filebeat](../static/images/logstash-article/eg.2.jpg)
@@ -76,14 +75,11 @@ Here, in above configuration:
 ```
 enabled: true If not set to true then it won’t do any work.
 Paths:
-```
-
 _home_ /sajita/log
-
 ```
 Here, we can list which log file we want to read. I
 have listed only one file log2 in this configuration.
-```
+
 
 
 ![filebeat](../static/images/logstash-article/eg 4.jpg)
@@ -91,12 +87,17 @@ have listed only one file log2 in this configuration.
 **document_type:** the type to be published in the ‘type’ field of logstash configuration.
 
 As we will sent the log to the logstash so we need do the following task:
+````
+ make # for all other outputs and in the host’s field, specify the IP address of the logstash.
+ 
+ Rem out the ElasticSearch output as we use logstash to write there.
 
-- make # for all other outputs and in the host’s field, specify the IP address of the logstash.
-- Rem out the ElasticSearch output as we use logstash to write there.
-- Unrem the Logstash lines.
-- Tell Beats where to find LogStash.
-- Make sure you rem out the line #output.elasticsearch too.
+ Unrem the Logstash lines.
+ 
+ Tell Beats where to find LogStash.
+ 
+ Make sure you rem out the line #output.elasticsearch too.
+ ````
 
 
 ![filebeat](../static/images/logstash-article/eg 5.jpg)
@@ -104,8 +105,6 @@ As we will sent the log to the logstash so we need do the following task:
 **Step 5: Start filebeat**
 ```
 bin/filebeat -c /etc/filebeat/filebeat.yml -e -d "*"
-
-
 ```
 -e tells to write logs to stdout, so we can see it working and check for errors.
 
@@ -208,30 +207,28 @@ Test1.conf pipeline consist of following content:
 
 ```
 input Tell logstash to listen to Beats on port 5044
+
 Filter{
 grok{
-```
-```
 It’s a file parser tool. It basically understands
 different file formats. It can be extended too.
+
 Output{
 elasticsearch{}
-```
-```
 The data that we have filtered is output to target.
 (here elasticsearch)
 stdout { codec => rubydebug } writes the output to stdout so we can see that is it
 working.
-```
-document_type : hostname→ we use this to filter from which host the data is coming from.
 
-parsed_json field→ Contains log data only.
+document_type : hostname → we use this to filter from which host the data is coming from.
 
-Mutate filter→ maps our log data into new fields.
+parsed_json field → Contains log data only.
 
-Prune and whitelist→ they are used to output only those data that we want to specify in output
+Mutate filter → maps our log data into new fields.
+
+Prune and whitelist → they are used to output only those data that we want to specify in output
     section.
-
+```
 
 **Note:** we need to specify date format in both filter and template otherwise it will throw an error stating
 that it could not recognize the date format and logstash won’t be able to insert data to elasticsearch
@@ -240,7 +237,6 @@ index.
 **Step7: Start logstash**
 ```
 bin/logstash -f /etc/logstash/conf.d/logstash-log.conf --path.settings /etc/logstash/
-
 ```
 
 ![logstash](../static/images/logstash-article/Expected-output 3.jpg)
@@ -253,4 +249,6 @@ through the **Elasticsearch GET API**.
 
 
 ![logstash](../static/images/logstash-article/Expected-output 4.jpg)
+
+Author : Sajita Pathak  https://github.com/sajita
 
