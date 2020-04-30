@@ -46,15 +46,10 @@ filebeat.
 Run the command below to provide ownership:
 ```
 sudo chown -R $USER:$USER /etc/filebeat/
-
 sudo chown -R $USER:$USER /usr/share/filebeat
-
 sudo chmod +x /usr/share/filebeat/bin/
-
 sudo chown -R $USER:$USER /var/log/filebeat/
-
 sudo chown -R $USER:$USER /etc/default/filebeat
-
 sudo chown -R $USER:$USER /var/lib/filebeat/
 ```
 
@@ -75,7 +70,7 @@ Here, in above configuration:
 ```
 enabled: true If not set to true then it won’t do any work.
 Paths:
-_home_ /sajita/log
+_home_ /sajita/log2
 ```
 Here, we can list which log file we want to read. I
 have listed only one file log2 in this configuration.
@@ -89,13 +84,9 @@ have listed only one file log2 in this configuration.
 As we will sent the log to the logstash so we need do the following task:
 ````
  make # for all other outputs and in the host’s field, specify the IP address of the logstash.
- 
  Rem out the ElasticSearch output as we use logstash to write there.
-
  Unrem the Logstash lines.
- 
  Tell Beats where to find LogStash.
- 
  Make sure you rem out the line #output.elasticsearch too.
  ````
 
@@ -149,15 +140,10 @@ logstash.
 **Run the command below to provide ownership:**
 ```
 sudo chown -R $USER:$USER /etc/logstash/
-
 sudo chown -R $USER:$USER /usr/share/logstash/
-
 sudo chmod +x /usr/share/logstash/bin/
-
 sudo chown -R $USER:$USER /var/log/logstash/
-
 sudo chown -R $USER:$USER /etc/default/logstash
-
 sudo chown -R $USER:$USER /var/lib/logstash/
 ```
 
