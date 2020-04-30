@@ -236,5 +236,5 @@ through the **Elasticsearch GET API**.
 
 ![logstash](../static/images/logstash-article/Expected-output 4.jpg)
 
-Author : Sajita Pathak  https://github.com/sajita
+Author :  <a href="https://github.com/sajita">Sajita</a>
 
