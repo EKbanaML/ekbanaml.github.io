@@ -24,38 +24,32 @@ Selection of proper stereo pairs from the available image-set is crucial for acc
 ### Depth-Map Computation
 The computation of Depth-Maps for each of the stereo pairs is performed using PatchMatch algorithm, it can be sub-classified into the following steps.
 * **Random Initialization**<br>
-<p>Each pixel in the reference image is initialized with random values of depth in the viewing ray of the pixel, and a normal in the spherical coordinates of the camera's optical center. 
-
-Note: This initialization does not have to be random for the target image pixels. Once the depth map computation is completed for the reference image pixels, the depth and normals can be warped to the target image to compute an initial estimate.</p>
+Each pixel in the reference image is initialized with random values of depth in the viewing ray of the pixel, and a normal in the spherical coordinates of the camera’s optical center.<br/>Note: This initialization does not have to be random for the target image pixels. Once the depth map computation is completed for the reference image pixels, the depths and normals can be warped to the target image to compute an initial estimate.
 
 * **Homography and Cost Computation**<br>
-<p>For each pixel p in the reference image, a square window/patch of fixed size is placed, centered at p. 
-
-Again, for each pixel in each of the patch, a corresponding pixel is found in the target image using homography. Then, a matching cost can be computed for each patch by aggregating the  Normalized Cross Correlation (NCC) cost for all of the pixel lying in the patch.</p>
+For each pixel p in the reference image, a square window/patch of fixed size is placed, centered at p.<br/>Again, for each pixel in each of the patches, a corresponding pixel is found in the target image using homography. Then, a matching cost can be computed for each patch by aggregating the Normalized Cross Correlation (NCC) cost for the pixels falling in the patch.
 
 * **Spatial Propagation and Random Assignment**<br>
-<p>In multiple iterations, the pixels in reference image are processed to improve the 3D plane (i.e, its normal) associated with each of the pixels, by reducing the NCC score. This improvement is achieved using the two operations: spatial propagation and random assignment.
-
-In Spatial Propagation, the plane of a neighboring pixel, with lower NCC cost, is propagated to the pixel being processed.
-
-After Spatial Propagation, the matching cost is further reduced by making small random changes to the depth and the spherical parameters of the normal.</p>
+In multiple iterations, the pixels in reference image are processed to improve the 3D plane (i.e, its normal) associated with each of the pixels, by reducing the NCC score. This improvement is achieved using two operations: spatial propagation and random assignment.<br/>In Spatial Propagation, the plane of a neighboring pixel, with lower NCC cost, is propagated to the pixel being processed.<br/>After Spatial Propagation, the matching cost is further reduced by making small random changes to the depth and the spherical parameters of the normal.
 
 * **Applying Threshold**<br>
-<p>After the above mentioned two operations, the unreliable points in the depth-map whose aggregated matching cost are above a certain threshold are filtered out. </p>
+After the above mentioned two operations, the unreliable points in the depth-map whose aggregated matching cost are above a certain threshold are filtered out.
 
 ### Depth-Map Refinement
-For each of the pixels across the computed depth-maps, if the depth value is consistent across the neighboring images, then they are considered as reliable scene-pointsm, otherwise they are discarded from the depth-maps.
+For each of the pixels across the computed depth-maps, if the depth value is consistent across the neighboring images, then they are considered as reliable scene-points, otherwise they are discarded from the depth-maps.
 
 ### Depth-Map Merging
-Finally, the depth-maps that have been refined in the previous steps are merged. This process also includes redundancy removal since the depth-maps are prone to have the same point multiple times.
+Finally, the depth-maps that have been refined in the previous steps, are merged. This process also includes redundancy removal since the depth-maps are prone to having the same points across multiple maps.
 
 Advantages
 ----------
-The following are the advantages of depth-map merging based algorithm using PatchMatch used by OpenMVS over other dense point-cloud reconstruction methods (like voxel methods, surface evolution methods and feature point growing methods).
+The following are the advantages of depth-map merging based methods using PatchMatch, like of OpenMVS, over other dense point-cloud reconstruction methods (like voxel methods, surface evolution methods and feature point growing methods).
 * Since Patch Based method is able to produce depth-maps with reasonable errors, the computed dense point-cloud is quite accurate
-* It is faster than the other approaches listed above by a landslide
+* It is faster than the other approaches listed above, by a landslide
 * It can be easily parallelized in multi-threading/multi-processing system since each depth-map is computed individually.
 
 References
 ----------
 Shen (2013). Accurate Multiple View 3D Reconstruction Using Patch-Based Stereo for Large-Scale Scenes. *IEEE Transactions on Image Processing*, 22(5), 1901-1914
+
+Author: <a href="https://github.com/aashutosh1997">Aashutosh</a>
