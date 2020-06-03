@@ -4,7 +4,7 @@ Open Multiple View Stereovision (<a href="">OpenMVS</a>) is one of the most prom
 * generation of dense point-cloud, 
 * estimation of mesh surface from the dense point cloud, 
 * refining of the mesh surface, and 
-* coputation of texture to color the mesh. 
+* computation of texture to color the mesh. 
 
 This post will focus on the first step ```DensifyPointCloud``` i.e, generation of dense point-cloud using sparse point-cloud and SfM. This step is crucial for the whole reconstruction process since the estimated mesh and the final outcome will ultimately depend on the generated dense cloud.
 
