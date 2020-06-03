@@ -19,7 +19,7 @@ The Multi-View Stereo (MVS) reconstruction that is under discussion first genera
 * **Depth-Map Merging**
 
 ### Stereo Pair Selection
-Selection of proper stereo pairs from the available imageset is crutial for accurate depth-map computation process and the reconstruction as a whole. The algorithm uses SfM byproducts to compute the average of the angles between the visible points and camera centers. Similarly, the distance between the two optical centers is computed. After thresholding these values (angles and distances), the minimum of the scalar products of the remaining pairs is the one that is selected as the neighbour. This process is repeated for each undistorted image, called reference image, to compute their corresponding neighbour images, called target images.
+Selection of proper stereo pairs from the available image-set is crucial for accurate depth-map computation process and the reconstruction as a whole. The algorithm uses SfM byproducts to compute the average of the angles between the visible points and camera centers. Similarly, the distance between the two optical centers is computed. After applying threshold to these values (angles and distances), the minimum of the scalar products of the remaining pairs is the one that is selected as the neighbor. This process is repeated for each undistorted image, called reference image, to compute their corresponding neighbor images, called target images.
 
 ### Depth-Map Computation
 The computation of Depth-Maps for each of the stereo pairs is performed using PatchMatch algorithm, it can be sub-classified into the following steps.
@@ -31,20 +31,20 @@ Note: This initialization does not have to be random for the target image pixels
 * **Homography and Cost Computation**<br>
 <p>For each pixel p in the reference image, a square window/patch of fixed size is placed, centered at p. 
 
-Again, for each pixel in each of the patch, a corressponding pixel is found in the target image using homography. Then, a matching cost can be computed for each patch by aggregating the  Normalized Cross Correlation (NCC) cost for all of the pixel lying in the patch.</p>
+Again, for each pixel in each of the patch, a corresponding pixel is found in the target image using homography. Then, a matching cost can be computed for each patch by aggregating the  Normalized Cross Correlation (NCC) cost for all of the pixel lying in the patch.</p>
 
 * **Spatial Propagation and Random Assignment**<br>
 <p>In multiple iterations, the pixels in reference image are processed to improve the 3D plane (i.e, its normal) associated with each of the pixels, by reducing the NCC score. This improvement is achieved using the two operations: spatial propagation and random assignment.
 
-In Spatial Propagation, the plane of a neighbouring pixel, with lower NCC cost, is propagated to the pixel being processed.
+In Spatial Propagation, the plane of a neighboring pixel, with lower NCC cost, is propagated to the pixel being processed.
 
 After Spatial Propagation, the matching cost is further reduced by making small random changes to the depth and the spherical parameters of the normal.</p>
 
-* **Thresholding**<br>
+* **Applying Threshold**<br>
 <p>After the above mentioned two operations, the unreliable points in the depth-map whose aggregated matching cost are above a certain threshold are filtered out. </p>
 
 ### Depth-Map Refinement
-For each of the pixels accross the computed depth-maps, if the depth value is consistent accross the neighbouring images, then they are considered as reliable scene-pointsm, otherwise they are discarded from the depth-maps.
+For each of the pixels across the computed depth-maps, if the depth value is consistent across the neighboring images, then they are considered as reliable scene-pointsm, otherwise they are discarded from the depth-maps.
 
 ### Depth-Map Merging
 Finally, the depth-maps that have been refined in the previous steps are merged. This process also includes redundancy removal since the depth-maps are prone to have the same point multiple times.
