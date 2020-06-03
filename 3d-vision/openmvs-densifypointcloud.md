@@ -24,13 +24,13 @@ Selection of proper stereo pairs from the available image-set is crucial for acc
 ### Depth-Map Computation
 The computation of Depth-Maps for each of the stereo pairs is performed using PatchMatch algorithm, it can be sub-classified into the following steps.
 * **Random Initialization**<br>
-Each pixel in the reference image is initialized with random values of depth in the viewing ray of the pixel, and a normal in the spherical coordinates of the camera’s optical center.<br/><br/>Note: This initialization does not have to be random for the target image pixels. Once the depth map computation is completed for the reference image pixels, the depths and normals can be warped to the target image to compute an initial estimate.
+Each pixel in the reference image is initialized with random values of depth in the viewing ray of the pixel, and a normal in the spherical coordinates of the camera’s optical center.<br/>Note: This initialization does not have to be random for the target image pixels. Once the depth map computation is completed for the reference image pixels, the depths and normals can be warped to the target image to compute an initial estimate.
 
 * **Homography and Cost Computation**<br>
-For each pixel p in the reference image, a square window/patch of fixed size is placed, centered at p.<br/><br/>Again, for each pixel in each of the patches, a corresponding pixel is found in the target image using homography. Then, a matching cost can be computed for each patch by aggregating the Normalized Cross Correlation (NCC) cost for the pixels falling in the patch.
+For each pixel p in the reference image, a square window/patch of fixed size is placed, centered at p.<br/>Again, for each pixel in each of the patches, a corresponding pixel is found in the target image using homography. Then, a matching cost can be computed for each patch by aggregating the Normalized Cross Correlation (NCC) cost for the pixels falling in the patch.
 
 * **Spatial Propagation and Random Assignment**<br>
-In multiple iterations, the pixels in reference image are processed to improve the 3D plane (i.e, its normal) associated with each of the pixels, by reducing the NCC score. This improvement is achieved using two operations: spatial propagation and random assignment.<br/><br/>In Spatial Propagation, the plane of a neighboring pixel, with lower NCC cost, is propagated to the pixel being processed.<br/><br/>After Spatial Propagation, the matching cost is further reduced by making small random changes to the depth and the spherical parameters of the normal.
+In multiple iterations, the pixels in reference image are processed to improve the 3D plane (i.e, its normal) associated with each of the pixels, by reducing the NCC score. This improvement is achieved using two operations: spatial propagation and random assignment.<br/>In Spatial Propagation, the plane of a neighboring pixel, with lower NCC cost, is propagated to the pixel being processed.<br/>After Spatial Propagation, the matching cost is further reduced by making small random changes to the depth and the spherical parameters of the normal.
 
 * **Applying Threshold**<br>
 After the above mentioned two operations, the unreliable points in the depth-map whose aggregated matching cost are above a certain threshold are filtered out.
