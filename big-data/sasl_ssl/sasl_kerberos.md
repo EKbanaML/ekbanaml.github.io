@@ -41,7 +41,7 @@ Command to install kerberos server
 sudo apt install krb5-kdc krb5-admin-server
 ```
 
-You will be asked at the end of the install to supply the hostname for the Kerberos and Admin servers, which may or may not be the same server, for the realm.
+You will be asked at the end of the install to supply the hostname for the Kerberos and Admin servers, which may or may not be the same server for the realm.
 
 ```
 Realm: EKBANA.COM
