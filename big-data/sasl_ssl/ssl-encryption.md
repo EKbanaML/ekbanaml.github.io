@@ -1,5 +1,15 @@
 # Encryption (SSL)
 
+* [Introduction](#introduction)
+* Steps to generate certificates
+    * [Generate SSL Certificate](#1.-generate-ssl-key-and-certificate-for-each-node)
+    * [Create own CA](#2.-creating-your-own-ca-(certificate-authority))
+    * [Create a Truststore](#3.-create-a-truststore)
+    * [Sign Certificates](#4.-signing-the-certificate)
+    * [Import Certificates](#5.-import-signed-certificate)
+    * [Script to generate certificates](#generate-certificate-script)
+
+## Introduction
 Encryption solves the problem of the man in the middle (MITM) attack. That’s because your packets, while being routed to your destination, travel your network 
 and hop from machines to machines. If your data is PLAINTEXT, any of these routers could read the content of the data 
 you’re sending.
@@ -132,6 +142,7 @@ keytool -keystore {keystore-name}.jks -storepass {store-pass} -keypass {key-pass
 Here is an example of a bash script with all above steps. Note that one of the commands assumes a password of `test1234`, so either use that password or edit 
 the command before running it.
 
+###### Generate Certificate Script
 ```
 #!/bin/bash
 PASSWORD=test1234
