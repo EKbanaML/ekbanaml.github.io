@@ -99,7 +99,7 @@ Then sign it with the CA:
 openssl x509 -req -CA ca-cert -CAkey ca-key -in cert-file -out cert-signed -days {validity} -CAcreateserial -passin pass:{ca-pass}
 ```
 
-**You need to specify six parameters in the above command**
+##### You need to specify six parameters in the above command
 
 - ca-cert: CA cert file 
 - ca-key: CA key file
@@ -118,7 +118,7 @@ keytool -keystore {keystore-name}.jks -storepass {store-pass} -keypass {key-pass
 keytool -keystore {keystore-name}.jks -storepass {store-pass} -keypass {key-pass} -alias {node-alias} -import -file cert-signed -noprompt
 ```
 
-**You need to specify six parameters in the above command**
+###### You need to specify six parameters in the above command
 
 - keystore-name: the location of the keystore
 - store-pass: Store pass of the Keystore
