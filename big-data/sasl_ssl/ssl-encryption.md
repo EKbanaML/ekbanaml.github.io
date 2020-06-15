@@ -19,7 +19,8 @@ keytool utility to accomplish this task. We will generate the key into a tempora
 ```
 keytool -genkey -keyalg RSA -keystore {keystore-name}.jks -storepass {store-password} -keypass {key-password} -validity {validity} -alias {alias-name} -dname CN={node-fqdn}
 ```
-**You need to specify six parameters in the above command**
+
+##### You need to specify six parameters in the above command
     
 - keystore-name: Name of the keystore, this file contains the private key of the certificate; therefore, it needs to be kept safely.
 - store-pass: Password for the store of certificate.
@@ -48,7 +49,7 @@ they are connecting to the authentic machines.
 openssl req -new -x509 -keyout ca-key -out ca-cert -days {validity} -passout pass:{ca-pass} -subj "/CN={sever-fqdn}"
 ```
 
-**You need to specify three parameters in the above command**
+##### You need to specify three parameters in the above command
 
 - validity: The valid time for the CA certificate in days
 - ca-pass: Password for the CA certificate
@@ -70,7 +71,7 @@ Add the generated CA to the **clients' truststore** so that the clients can trus
 keytool -keystore {truststore-name}.jks -storepass {store-pass} -alias CARoot -import -file ca-cert -noprompt
 ```
 
-**You need to specify two parameters in the above command**
+##### You need to specify two parameters in the above command
 
 - truststore-name: Name for the Truststore e.g: truststore.jks
 - store-pass: Store password for the Truststore
@@ -85,7 +86,7 @@ First, you need to export the certificate from the keystore:
 keytool -keystore {keystore-name}.jks -certreq -file cert-file -storepass {store-pass} -keypass {key-pass} -alias {node-alias}
 ```
 
-**You need to specify five parameters in the above command**
+##### You need to specify five parameters in the above command
 
 - keystore-name: Node Keystore to extract certificate
 - cert-file: Unsigned Certificate of the Keystore
@@ -118,7 +119,7 @@ keytool -keystore {keystore-name}.jks -storepass {store-pass} -keypass {key-pass
 keytool -keystore {keystore-name}.jks -storepass {store-pass} -keypass {key-pass} -alias {node-alias} -import -file cert-signed -noprompt
 ```
 
-###### You need to specify six parameters in the above command
+##### You need to specify six parameters in the above command
 
 - keystore-name: the location of the keystore
 - store-pass: Store pass of the Keystore
