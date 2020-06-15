@@ -67,7 +67,7 @@ truststore that trusts the CA. That way all machines can authenticate all other 
 Add the generated CA to the **clients' truststore** so that the clients can trust this CA.
 
 ```
-keytool + " -keystore {truststore-name}.jks -storepass {store-pass} -alias CARoot -import -file ca-cert -noprompt
+keytool -keystore {truststore-name}.jks -storepass {store-pass} -alias CARoot -import -file ca-cert -noprompt
 ```
 
 **You need to specify two parameters in the above command**
