@@ -55,8 +55,8 @@ kafkastore.security.protocol=SASL_SSL
 
 Start by running the Schema Registry and the services it depends on:
 
-- [ZooKeeper](zookeeper.md#to-start-zookeeper) 
-- [Kafka](kafka_server.md#to-start-kafka-server)
+- [ZooKeeper](zookeeper.md#start-zookeeper) 
+- [Kafka](kafka_server.md#start-kafka-server)
 
 #### Start Schema Registry
 
