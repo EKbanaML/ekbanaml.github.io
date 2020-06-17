@@ -1,5 +1,9 @@
 # Kafka Connect Security
 
+Kafka Connect is a tool for scalably and reliably streaming data between Apache Kafka and other data systems. It makes it simple to quickly define connectors 
+that move large data sets into and out of Kafka. Kafka Connect can ingest entire databases or collect metrics from all your application servers into Kafka 
+topics, making the data available for stream processing with low latency. An export connector can deliver data from Kafka topics into secondary indexes like 
+Elasticsearch or into batch systems such as Hadoop for offline analysis.
 
 ## Create Keytabs for Kafka Connect
 
