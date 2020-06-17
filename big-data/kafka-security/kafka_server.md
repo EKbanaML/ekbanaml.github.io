@@ -15,7 +15,7 @@ You can enable SSL debug logging at the JVM level by starting the Kafka broker a
 -Djavax.net.debug=all
 ```
 
-### Config (server.properties)
+### Configure (server.properties)
 
 ###### For node: nn1
 
