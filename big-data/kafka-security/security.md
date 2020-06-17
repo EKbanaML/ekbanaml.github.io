@@ -29,3 +29,4 @@ Now, you can refer to the following documentation for enabling security in kafka
 * [Kafka Connect](kafka_connect.md)
 * [Kafka Rest Proxy](kafka_rest_proxy.md)
 * [Kafka KSQL](kafka_ksql.md)
+* [Kafka Clients](kafka-clients.md)
