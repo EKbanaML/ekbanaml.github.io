@@ -19,7 +19,7 @@ You can refer [SSL-Encryption](../sasl_ssl/ssl-encryption.md) for generating cer
 
 ```
 listeners=https://nn1.ekbana.com:8083
-bootstrap.servers=SASL_SSL://nn1.ekbana.com:9092,SASL_SSL://nn2.ekbana.com:9092,SASL_SSL://dn1.ekbana.com:9092,SASL_SSL://dn2.ekbana.com:9092
+bootstrap.servers=SASL_SSL://nn1.ekbana.com:9092,SASL_SSL://nn2.ekbana.com:9092,SASL_SSL://dn1.ekbana.com:9092
 
 rest.host.name=https://nn1.ekbana.com
 rest.port=8083
