@@ -23,6 +23,7 @@ Before Enabling Security in Kafka make sure you have setup the followings:
 
 Now, you can refer to the following documentation for enabling security in kafka cluster.
 
+* [Zookeeper](zookeeper.md)
 * [Kafka Server](kafka_server.md)
 * [Kafka Schema Registry](kafka_schema_registry.md)
 * [Kafka Connect](kafka_connect.md)
