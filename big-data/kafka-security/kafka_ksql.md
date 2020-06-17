@@ -47,8 +47,14 @@ sasl.jaas.config=com.sun.security.auth.module.Krb5LoginModule required \
    principal="ksql@EKBANA.COM";
 ```
 
-#### Start KSQL
+#### Start KSQL Server/Client
 
 ```
+KSQL Server: 
+
+/usr/share/kafka-confluent/bin/ksql-server-start /usr/share/kafka-confluent/etc/ksql/ksql-server.properties
+
+KSQL Client: 
+
 /usr/share/kafka-confluent/bin/ksql
 ```

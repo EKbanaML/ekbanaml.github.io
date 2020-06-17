@@ -52,6 +52,7 @@ sasl.enabled.mechanisms=GSSAPI
 sasl.mechanism.inter.broker.protocol=GSSAPI
 sasl.kerberos.service.name=kafka
 ```
+
 ## Create Keytabs for Kafka Server/Client
 
 Refer [SASL_Kerberos](../sasl_ssl/sasl_kerberos.md) for more details.
