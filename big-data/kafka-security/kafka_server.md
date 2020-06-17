@@ -94,7 +94,7 @@ KafkaServer {
 };
 ```
 
-##### To start Kafka Server
+#### To start Kafka Server
 
 ```
 export KAFKA_OPTS=-Djava.security.auth.login.config=/etc/security/conf/kServer.conf
