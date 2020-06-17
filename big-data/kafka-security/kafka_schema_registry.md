@@ -58,7 +58,7 @@ Start by running the Schema Registry and the services it depends on:
 - [ZooKeeper](zookeeper.md#to-start-zookeeper) 
 - [Kafka](kafka_server.md#to-start-kafka-server)
 
-##### Start Schema Registry
+#### Start Schema Registry
 
 ```
 export SCHEMA_REGISTRY_OPTS=-Djava.security.auth.login.config=/etc/security/conf/schemaRegistry.conf

@@ -94,7 +94,7 @@ SERVER_JVMFLAGS="-Djava.security.auth.login.config=/etc/security/conf/zkServer.c
 CLIENT_JVMFLAGS="-Djava.security.auth.login.config=/etc/security/conf/client.conf"
 ```
 
-#### To start Zookeeper
+#### Start Zookeeper
 
 ```
 /usr/share/zookeeper/bin/zkServer.sh start
