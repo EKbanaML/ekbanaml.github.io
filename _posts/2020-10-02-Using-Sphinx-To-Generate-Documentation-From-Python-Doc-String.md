@@ -95,7 +95,7 @@ Napoleon extension converts the Google & Numpy style docstrings into the ReStruc
 
 I have a project folder structure like this:
 
-![Directory Structure]({{'static/images/using-sphinx/Screenshot from 2019-01-03 14-32-09.png' | absolute_url}})
+![Directory Structure]({{ site.url }}{{ site.baseurl }}/assets/images/using-sphinx/d_s.png')
 
 In the terminal, let’s do:
 
@@ -108,9 +108,9 @@ Sphinx comes with a script called sphinx-quickstart that sets up a source direct
 
 iii) `sphinx-quickstart`
 
-![Directory Structure]({{'static/images/using-sphinx/Screenshot from 2019-01-03 15-30-04.png' | absolute_url}})
+![Directory Structure]({{ site.url }}{{ site.baseurl }}/assets/images/using-sphinx/ds1.png')
 You will be prompted with the output like this:
-![Directory Structure]({{'static/images/using-sphinx/Screenshot from 2019-01-03 15-31-12.png' | absolute_url}})
+![Directory Structure]({{ site.url }}{{ site.baseurl }}/assets/images/using-sphinx/ds2.png')
 
 Now if you look into the newly created `docs` folder you will see the new directories and files. Inside the `docs/source/`
 directory, there is a file named `conf.py`, that contains all the configuration of the sphinx for this project.
@@ -144,7 +144,7 @@ sys.path.insert(0, os.path.abspath('../../../'))
 ```
 You can either uncomment these lines and edit the sys.path, or add these lines in the conf.py. Since our conf.py resides in the following structure:
 
-![Directory Structure]({{'static/images/using-sphinx/Screenshot from 2019-01-03 16-53-52.png' | absolute_url}})
+![Directory Structure]({{ site.url }}{{ site.baseurl }}/assets/images/using-sphinx/ds3.png')
 
 We have to go three step back in our directory structure from where we could actually import our modules
 like `alexnet.dataset.dataset`.
@@ -191,14 +191,14 @@ Module contents
 Now you will see all the associated html files corresponding the modules rst file. If you open up the index.html inside the `build` folder, you will see something like this:
 
 
-![Output Module]({{'static/images/using-sphinx/Screenshot from 2019-01-03 17-12-11.png' | absolute_url}})
+![Output Module]({{ site.url }}{{ site.baseurl }}/assets/images/using-sphinx/output_module.png)
 
 Now, click on the Module Index, you will see something like this, of course depending upon your code structure:
 
-![Output Index]({{'static/images/using-sphinx/Screenshot from 2019-01-03 17-13-16.png' | absolute_url}})
+![Output Index]({{ site.url }}{{ site.baseurl }}/assets/images/using-sphinx/output_index.png)
 
 And finally like this, if you click on the module link:
-![Output Documentation]({{'static/images/using-sphinx/Screenshot from 2019-01-03 17-14-13.png' | absolute_url}})
+![Output Documentation]({{ site.url }}{{ site.baseurl }}/assets/images/using-sphinx/output_doc.png)
 
 From this point, you can actually play around with the various options provided by sphinx.
 

@@ -21,7 +21,7 @@ new producer are used).
 
 ## Create keytabs for Zookeeper
 
-Refer [SASL_Kerberos](../sasl_ssl/sasl_kerberos.md) for more details.
+Refer [SASL_Kerberos](({% post_url 2020-10-02-sasl_kerberos %}) for more details.
 
 ```
 sudo kadmin.local
