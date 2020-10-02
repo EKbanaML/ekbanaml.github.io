@@ -21,7 +21,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   
 title_separator: "|"
 twitter_username: ekbanas
-github_username: ekbana
+github_username: ekbanasolutions
 minimal_mistakes_skin: contrast # 'air', 'contrast'
 
 # Do not mess with this
@@ -80,7 +80,8 @@ social:
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
+exclude:
+    - GUIDELINE.md
 #   - Gemfile
 #   - Gemfile.lock
 #   - node_modules

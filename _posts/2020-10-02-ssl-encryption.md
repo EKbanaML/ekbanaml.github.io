@@ -14,7 +14,7 @@ Encryption solves the problem of the man in the middle (MITM) attack. That’s b
 and hop from machines to machines. If your data is PLAINTEXT, any of these routers could read the content of the data 
 you’re sending.
 
-![encryption](../../static/images/bigdata-security/ssl-encryption.png)
+![encryption]({{ site.url }}{{ site.baseurl }}/assets/images/bigdata-security/ssl-encryption.png)
 
 After Encryption is enabled and SSL certificates being carefully setup, your data is now encrypted and securely transmitted over the network. With SSL, only the first 
 and the final machine possess the ability to decrypt the packet being sent.

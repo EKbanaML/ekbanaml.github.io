@@ -13,7 +13,7 @@ The configs for SSL will be the same for both producer and consumer.
 
 ## Create Keytabs for Kafka Client
 
-Refer [SASL_Kerberos](../sasl_ssl/sasl_kerberos.md) for more details.
+Refer [SASL_Kerberos]({% post_url 2020-10-02-sasl_kerberos %}) for more details.
 
 ```
 sudo kadmin.local
@@ -26,7 +26,7 @@ kadmin: xst -norandkey -k /etc/security/keytabs/kafkaclient.keytab kafkaclient@E
 
 ## Configure (client-ssl.properties)
 
-You can refer [SSL-Encryption](../sasl_ssl/ssl-encryption.md) for generating certificates.
+You can refer [SSL-Encryption]({% post_url 2020-10-02-ssl-encryption %}) for generating certificates.
 
 ```
 ssl.truststore.location=/etc/security/ssl/kafka.client.truststore.jks

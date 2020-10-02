@@ -12,3 +12,30 @@ anilkumarshrestha:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/"
+
+ashuta:
+  name: "Ashuta"
+  bio: ""
+  avatar  : "/assets/images/userPhoto/bio-photo.jpg"
+  links:
+    - label: "Github"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/ashuta03"
+
+sajita: 
+  name: "Sajita"
+  bio: ""
+  avatar  : "/assets/images/userPhoto/bio-photo.jpg"
+  links:
+    - label: "Github"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/sajita"
+
+vaghawan:
+  name: "Vaghawan"
+  bio: ""
+  avatar  : "/assets/images/userPhoto/bio-photo.jpg"
+  links:
+    - label: "Github"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/vaghawan"
