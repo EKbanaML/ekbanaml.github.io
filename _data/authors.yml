@@ -39,3 +39,12 @@ vaghawan:
     - label: "Github"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/vaghawan"
+
+bibek:
+  name: "Bibek"
+  bio:
+  avatar  : "/assets/images/userPhoto/bio-photo.jpg"
+  links:
+    - label: "Github"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/"
