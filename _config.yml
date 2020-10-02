@@ -14,12 +14,13 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: EKbana Study Group
+title: EKbana ML Study Group
 email: 
 description: >- # this means to ignore newlines until "baseurl:"
-  EKbana Study Stuffs
+  EKbana Machine Learning Study Group.
+  
 title_separator: "|"
-twitter_username: ekbana
+twitter_username: ekbanas
 github_username: ekbana
 minimal_mistakes_skin: contrast # 'air', 'contrast'
 
@@ -55,7 +56,7 @@ include:
 
 
 twitter:
-  username: "ekbana"
+  username: "ekbanas"
 
 # google_site_verification: "code"
 
@@ -64,10 +65,10 @@ social:
   type:  "Organization" # Person or Organization (defaults to Person)
   name:  # If the user or organization name differs from the site's name
   links:
-    - "https://twitter.com/ekbana"
+    - "https://twitter.com/ekbanas"
     - "https://www.facebook.com/ekbana"
-    - "https://instagram.com/ekbana"
-    - "https://www.linkedin.com/in/ekbana"
+    - "https://instagram.com/ekbana_solutions/"
+    - "https://www.linkedin.com/company/ekbana-solutions-pte--ltd/"
 
 # Analytics
 #analytics:
@@ -119,13 +120,13 @@ footer:
   links:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
+      url: "https://twitter.com/ekbanas"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
+      url: "https://github.com/ekbanasolutions"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
+      url: "https://instagram.com/ekbana_solutions"
 
 defaults:
   # _posts
