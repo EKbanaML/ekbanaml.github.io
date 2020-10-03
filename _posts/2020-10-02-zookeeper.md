@@ -9,6 +9,7 @@ tags:
 header:
   image: "https://images.pexels.com/photos/772803/pexels-photo-772803.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
   caption: "Photo credit: [**Pexel**](https://images.pexels.com/)"
+author: bibek
 ---
 
 # Zookeeper Security
@@ -21,7 +22,7 @@ new producer are used).
 
 ## Create keytabs for Zookeeper
 
-Refer [SASL_Kerberos](({% post_url 2020-10-02-sasl_kerberos %}) for more details.
+Refer [SASL_Kerberos]({% post_url 2020-10-02-sasl_kerberos %}) for more details.
 
 ```
 sudo kadmin.local

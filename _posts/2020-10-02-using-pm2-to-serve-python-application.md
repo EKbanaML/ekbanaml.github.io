@@ -9,6 +9,7 @@ tags:
 header:
   image: "https://images.pexels.com/photos/772803/pexels-photo-772803.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
   caption: "Photo credit: [**Pexel**](https://images.pexels.com/)"
+author: vaghawan
 ---
 ## Using Pm2 To Serve Python Application 
 
@@ -90,8 +91,6 @@ This will create a dump file and PM2 will automatically spawn this application a
 
 The article is inspired by [2]  the only new thing was the --interpreter command for python process. 
 
-
-Author: [Vaghawan](https://github.com/vaghawan)
 
 ## Reference:
 1. [https://github.com/Unitech/pm2 ](https://github.com/Unitech/pm2 )
