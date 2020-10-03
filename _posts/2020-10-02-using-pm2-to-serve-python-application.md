@@ -17,7 +17,7 @@ PM2 is a production process manager for Node.js applications with a built-in loa
 
 Normally, we were using it for serving the node js script. Normally when we serve an application with pm2 e.g `pm2 start app.js`  we will be able to see the application being running in daemon mode.  
 
-![start pm2 app]({{'static/images/using-pm2/pm2-start-demo.png' | absolute_url}})
+![start pm2 app]({{ site.url }}{{ site.baseurl }}/assets/images/using-pm2/pm2-start-demo.png)
 
 
 In the above screenshot, the file names are different, I hit two commands : 
@@ -67,7 +67,7 @@ pm2 ls
 
 This will list the processes, if you do not want some processes in the startup, you can delete them using   `pm2 delete processname`
 
-![pm2 list app]({{'static/images/using-pm2/pm2-list-app.png' | absolute_url}})
+![pm2 list app]({{ site.url }}{{ site.baseurl }}/assets/images/using-pm2/pm2-list-app.png)
 
 
 
@@ -76,7 +76,7 @@ Now hit:
 ```
 pm2 startup # This will output some commands like this: 
 ```
-![pm2 list app]({{'static/images/using-pm2/pm2-startup.png' | absolute_url}})
+![pm2 list app]({{ site.url }}{{ site.baseurl }}/assets/images/using-pm2/pm2-startup.png)
 
 
 Now copy and paste the command in the terminal. Now pm2 initiates the auto-initialization for us in the server restart. 

@@ -95,7 +95,7 @@ Napoleon extension converts the Google & Numpy style docstrings into the ReStruc
 
 I have a project folder structure like this:
 
-![Directory Structure]({{ site.url }}{{ site.baseurl }}/assets/images/using-sphinx/d_s.png')
+![Directory Structure]({{ site.url }}{{ site.baseurl }}/assets/images/using-sphinx/d_s.png)
 
 In the terminal, let’s do:
 
@@ -108,9 +108,9 @@ Sphinx comes with a script called sphinx-quickstart that sets up a source direct
 
 iii) `sphinx-quickstart`
 
-![Directory Structure]({{ site.url }}{{ site.baseurl }}/assets/images/using-sphinx/ds1.png')
+![Directory Structure]({{ site.url }}{{ site.baseurl }}/assets/images/using-sphinx/ds1.png)
 You will be prompted with the output like this:
-![Directory Structure]({{ site.url }}{{ site.baseurl }}/assets/images/using-sphinx/ds2.png')
+![Directory Structure]({{ site.url }}{{ site.baseurl }}/assets/images/using-sphinx/ds2.png)
 
 Now if you look into the newly created `docs` folder you will see the new directories and files. Inside the `docs/source/`
 directory, there is a file named `conf.py`, that contains all the configuration of the sphinx for this project.
@@ -144,7 +144,7 @@ sys.path.insert(0, os.path.abspath('../../../'))
 ```
 You can either uncomment these lines and edit the sys.path, or add these lines in the conf.py. Since our conf.py resides in the following structure:
 
-![Directory Structure]({{ site.url }}{{ site.baseurl }}/assets/images/using-sphinx/ds3.png')
+![Directory Structure]({{ site.url }}{{ site.baseurl }}/assets/images/using-sphinx/ds3.png)
 
 We have to go three step back in our directory structure from where we could actually import our modules
 like `alexnet.dataset.dataset`.

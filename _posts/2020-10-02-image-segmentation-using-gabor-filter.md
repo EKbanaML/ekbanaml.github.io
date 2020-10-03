@@ -234,6 +234,6 @@ You can further experiment with orientation, bandwidth and frequency values to g
 
 
 ## References
-[1] https://www.mathworks.com/help/images/texture-segmentation-using-gabor-filters.html
-<p>
-[2] https://pdfs.semanticscholar.org/a53b/78ff23daf515a344d47f4848e1f2528b3074.pdf
+[1] [https://www.mathworks.com/help/images/texture-segmentation-using-gabor-filters.html](https://www.mathworks.com/help/images/texture-segmentation-using-gabor-filters.html)
+
+[2] [https://pdfs.semanticscholar.org/a53b/78ff23daf515a344d47f4848e1f2528b3074.pdf](https://pdfs.semanticscholar.org/a53b/78ff23daf515a344d47f4848e1f2528b3074.pdf)
