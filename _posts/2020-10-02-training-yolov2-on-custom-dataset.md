@@ -30,7 +30,7 @@ ImageID,Source,LabelName,Confidence,XMin,XMax,YMin,YMax,IsOccluded,IsTruncated,I
 ```
 
 
-We downloaded the whole image dataset worth around 5.x gb using https://github.com/cvdfoundation/open-images-dataset#download-full-dataset-with-google-storage-transfer 
+We downloaded the whole image dataset worth around 5.x gb using [this](https://github.com/cvdfoundation/open-images-dataset#download-full-dataset-with-google-storage-transfer).
 
 We have the two main csv files, one for training and validation. Our purpose is just to train a model which can detect 12 different fruits available in the google open image and create a bounding box on them. So, we will filter out our desired class from the main csv files and create a smaller csv which contains only those categories in which we’re interested.  
 
@@ -186,6 +186,7 @@ draw_boxes(cv2.imread("test_yolo/train/000d9c59687b509b.jpg"), boxes)
 The output should look like this: 
 
 The converted annotation box:
+<!-- Could not find this image -->
 ![Converted Image]({{'static/images/appletest.png' | absolute_url}})
 
 
@@ -198,6 +199,7 @@ original = [[0.000000,0.378125,0.000000,0.379167],[0.280000,0.872500,0.379167,0.
 draw_boxes(cv2.imread("test_yolo/train/000d9c59687b509b.jpg"), original)
 ```
 
+<!-- Could not find this image -->
 ![Original Annotation]({{'/static/images/apple-test-original.png' | abosolute_url}})
 
 
@@ -605,8 +607,9 @@ For train and valid, the path should point to the correct directory where we sav
 
 
 
-### The output should look like this: 
-
+### The output should look like this:
+ 
+<!-- Could not find this image -->
 ![Output Image]({{'/static/images/predictions.jpg' | abosolute_url}})
 
 
@@ -615,8 +618,8 @@ The main purpose of this article was to show how you can convert the annotated d
 
 ### References: 
 
-1. https://pjreddie.com/darknet/yolo/
-2. https://medium.com/@manivannan_data/how-to-train-yolov2-to-detect-custom-objects-9010df784f36
-3. https://blog.goodaudience.com/part-1-preparing-data-before-training-yolo-v2-and-v3-deepfashion-dataset-3122cd7dd884
-4. https://github.com/pjreddie/darknet
+1. [https://pjreddie.com/darknet/yolo/](https://pjreddie.com/darknet/yolo/)
+2. [https://medium.com/@manivannan_data/how-to-train-yolov2-to-detect-custom-objects-9010df784f36](https://medium.com/@manivannan_data/how-to-train-yolov2-to-detect-custom-objects-9010df784f36)
+3. [https://blog.goodaudience.com/part-1-preparing-data-before-training-yolo-v2-and-v3-deepfashion-dataset-3122cd7dd884](https://blog.goodaudience.com/part-1-preparing-data-before-training-yolo-v2-and-v3-deepfashion-dataset-3122cd7dd884)
+4. [https://github.com/pjreddie/darknet](https://github.com/pjreddie/darknet)
 
