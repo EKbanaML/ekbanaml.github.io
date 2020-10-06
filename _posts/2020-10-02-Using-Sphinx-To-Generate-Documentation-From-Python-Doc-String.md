@@ -5,6 +5,7 @@ categories:
   - Python
 tags:
   - Sphinx
+author: vaghawan
 ---
 
 Sphinx is python recommended tool for generating documentation for python projects, it can generate the documentation of
