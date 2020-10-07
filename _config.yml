@@ -43,6 +43,9 @@ og_image: /assets/images/ekbana/logo.png
 
 # Build settings
 markdown: kramdown
+kramdown:
+  math_engine: mathjax
+
 remote_theme: mmistakes/minimal-mistakes
 
 # Outputting

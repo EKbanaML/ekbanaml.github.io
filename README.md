@@ -89,7 +89,7 @@ To work more with this image and add overlay refer [this link](https://mmistakes
 
                 author: ekbana
                 ---
-
+*Note* Replace sample data with yours.
 
 ## Images(Standard)
 Prepending the filename with {{ site.url }}{{ site.baseurl }}/assets/images/
