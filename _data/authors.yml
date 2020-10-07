@@ -48,3 +48,18 @@ bibek:
     - label: "Github"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/"
+
+rizzurohit:
+  name    : "Rizzu Rohit Bhandari"
+  bio     : "Always eager to learn."
+  avatar  : "/assets/images/userPhoto/rizzu_rohit.png"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:rizzurohit.bhandari@ekbana.net"
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: ""
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/rizzbhandari"
