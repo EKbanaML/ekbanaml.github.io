@@ -20,7 +20,7 @@ A vector is an object that has both a magnitude and a direction.
 
 But for our purpose, consider vectors as groups of numbers. 
 
-Let's say I am 6ft tall and 70 kgs this information could be written as a vector.
+Let's say I am 6ft tall and 70 kgs of weight, this information could be written as a vector.
 
 
 $$\vec R = \begin{bmatrix}6\\70\end{bmatrix}$$
@@ -59,19 +59,19 @@ $$\vec R - \vec C = \begin{bmatrix}6-0.5\\70-2\end{bmatrix}$$
 ### Scalars
 Let's suppose a vector of house price and interest rate. And imagine if the prices and rates doubled. We would denote it as 
 
-$$\vec A = \begin{bmatrix}4\\5\end{bmatrix},  C = 2$$ (4 crores, 5%)  
-$$C.\vec A = \begin{bmatrix}8\\10\end{bmatrix}$$ 
+$$\vec A = \begin{bmatrix}4\\5\end{bmatrix},  c = 2$$ (4 crores, 5%)  
+$$c.\vec A = \begin{bmatrix}8\\10\end{bmatrix}$$ 
 
-Here, C is a scalar.  
+Here, $c$ is a scalar.  
 Scalars are numbers which scale a vector when multiplied with a vector. A scaled vector has the same direction or the opposite direction depending on whether it is scaled by a positive or negative scalar.  
 
 ### Linear Combination   
 In mathematics, a linear combination is an expression constructed from a set of terms by multiplying each term by a constant and adding the results.  
 In the case of vectors
-Let $\vec A$ and $\vec B$ be 2 vectors and $C$ and $D$ be 2 scalars.  
+Let $\vec A$ and $\vec B$ be 2 vectors and $c$ and $d$ be 2 scalars.  
 Then the linear combination is given by  
 
-$$C \vec A + D \vec B$$  
+$$c \vec A + d \vec B$$  
 
 Now, the combination can map to any point on the x y plane.  
 
@@ -85,26 +85,26 @@ and using this we want to map to
 
 $$\vec Z = \begin{bmatrix}70\\80\end{bmatrix}$$ 
 
-Then with C = 1.68 and D = -0.44 we can map to our point.  
+Then with $c = 1.68$ and $d = -0.44$ we can map to our point.  
 
-$$C \vec A + D \vec B$$  
+$$c \vec A + d \vec B$$  
 
-Like, this we can choose C and D such that we can map to any point in the xy plane.
+Like, this we can choose $c$ and $d$ such that we can map to any point in the xy plane.
 
 ### Linear Combination of 3D Vectors  
 
 $\vec V$, $\vec W$ and $\vec U$ are 3 vectors in 3 dimensions.
 
-$C,D,E$ are 3 scalars
+$c,d,e$ are 3 scalars
 
 The linear combination is  
 
-$$C\vec V + D\vec W+ E\vec U$$  
+$$c\vec V + d\vec W+ e\vec U$$  
 
 Similar to 2D in 3D, combination of 2 vectors can map to any point on a plane. But this time it is not just the xy plane. This can be any plane.   
 
 A combination of of 3 vectors can map to any point in the 3D space.   
-But, if the third vector also lies on the plane that the combination of the first two vectors fill then it is not possible to fill the space. This is known as ***linearly dependent***.  
+But, if the third vector also lies on the plane that the combination of the first two vectors fill then it is not possible to fill the space. This is known as ***linear dependence*** then the third vector is said to be ***linearly dependent***.  
 
 ## 1.2 Lengths and Dot products  
 ### Dot product
@@ -125,7 +125,7 @@ $$Length ||V|| = \sqrt{||V||^2}$$
 
 ### Unit vector
 
-A unit vector is a vector whose length is 1.
+A unit vector is a vector whose length is $1$.
 Example can be:  
 
 $$V = \begin{bmatrix}1/\sqrt{2} \\ 1/ \sqrt{2}\end{bmatrix}$$
@@ -134,8 +134,9 @@ $$\vec V.\vec V = ½+½ = 1 $$
 
 $$\||V|| = \sqrt{1} =1 $$
 
+
 ### Basis vectors 
-A set $B$ of vectors is called basis, if elements are not linearly dependent, and every vector in the space is a linear combination of elements of B.
+A subset $B$ of vectors is called basis, if its elements are not linearly dependent, and every vector in the space is a linear combination of elements of B.
 
 $$i = \begin{bmatrix}1\\0\end{bmatrix}$$ 
 
@@ -151,14 +152,14 @@ $$\vec V = 49i + 50j$$
 Thus any vector can be represented as a linear combination of $i$ and $j$. So, $i$ and $j$ can be our basis for $R^2$.  
 
 
-If $\vec V$ is divided by its length then the result is a unit vector in the same direction.     
+If $\vec V$ is divided by its length/magnitude then the result is a unit vector in the same direction.     
 
 A unit vector $\vec U$ can also be denoted as  
 
 $$\vec U = \begin{bmatrix}cos(\theta)\\sin(\theta)\end{bmatrix}$$  
 
 Where $\theta$ is the angle made by the vector with $i$.  
-Any other vector $\vec V$ with length $r$.  
+Any other vector $\vec V$ with length/magnitude $r$.  
 
 $$\vec V = \begin{bmatrix}r.cos(\theta)\\r.sin(\theta)\end{bmatrix}$$  
 
@@ -170,7 +171,7 @@ The dot product of any vector with a zero vector is a zero vector. Hence zero ve
 
 ### Cosine formula:
 
-$$cos(\theta) = \vec V.\vec W / ||V||*||W||$$
+$$cos(\theta) = \frac{\vec V.\vec W }{||V||*||W||}$$
 
 Which also gives another definition for dot product
 
@@ -199,27 +200,27 @@ $$A = \begin{bmatrix}a & b & c & .(x1,x2,x3) \\ d & e & f & .(x1,x2,x3)\\ g & h 
 
 
 ### Inverse matrix 
-In linear algebra, an n-by-n square matrix A is called invertible (also nonsingular or nondegenerate) if there exists an n-by-n square matrix B such that  
+In linear algebra, an $n \times n$ square matrix $A$ is called invertible (also nonsingular or nondegenerate) if there exists an $n \times n$ square matrix $B$ such that  
 
 $$A.B = B.A = I$$ 
 
-where I denotes the n-by-n identity matrix and the multiplication used is ordinary matrix multiplication. If this is the case, then the matrix B is uniquely determined by A and is called the inverse of A, denoted by $A^{-1}$.  
+where I denotes the $n \times n$ identity matrix and the multiplication used is ordinary matrix multiplication. If this is the case, then the matrix $B$ is uniquely determined by $A$ and is called the inverse of $A$, denoted by $A^{-1}$.  
 
 ### Singular Matrix
 It is a square matrix that doesn't have an inverse. 
 
-### Dependence
+### Linear Dependence
 Dependence is when one vector denoted as $\vec A$ can be produced by the linear combination of the other vectors in the set.  
 
 In other words,  
 A set of vetors ${ \vec V_{1}, \vec V_{2},... , \vec V_{n} }$  are said to be **Linearly dependent** if  
 
-$$C_{1} \vec V_{1} + C_{2} \vec V_{2}+...  + C_{n} \vec V_{n} = 0$$  
+$$c_{1} \vec V_{1} + c_{2} \vec V_{2}+...  + c_{n} \vec V_{n} = 0$$  
 
-When no $C= { C_{1},C_{2},... ,C_{n}} = 0$
+When no $c= { c_{1},c_{2},... ,c_{n}} = 0$
 
 # Solving linear equations
-Linear equations are equations that describe the characteristic of a straight element in an ND space.   
+Linear equations are equations that describe the characteristic of a straight element in an $N_d$ space.   
 Two lines intersect at a point.  
 Similarly planes, intersect at a points or line.     
 
@@ -245,12 +246,10 @@ $$x\begin{bmatrix}1\\3\end{bmatrix} + y \begin{bmatrix}-2\\2\end{bmatrix}  = \be
 
 Now in this picture a system of linear equations can be viewed as a linear combination of vectors. 
 
-`My own preference is to combine
-column vectors. It is a lot easier to see a combination of four vectors in four-dimensional
-space, than to visualize how four hyperplanes might possibly meet at a point. (Even one
-hyperplane is hard enough. . . )`
-
--Gilbert Strang
+>My own preference is to combine column vectors. It is a lot easier to see a combination of four vectors in four-dimensional
+space, than to visualize how four hyperplanes might possibly meet at a point. (Even one hyperplane is hard enough. . . )
+>
+>-Gilbert Strang
 
 ### Matrix form of equations  
 A is a matrix of the coefficients of the equations.
@@ -269,7 +268,7 @@ It is the first non zero number in the row that does the elimination. In the exa
 
 
 ### What is a multiplier?
-The number to be eliminated, divided by the pivot, serves as the multiplier. In the example below, 3/4 is the multiplier.  
+The number to be eliminated, divided by the pivot, serves as the multiplier. In the example below, $\frac{3}{4}$ is the multiplier.  
 
 We multiply row 1 by the multiplier and subtract it from row 2 to get 0 in the position below the pivot.  
 
@@ -282,7 +281,7 @@ But there can be situations when there are infinitely many or no solutions. We'l
 
 There is no solution when the lines are parallel. If the lines never meet how can there be a point of intersection.  
 
-There are $\infty$ solution if the lines are collinear.  
+There are $\infty$ solutions if the lines are collinear.  
 
 We must remember that 0 can never be a pivot.  
 
@@ -293,13 +292,13 @@ The best situation is when n no of pivots exists for n equations.
 ### Change to U matrix.
 Use the first equation to make the first column all zeros under the first element.  
 
-$$\begin{bmatrix}1 & 1 & 0 \\ 1 & 2 & 1 & multiply row1 by (1/1) and subtract\\ 0 & 1 & 2 & multiply row1 by (0/1) and subtract\end{bmatrix}$$ 
+$$\begin{bmatrix}1 & 1 & 0 \\ 1 & 2 & 1 & multiply\; row_1\; by\; (1/1)\; and\; subtract\\ 0 & 1 & 2 & multiply\; row1\; by\; (0/1)\; and\; subtract\end{bmatrix}$$ 
 
 $$ = \begin{bmatrix}1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 1 & 2 \end{bmatrix}$$
 
 Use the second equation to make the second column all zero under the second diagonal element.
 
-$$ = \begin{bmatrix}1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 1 & 2 & multiply row2 by (1/1) and subtract\end{bmatrix}$$  
+$$ = \begin{bmatrix}1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 1 & 2 & multiply\; row2\; by\; (1/1)\; and\; subtract\end{bmatrix}$$  
 
 $$ = \begin{bmatrix}1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{bmatrix}$$
 And so on.
