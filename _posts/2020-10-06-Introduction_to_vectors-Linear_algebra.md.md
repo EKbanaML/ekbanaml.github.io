@@ -156,12 +156,12 @@ If $\vec V$ is divided by its length/magnitude then the result is a unit vector 
 
 A unit vector $\vec U$ can also be denoted as  
 
-$$\vec U = \begin{bmatrix}cos(\theta)\\sin(\theta)\end{bmatrix}$$  
+$$\vec U = \begin{bmatrix}cos\theta\\sin\theta\end{bmatrix}$$  
 
 Where $\theta$ is the angle made by the vector with $i$.  
 Any other vector $\vec V$ with length/magnitude $r$.  
 
-$$\vec V = \begin{bmatrix}r.cos(\theta)\\r.sin(\theta)\end{bmatrix}$$  
+$$\vec V = \begin{bmatrix}r*cos\theta\\r*sin\theta\end{bmatrix}$$  
 
 ### Angles between vectors
 
@@ -171,13 +171,52 @@ The dot product of any vector with a zero vector is a zero vector. Hence zero ve
 
 ### Cosine formula:
 
-$$cos(\theta) = \frac{\vec V.\vec W }{||V||*||W||}$$
+The cosine formula gives a measure of similarity (cosine similarity) given by the cosine of the angle between 2 vectors.
+
+Let, $\vec A$ make an angle $\alpha$ with the x-axis
+Let, $\vec B$ make an angle $\beta$ with the x-axis
+
+$$\vec A = \begin{bmatrix}||A||cos\alpha\\||A||sin\alpha\end{bmatrix}$$
+
+$$\vec B = \begin{bmatrix}||B||cos\beta\\||B||sin\beta\end{bmatrix}$$
+The unit vector in the direction of $\vec A$,
+
+$$\vec {ua} = \frac{1}{||A||}\vec A-(i)$$
+
+$$\vec {ua} = \begin{bmatrix}cos\alpha\\sin\alpha\end{bmatrix}-(ii)$$
+
+The unit vector in the direction of $\vec B$,
+
+$$\vec {ub} = \frac{1}{||B||}\vec B -(iii)$$
+
+$$\vec {ub} = \begin{bmatrix}cos\beta\\sin\beta\end{bmatrix} -(iv)$$
+
+Then, angle $\theta$, between $\vec A$ and $\vec B$ is given by
+
+$$\theta = \alpha - \beta$$ Assuming, $\alpha > \beta $, Now, $cos$ on both sides
+
+$$cos\theta = cos(\alpha - \beta)$$
+
+$$cos\theta = cos\alpha cos\beta + sin\alpha sin\beta$$
+
+$$cos\theta = \begin{bmatrix}cos\alpha\\sin\alpha\end{bmatrix}.\begin{bmatrix}cos\beta\\sin\beta\end{bmatrix}$$
+
+From $eqns$ $(ii)$ and $(iv)$
+
+$$cos\theta = \vec {ua} . \vec {ub}$$
+
+From $eqns$ $(i)$ and $(iii)$
+
+$$cos\theta = \frac{\vec A.\vec B }{||A||*||B||}$$
 
 Which also gives another definition for dot product
 
-$$\vec V.\vec W = ||V||*||W|| * cos(\theta)$$
+$$\vec A.\vec B = ||A||*||B|| * cos\theta$$
 
-Where theta is the angle between the vectors.  
+Where $\theta$ is the angle between the vectors.  
+
+Note: $\alpha$ > $\beta$ is not a necessary condition because  
+$$cos(\alpha - \beta) = cos(\beta - \alpha)$$
 
 ## 1.3 Matrices  
 Matrices are 2 dimensional arrangements of number.  
@@ -190,34 +229,43 @@ $$\vec X = \begin{bmatrix}x1 \\ x2 \\ x3\end{bmatrix}$$
 
 $$A = \begin{bmatrix}a & b & c \\ d & e & f \\ g & h & i\end{bmatrix}$$
 
-$$A.\vec X = x1.\begin{bmatrix}a \\ d \\ g \end{bmatrix} + x2.\begin{bmatrix}b \\ e\\ h \end{bmatrix} + x3.\begin{bmatrix}c \\ f \\ i\end{bmatrix}$$
+$$A\vec X = x1.\begin{bmatrix}a \\ d \\ g \end{bmatrix} + x2.\begin{bmatrix}b \\ e\\ h \end{bmatrix} + x3.\begin{bmatrix}c \\ f \\ i\end{bmatrix}$$
 
 This gives an important insight. Unless the columns of the matrices are linearly dependent, a matrix can transform a vector to any vector in the space.
 
 Matrix-vector multiplication can also be the dot product of the vector with each row of the matrix. 
 
-$$A = \begin{bmatrix}a & b & c & .(x1,x2,x3) \\ d & e & f & .(x1,x2,x3)\\ g & h & i& .(x1,x2,x3)\end{bmatrix}$$
+$$A \vec X = \begin{bmatrix}a & b & c & .(x1,x2,x3) \\ d & e & f & .(x1,x2,x3)\\ g & h & i& .(x1,x2,x3)\end{bmatrix}$$
 
 
 ### Inverse matrix 
-In linear algebra, an $n \times n$ square matrix $A$ is called invertible (also nonsingular or nondegenerate) if there exists an $n \times n$ square matrix $B$ such that  
+In linear algebra, an $n \times n$ **square matrix** $A$ is called invertible (also nonsingular or nondegenerate) if there exists an $n \times n$ square matrix $B$ such that  
 
 $$A.B = B.A = I$$ 
 
 where I denotes the $n \times n$ identity matrix and the multiplication used is ordinary matrix multiplication. If this is the case, then the matrix $B$ is uniquely determined by $A$ and is called the inverse of $A$, denoted by $A^{-1}$.  
 
-### Singular Matrix
-It is a square matrix that doesn't have an inverse. 
 
 ### Linear Dependence
-Dependence is when one vector denoted as $\vec A$ can be produced by the linear combination of the other vectors in the set.  
+Linear dependence, in a set of vectors, is when one vector can be produced by the linear combination of the any other vectors in the set.  
 
 In other words,  
-A set of vetors ${ \vec V_{1}, \vec V_{2},... , \vec V_{n} }$  are said to be **Linearly dependent** if  
+A set of vetors ${ \vec V_{1}, \vec V_{2},... , \vec V_{n} }$  are said to be **linearly dependent** if  
 
-$$c_{1} \vec V_{1} + c_{2} \vec V_{2}+...  + c_{n} \vec V_{n} = 0$$  
+$$c_{1} \vec V_{1} + c_{2} \vec V_{2}+...  + c_{n} \vec V_{n} = 0\;(zero\;vector)$$  
 
-When no $c= { c_{1},c_{2},... ,c_{n}} = 0$
+When $0$ $\notin$ $c= \{ c_{1},c_{2},... ,c_{n}\}$
+
+
+### Singular Matrix
+It is a **square matrix** that doesn't have an inverse.  
+
+Consider a matrix $A$ = $\begin{bmatrix}3&6\\1&2\end{bmatrix}$  
+
+In terms of linear dependence, a singular matrix has linearly dependent columns vectors.
+
+$$-2 \begin{bmatrix}3\\1\end{bmatrix} + \begin{bmatrix}6\\2\end{bmatrix}= \begin{bmatrix}0\\0\end{bmatrix}$$
+
 
 # Solving linear equations
 Linear equations are equations that describe the characteristic of a straight element in an $N_d$ space.   
@@ -292,13 +340,48 @@ The best situation is when n no of pivots exists for n equations.
 ### Change to U matrix.
 Use the first equation to make the first column all zeros under the first element.  
 
-$$\begin{bmatrix}1 & 1 & 0 \\ 1 & 2 & 1 & multiply\; row_1\; by\; (1/1)\; and\; subtract\\ 0 & 1 & 2 & multiply\; row1\; by\; (0/1)\; and\; subtract\end{bmatrix}$$ 
+$$\begin{bmatrix}1 & 1 & 0 \\ 1 & 2 & 1 & multiply\; row_1\; by\; (1/1)\; and\; subtract\\ 0 & 1 & 2 & multiply\; row_1\; by\; (0/1)\; and\; subtract\end{bmatrix}$$ 
 
 $$ = \begin{bmatrix}1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 1 & 2 \end{bmatrix}$$
 
 Use the second equation to make the second column all zero under the second diagonal element.
 
-$$ = \begin{bmatrix}1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 1 & 2 & multiply\; row2\; by\; (1/1)\; and\; subtract\end{bmatrix}$$  
+$$ = \begin{bmatrix}1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 1 & 2 & multiply\; row_2\; by\; (1/1)\; and\; subtract\end{bmatrix}$$  
 
 $$ = \begin{bmatrix}1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{bmatrix}$$
 And so on.
+
+
+## Summary
+- Vectors can be thought of as points in a n-dimensional space. These points are represented by a series of numbers which are the magnitudes of the vector to each axis of the n-dimensions.
+
+- The linear combination of 2 vectors is given by  
+
+$$c \vec A + d \vec B$$  
+
+- Dot product
+
+$$\vec V.\vec W = V1*W1+V2*W2+V3*W3…$$
+
+- Length of a vector
+
+$$Length ||V|| = \sqrt{||V||^2}$$
+
+- A unit vector is a vector whose length is $1$.
+
+-  Linear Dependence in a set of vectors, is when one vector can be produced by the linear combination of the any other vectors in the set.  
+
+- The matrix $B$ is the inverse of $A$ iff
+
+$$A.B = B.A = I$$ 
+
+- Linear equations can be solved by taking the equation to upper triangular form
+
+- A is a matrix of the coefficients of the equations.
+X is a vector of the variables of the equations.  
+ 
+$$A\vec X = B$$
+
+$$\begin{bmatrix}a & b & c \\ d & e & f \\ g & h & i\end{bmatrix}\begin{bmatrix}x \\ y \\ z\end{bmatrix} = \begin{bmatrix}b1 \\ b2 \\ b3\end{bmatrix}$$
+
+- Our aim is to change $A$ into $U$. Where $U$ is an upper tringular matrix. 
