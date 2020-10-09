@@ -132,7 +132,7 @@ $$V = \begin{bmatrix}1/\sqrt{2} \\ 1/ \sqrt{2}\end{bmatrix}$$
 
 $$\vec V.\vec V = ½+½ = 1 $$  
 
-$$\||V|| = \sqrt{1} =1 $$
+$$||V|| = \sqrt{1} =1 $$
 
 
 ### Basis vectors 
@@ -260,7 +260,7 @@ When $0$ $\notin$ $c= \{ c_{1},c_{2},... ,c_{n}\}$
 ### Singular Matrix
 It is a **square matrix** that doesn't have an inverse.  
 
-Consider a matrix $A$ = $\begin{bmatrix}3&6\\1&2\end{bmatrix}$  
+Consider a matrix, $$A = \begin{bmatrix}3&6\\1&2\end{bmatrix}$$  
 
 In terms of linear dependence, a singular matrix has linearly dependent columns vectors.
 
@@ -269,8 +269,8 @@ $$-2 \begin{bmatrix}3\\1\end{bmatrix} + \begin{bmatrix}6\\2\end{bmatrix}= \begin
 
 # Solving linear equations
 Linear equations are equations that describe the characteristic of a straight element in an $N_d$ space.   
-Two lines intersect at a point.  
-Similarly planes, intersect at a points or line.     
+Solving the linear equations of 2 lines gives their point of intersection.  
+Solving the linear equations of 3 planes in 3D space gives their point of intersection.     
 
 ## 2.1 Vectors and linear equations
 
