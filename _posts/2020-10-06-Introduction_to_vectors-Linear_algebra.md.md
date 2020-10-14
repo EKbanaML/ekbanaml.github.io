@@ -174,11 +174,13 @@ The dot product of any vector with a zero vector is a zero vector. Hence zero ve
 The cosine formula gives a measure of similarity (cosine similarity) given by the cosine of the angle between 2 vectors.
 
 Let, $\vec A$ make an angle $\alpha$ with the x-axis
+
 Let, $\vec B$ make an angle $\beta$ with the x-axis
 
 $$\vec A = \begin{bmatrix}||A||cos\alpha\\||A||sin\alpha\end{bmatrix}$$
 
 $$\vec B = \begin{bmatrix}||B||cos\beta\\||B||sin\beta\end{bmatrix}$$
+
 The unit vector in the direction of $\vec A$,
 
 $$\vec {ua} = \frac{1}{||A||}\vec A-(i)$$
@@ -243,7 +245,7 @@ In linear algebra, an $n \times n$ **square matrix** $A$ is called invertible (a
 
 $$A.B = B.A = I$$ 
 
-where I denotes the $n \times n$ identity matrix and the multiplication used is ordinary matrix multiplication. If this is the case, then the matrix $B$ is uniquely determined by $A$ and is called the inverse of $A$, denoted by $A^{-1}$.  
+Where $I$ denotes the $n \times n$ identity matrix and the multiplication used is ordinary matrix multiplication. If this is the case, then the matrix $B$ is uniquely determined by $A$ and is called the inverse of $A$, denoted by $A^{-1}$.  
 
 
 ### Linear Dependence
