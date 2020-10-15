@@ -372,9 +372,9 @@ $$X = A^{-1}B$$
 
 - Inverse
 
-$$A^{-1} B^{-1} = (AB)^{-1}$$  
+$$B^{-1} A^{-1}  = (AB)^{-1}$$  
 
-$$A^{-1} B^{-1} C^{-1} = (ABC)^{-1}$$
+$$C^{-1} B^{-1} A^{-1}   = (ABC)^{-1}$$
 
 - The sequence of steps that converts $K$ to $I$ also converts $I$ to $K^{-1}$
 
