@@ -111,6 +111,7 @@ $$3z = 3$$
 ### Associative law
 
 $$A(BC) = (AB)C$$
+
 ### Commutative law
 
 $$AB \neq BA$$  
@@ -226,9 +227,9 @@ If $A$ is diagonally dominant $a_{11} > a_{12} + a_{13}$ , $a_{22} > a_{21} + a_
 
 If $A$ and $B$ are invertible. Then $AB$  is also invertible.
 
-$$A^{-1} B^{-1} = (AB)^{-1}$$  
+$$B^{-1} A^{-1}  = (AB)^{-1}$$  
 
-$$A^{-1} B^{-1} C^{-1} = (ABC)^{-1}$$
+$$C^{-1} B^{-1} A^{-1}   = (ABC)^{-1}$$
 
 ### Calculating $A^{-1}$ using Gauss-Jordan
 
@@ -272,7 +273,7 @@ $$= \begin{bmatrix}2 & 0 & 0 & :\frac{3}{2} & 1 & \frac{1}{2}\\0 & \frac{3}{2} &
 
 #### Divide row by diagonal elements
 
-Diveide each row by the diagonal element of that row to obtain identity matrix on the left.
+Divide each row by the diagonal element of that row to obtain identity matrix on the left.
 
 $$= \begin{bmatrix}1 & 0 & 0 & :\frac{3}{4} & \frac{1}{2} & \frac{1}{4}\\0 & 1 & 0 & :\frac{1}{2} & 1 & \frac{1}{2} \\ 0 & 0 & 1 & :\frac{1}{4} & \frac{1}{2} & \frac{3}{4}\end{bmatrix}$$
 
@@ -348,6 +349,7 @@ $$AX = B$$
 - Associative law
 
 $$A(BC) = (AB)C$$
+
 - Commutative law
 
 $$AB \neq BA$$
@@ -356,7 +358,7 @@ $$AB \neq BA$$
 
 $$A_{mxn}.B_{nxp} = C_{mxp}$$   
 
--- An inverse of $A$ i.e. $A^{-1}$ when multiplied with $A$ gives the identity matrix.
+- An inverse of $A$ i.e. $A^{-1}$ when multiplied with $A$ gives the identity matrix.
 
 $$A^{-1} A = AA^{-1} = I$$
 
