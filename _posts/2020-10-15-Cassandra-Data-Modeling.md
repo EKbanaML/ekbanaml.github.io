@@ -31,7 +31,7 @@ A Cassandra cluster may have many nodes running and data is usually stored redun
 #### Let's Get Started
 For better understanding we will look at an example, lets say in RDBMS we have a simple twitter database model with two tables that hold user and tweet information as follows:
 
-![userinfotweeinfo]({{ site.url }}{{ site.baseurl }}/assets/images/Data-Modeling-Cassandra/userinfotweeinfo.png
+![userinfotweeinfo]({{ site.url }}{{ site.baseurl }}/assets/images/Data-Modeling-Cassandra/userinfotweeinfo.png)
 
 
 A few of the common queries that we would apply are:
