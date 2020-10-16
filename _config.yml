@@ -74,11 +74,11 @@ social:
     - "https://www.linkedin.com/company/ekbana-solutions-pte--ltd/"
 
 # Analytics
-#analytics:
-#  provider: "google-gtag"
-#  google:
-#    tracking_id: "ID"
-#    anonymize_ip: false # default
+analytics:
+ provider: "google-gtag"
+ google:
+   tracking_id: "UA-161429185-3"
+   anonymize_ip: false # default
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

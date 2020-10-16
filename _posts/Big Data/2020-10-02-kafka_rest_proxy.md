@@ -16,7 +16,7 @@ built in any language, ingesting messages into a stream processing framework tha
 
 ## Create Keytabs for Kafka Rest Proxy
 
-Refer [SASL_Kerberos]({% post_url 2020-10-02-sasl_kerberos %}) for more details.
+Refer [SASL_Kerberos]({% post_url /Big\ Data/2020-10-02-sasl_kerberos %}) for more details.
 
 ```
 sudo kadmin.local
@@ -28,7 +28,7 @@ kadmin: xst -norandkey -k /etc/security/keytabs/restProxy.keytab rest@EKBANA.COM
 
 ## Configure (kafka-rest.properties)
 
-You can refer [SSL-Encryption]({% post_url 2020-10-02-ssl-encryption %}) for generating certificates.
+You can refer [SSL-Encryption]({% post_url /Big\ Data/2020-10-02-ssl-encryption %}) for generating certificates.
 
 ```
 listeners=http://nn1.ekbana.com:8082

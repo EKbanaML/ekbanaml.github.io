@@ -15,7 +15,7 @@ tags:
 Kafka Brokers support listening for connections on multiple ports. We need to configure `listeners` and optionally `advertised.listeners` in `server.properties`, 
 each of which contains one or more comma-separated values.
 
-Before Configuring Brokers, make sure you have configured [Zookeeper]({% post_url 2020-10-02-zookeeper %})  for authenticating Brokers.
+Before Configuring Brokers, make sure you have configured [Zookeeper]({% post_url /Big\ Data/2020-10-02-zookeeper %})  for authenticating Brokers.
 
 ## Enabling SSL Logging
 
@@ -43,7 +43,7 @@ advertised.listeners=SASL_SSL://dn1.ekbana.com:9092
 
 ###### For each node
 
-You can refer [SSL-Encryption]({% post_url 2020-10-02-ssl-encryption %}) for generating certificates.
+You can refer [SSL-Encryption]({% post_url /Big\ Data/2020-10-02-ssl-encryption %}) for generating certificates.
 
 ```
 ssl.truststore.location=/etc/security/ssl/kafka.server.truststore.jks
@@ -65,7 +65,7 @@ sasl.kerberos.service.name=kafka
 
 ## Create Keytabs for Kafka Server/Client
 
-Refer [SASL_Kerberos]({% post_url 2020-10-02-sasl_kerberos %}) for more details.
+Refer [SASL_Kerberos]({% post_url /Big\ Data/2020-10-02-sasl_kerberos %}) for more details.
 
 ```
 sudo kadmin.local

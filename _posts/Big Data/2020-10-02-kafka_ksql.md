@@ -18,7 +18,7 @@ using a SQL-like syntax. There’s no need to write any code in a programming la
 
 ## Create Keytabs for KSQL
 
-Refer [SASL_Kerberos]({% post_url 2020-10-02-sasl_kerberos %}) for more details.
+Refer [SASL_Kerberos]({% post_url /Big\ Data/2020-10-02-sasl_kerberos %}) for more details.
 
 ```
 sudo kadmin.local
@@ -30,7 +30,7 @@ kadmin: xst -norandkey -k /etc/security/keytabs/ksql.keytab ksql@EKBANA.COM
 
 ## Configure (ksql-server.properties)
 
-You can refer [SSL-Encryption]({% post_url 2020-10-02-ssl-encryption %}) for generating certificates.
+You can refer [SSL-Encryption]({% post_url /Big\ Data/2020-10-02-ssl-encryption %}) for generating certificates.
 
 ```
 listeners=http://localhost:8088

@@ -15,7 +15,7 @@ Kafka Connect is a tool for scalably and reliably streaming data between Apache 
 
 ## Create Keytabs for Kafka Connect
 
-Refer [SASL_Kerberos]({% post_url 2020-10-02-sasl_kerberos %}) for more details.
+Refer [SASL_Kerberos]({% post_url /Big\ Data/2020-10-02-sasl_kerberos %}) for more details.
 
 ```
 sudo kadmin.local
@@ -27,7 +27,7 @@ kadmin: xst -norandkey -k /etc/security/keytabs/connect.keytab connect@EKBANA.CO
 
 ## Configure (connect-distributed.properties)
 
-You can refer [SSL-Encryption]({% post_url 2020-10-02-ssl-encryption %}) for generating certificates.
+You can refer [SSL-Encryption]({% post_url /Big\ Data/2020-10-02-ssl-encryption %}) for generating certificates.
 
 ```
 listeners=https://nn1.ekbana.com:8083

@@ -16,7 +16,7 @@ serializers that plug into Kafka clients that handle schema storage and retrieva
 
 ## Create Keytabs for Schema Registry
 
-Refer [SASL_Kerberos]({% post_url 2020-10-02-sasl_kerberos %}) for more details.
+Refer [SASL_Kerberos]({% post_url /Big\ Data/2020-10-02-sasl_kerberos %}) for more details.
 
 ```
 sudo kadmin.local
@@ -43,7 +43,7 @@ KafkaClient {
 
 ## Configure (schema-registry.properties)
 
-You can refer [SSL-Encryption]({% post_url 2020-10-02-ssl-encryption %}) for generating certificates.
+You can refer [SSL-Encryption]({% post_url /Big\ Data/2020-10-02-ssl-encryption %}) for generating certificates.
 
 ```
 listeners=https://nn1.ekbana.com:8081
@@ -65,8 +65,8 @@ kafkastore.security.protocol=SASL_SSL
 
 Start by running the Schema Registry and the services it depends on:
 
-- [ZooKeeper]({% post_url 2020-10-02-sasl_kerberos %}) 
-- [Kafka]({% post_url 2020-10-02-kafka_server %})
+- [ZooKeeper]({% post_url /Big\ Data/2020-10-02-sasl_kerberos %}) 
+- [Kafka]({% post_url /Big\ Data/2020-10-02-kafka_server %})
 
 #### Start Schema Registry
 
