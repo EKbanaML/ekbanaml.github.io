@@ -1,49 +1,73 @@
 # Guidelines to post in EKbanaML study group
 
+## A: User
 
-## Naming your post
-To name your post follow:
-
-                YEAR-MONTH-DAY-title-category.md
-                
-                eg:
-                2020-10-06-test-post-cpp-class.markdown
-`category ` is optional but recommended.
-
-## Adding User
+### 1. Add User
 Add details to: `/_data/authors.yml`
 
-                ekbana:
-                        name    : "EKbana Solutions"
-                        bio     : ""
+                your-username:
+                        name    : "your-Full-Name"
+                        bio     : "your-bio"
                         avatar  : "/assets/images/userPhoto/no_photo.jpg"
                         links:
                         - label: "Email"
                         icon: "fas fa-fw fa-envelope-square"
-                        url: "mailto:<email>"
+                        url: "mailto:your-email"
                         - label: "Website"
                         icon: "fas fa-fw fa-link"
-                        url: "<website>"
+                        url: "your-website"
                         - label: "Twitter"
                         icon: "fab fa-fw fa-twitter-square"
-                        url: "<Twitter>"
+                        url: "your-Twitter"
 
 By default author profile is set `True`. So to assign EKbana Solutions as an author for a post the following YAML Front Matter would be applied:
 
-                author: ekbana
+                author: your-username
 
 If you do not want to show author set `author_profile: false`.
 
-## excerpt
+## B: Posts
+### 1. Name your post
+To name your post follow:
+
+                YEAR-MONTH-DAY-title.md
+                
+                eg:
+                2020-10-06-test-post.md
+
+### 2. Add Front matter to your post 
+Sample Front matter:
+
+                ---
+                title: "All about EKbana Study Group"
+                excerpt: "Something about post"
+                excerpt_separator: "<!--more-->"
+                last_modified_at: 2020-10-02T16:20:02-05:00
+                categories:
+                - your-post-category
+                tags:
+                - your-tag
+                - your-tag
+                header:
+                image: "https://images.pexels.com/photos/772803/pexels-photo-772803.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                caption: "Photo credit: [**Pexel**](https://images.pexels.com/)"
+                image_description: "A description of the image"
+                teaser: "https://images.pexels.com/photos/772803/pexels-photo-772803.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+
+                author: your-username
+                ---
+*Note* Replace sample data with yours.
+
+### excerpt
 Write unique excerpt descriptions for each post for improved SEO and archive listings.
 
                 excerpt: "A unique line of text to describe this post that will display in an archive listing and meta description with SEO benefits."
 
-## Adding teaser image
+### Adding teaser image
                 header:
                         teaser: /assets/images/teaser/my-awesome-post-teaser.jpg
 
-## Adding header image
+### Adding header image
 From local folder
 
                 header:
@@ -59,34 +83,13 @@ From URL
 
 To work more with this image and add overlay refer [this link](https://mmistakes.github.io/minimal-mistakes/docs/layouts/#header-overlay)
 
-## Adding Table of Content
+### Adding Table of Content
                 toc: true
                 toc_label: "My Table of Contents"
                 toc_icon: "cog"
 
 
-## Sample Front matter:
-
-                ---
-                title: "All about EKbana Study Group"
-                excerpt_separator: "<!--more-->"
-                last_modified_at: 2020-10-02T16:20:02-05:00
-                categories:
-                - EKbana Study Group
-                tags:
-                - ekbana
-                - ml
-                header:
-                image: "https://images.pexels.com/photos/772803/pexels-photo-772803.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                caption: "Photo credit: [**Pexel**](https://images.pexels.com/)"
-                image_description: "A description of the image"
-                teaser: "https://images.pexels.com/photos/772803/pexels-photo-772803.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-
-                author: ekbana
-                ---
-
-
-## Images(Standard)
+### 3. Add Images(Standard)
 Prepending the filename with {{ site.url }}{{ site.baseurl }}/assets/images/
 
 <img src="{{ site.url }}{{ site.baseurl }}/assets/  images/filename.jpg" alt="">
@@ -108,11 +111,14 @@ or Kramdown:
 To add gallery refer [this link](https://mmistakes.github.io/minimal-mistakes/docs/helpers/#gallery)
 To add responsive video refer [this link](https://mmistakes.github.io/minimal-mistakes/docs/helpers/#responsive-video-embed)
 
-## Links with in site
+### 4. Links 
 
-        [name]({% post_url YYYY-MM-DD-file_name_without_md %})
+#### Links within site
+
+        [name]({% post_url /subfolder/YYYY-MM-DD-file_name_without_md %})
         eg:
-        [SASL_Kerberos]({% post_url 2020-10-02-sasl_kerberos %})
+        [SASL_Kerberos]({% post_url /Big\ Data/2020-10-02-sasl_kerberos %})
 
+## C: Assets
 
-
+1. Place your assets at `/assets/images/category/image-name`
