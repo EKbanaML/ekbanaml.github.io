@@ -1,7 +1,7 @@
 ---
 title: "Cassandra Data modeling"
 excerpt_separator: "A introduction to Data Modeling in Cassandra."
-last_modified_at: 2020-10-02T16:20:02-05:00
+last_modified_at: 2020-10-15T16:20:02-05:00
 categories:
   - Data Modeling Cassandra (NOSQL)
 tags:

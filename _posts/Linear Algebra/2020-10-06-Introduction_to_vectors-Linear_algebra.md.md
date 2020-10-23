@@ -1,7 +1,7 @@
 ---
 title: "Introduction to Vectors"
 excerpt_separator: "A brief introduction to vectors and linear algebra for anyone who wants to start out the journey on linear algebra."
-last_modified_at: 2020-10-02T16:20:02-05:00
+last_modified_at: 2020-10-06T16:20:02-05:00
 categories:
   - Linear Algebra
 tags:
