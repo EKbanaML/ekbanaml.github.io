@@ -1,7 +1,7 @@
 ---
 title: "Solving Linear Equations"
 excerpt_separator: "An introduction to using matrices to solve linear equations."
-last_modified_at: 2020-10-02T16:20:02-05:00
+last_modified_at: 2020-10-06T16:20:02-05:00
 categories:
   - Linear Algebra
 tags:

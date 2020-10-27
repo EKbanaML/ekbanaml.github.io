@@ -49,6 +49,7 @@ kramdown:
 remote_theme: mmistakes/minimal-mistakes
 
 # Outputting
+# permalink: /:slugified_categories/:title/ # uncomment this when GitHub pages updates to Jekyll 4.1  
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
