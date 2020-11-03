@@ -10,10 +10,12 @@ tags:
   - Complete solution
 header:
   image: "https://images.pexels.com/photos/326235/pexels-photo-326235.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+  thumbnail: "https://images.pexels.com/photos/326235/pexels-photo-326235.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
   caption: "Photo credit: [**Pexel**](https://www.pexels.com/photo/scenic-view-of-mountains-against-sky-326235/)"
 toc: true
 toc_label: "Vector Spaces and Subspaces"
 toc_icon: "rocket"
+toc_sticky: "false"
 author: anilkumarshrestha
 ---
 
@@ -23,9 +25,9 @@ In this post we will start by introducing vector spaces and subspaces, then expl
 
 Before we dive into Vector spaces let's see what field is.
 
-**Field**: Let $a, b$ $\epsilon$ $\mathbb{R}$, then $a + b, a - b, ab$ and $a/b$ all belongs to $\mathbb{R}$ (given that $b \not ={0}$). So, we say $\mathbb{R}$ is a **Field**. Similarly, $\mathbb{Q, C}$ are also fields. But are $\mathbb{N}$, $\mathbb{Z}$  fields? No, they are not. For example, 2 and 5 are in $\mathbb{N}$ but 2 - 5 is not.
+**Field**: Let $a, b$ $\epsilon$ $\mathbb{R}$, then $a + b, a - b, ab$ and $a/b$ all belongs to $\mathbb{R}$ (given that $b \not ={0}$). So, we say $\mathbb{R}$ is a **Field**. Similarly, $\mathbb{Q}$ and $\mathbb{C}$ are also fields. But are $\mathbb{N}$, $\mathbb{Z}$  fields? For example, $2$ and $5$ are in $\mathbb{N}$ but $2 - 5$ is not. So clearly, they are not a field.
 
-Now let's see what vector spaces are. A nonempty set V of elements $\vec{a}, \vec{b}, \vec{c}...$ is called a ***vector space*** if there are two defined algebraic operations:
+Now we are good to discuss vector spaces. A nonempty set V of elements $\vec{a}, \vec{b}, \vec{c}...$ is called a ***vector space*** if there are two defined algebraic operations:
 
 **I. Vector addition** $(\vec{a} + \vec{b})$ should satisfy following axioms:
 
@@ -46,22 +48,24 @@ Let's start with something that everyone is familiar with: $\mathbb{R}^2$, which
 
 **$\mathbb{R}^n$ to be a vector space of all column vectors with n components.**
 
-Now let's consider just a plane through origin in $\mathbb{R}^3$. Adding two vectors in the plane results to a vector in the same plane and multiplying by any scalar also results in a vector in the same plane. Hence the plane is a vector space in $\mathbb{R}^3$, we call it ***Subspace***. The plane has 3 components so it can not be considered as $\mathbb{R}^2$. Similarly, a line through origin in $\mathbb{R}^3$, a point at origin (zero vector) and $\mathbb{R}^3$ are also a subspace.
+Now if we consider just a plane through origin in the vector space $\mathbb{R}^3$ such that adding two vectors in the plane results to a vector in the same plane and multiplying by any scalar also results in a vector in the same plane. Hence the plane is a vector space in $\mathbb{R}^3$, we call it ***Subspace***. The plane has 3 components so it can not be considered as $\mathbb{R}^2$. Similarly, a line through origin in $\mathbb{R}^3$, a point at origin (zero vector) and $\mathbb{R}^3$ are also a subspace. The plane $P$ and line $L$ is shown in the figure below.
 
 ![Subspace]({{ site.url }}{{ site.baseurl }}/assets/images/linear_algebra/Vector_spaces_and_subspaces/subspaces.png)
 
-In the above figure, $P$ is a plane and $L$ is a line through origin.
-$P \cup L$ is not a subspace.
-$P \cap L$ is actually a zero vector so it's a subspace.
+$P$ and $L$ are subspaces, but what about their union and intersections. Do they form a subspace?
+
+- $P \cup L$ is not a subspace.
+- $P \cap L$ is actually a zero vector so it's a subspace.
 
 ## Row Space, Column Space and Null Space
- The **row space**, $R(A)$ is a set of vectors that contains all the linear combinations of rows of a matrix and the **column space**, $C(A)$ is a set of vectors that contains all the linear combinations of columns. The row space and column space are subspaces in $\mathbb{R}^n$ and $\mathbb{R}^m$ respectively for a matrix with $m$ rows and $n$ columns. For a matrix,
+ The **row space**, $R(A)$ is a set of vectors that contains all the linear combinations of rows of a matrix and the **column space**, $C(A)$ is a set of vectors that contains all the linear combinations of columns. The row space and column space are subspaces in $\mathbb{R}^n$ and $\mathbb{R}^m$ respectively for a matrix with $m$ rows and $n$ columns. Then if we have,
+
  $$Ax = \begin{bmatrix} 1 & 2 \\ 3 & 4\\ 5 & 6 \end{bmatrix} \begin{bmatrix} x_1\\ x_2\end{bmatrix}$$
 
  1. Row space of A is a subspace of $\mathbb{R}^2$.
  2. Column space of A is a subspace of $\mathbb{R}^3$. The column space of all combinations of the two columns fills up a plane in $\mathbb{R}^3$ as it has only 2 columns.
  
- In the equation $Ax = b$, if we take all their linear combinations, this gives the column space of $A$. So if b is in that column space, we can solve the equation $Ax = b$.
+ In the equation $Ax = b$, if we take all their linear combinations, this gives the column space of $A$. So *if b is in that column space, we can solve the equation $Ax = b$.*
  
 What if $b = 0$ ? The immediate solution we get is $x = 0$. This is the only solution for invertible matrices but for non-invertible matrices, there are nonzero solutions along with zero and belongs to a space. We call this space a **Null space**, N(A). As the solution vector $x$ has $n$ components, the nullspace is a subspace of $\mathbb{R}^n$.
 
@@ -93,17 +97,17 @@ $$U = \begin{bmatrix} 1& 2 & 2 & 2 \\ 0 & 0 & 2 & 4 \\ 0& 0& 0& 0 \end{bmatrix}$
 
 <img src='{{ site.url }}{{ site.baseurl }}/assets/images/linear_algebra/Vector_spaces_and_subspaces/U.png' width='300'>
 
-Here $C_1$ and $C_3$ are pivot columns and $C_2$ and $C_4$ are free columns. So we see that the number of pivot columns is $2$ and the number of free columns is (number of columns - number of pivot columns)$ = 2$. This generalizes to the fact that if $Ax = 0$ has more unknowns than equations $(n > m)$, then there must be at least one free column.
+Here $C_1$ and $C_3$ are pivot columns and $C_2$ and $C_4$ are free columns. So we see that the number of pivot columns is $2$ and the number of free columns is *(number of columns - number of pivot columns)*$ = 2$. This generalizes to the fact that if $Ax = 0$ has more unknowns than equations $(n > m)$, then there must be at least one free column.
 
 ## Rank of a matrix
 
-***Rank ($r$)*** *of a matrix is the number of pivots.* Rank of a matrix gives almost all information  about the solutions. This shows that there are r independent rows and columns in the given matrix. This also deals with spaces of vectors: ***the rank of a matrix is r means, the column and row space are in r dimensions.*** And the dimension of null space is $n-r$.
+***Rank ($r$)*** *of a matrix is the number of pivots.* Rank of a matrix gives almost all information  about the solutions. This shows that there are r independent rows and columns in the given matrix. This also deals with spaces of vectors: ***the rank of a matrix is $r$ means, the column and row space are in $r$ dimensions.*** And the dimension of null space is $n-r$.
 
-The rank for above mentioned matrix A is 2. So it's column space and row space is in 2-dimension and null space is in $4-2 = 2$ dimension.
+The rank for above mentioned matrix $A$ = the number of pivots = $2$. So it's column space and row space is in $2$-dimension and null space is in $4-2 = 2$ dimension.
 
 Now for a $m$ x $n$ matrix $A$ of rank $r$, let's see what happens when $r = m$, $r = n$, $r = m = n$, and $r < m$, $r < n$.
 
-1. Full column rank, (r = n): Here every column has pivot. So there is no free variable and hence the Null space N(A) will have only the zero vector. This results in $X = X_{particular}$ if it exists.
+1. ***Full column rank, $(r = n)$***: Here every column has pivot. So there is no free variable and hence the Null space $N(A)$ will have only the zero vector. This results in $X = X_{particular}$ if it exists.
 
     $$A = \begin{bmatrix}1 & 3\\ 2 & 1 \\ 6 & 1 \\ 5 & 1\end{bmatrix}$$
 
@@ -111,7 +115,7 @@ Now for a $m$ x $n$ matrix $A$ of rank $r$, let's see what happens when $r = m$,
 
     $$R = \begin{bmatrix}I \\ 0\end{bmatrix}$$
 
-2. Full row rank, $(r = m)$: Here every row has pivots and $n - r$ or $n - m$ free variables. So here we can solve $Ax = b$ for every $b$.
+2. ***Full row rank, $(r = m)$***: Here every row has pivots and $n - r$ or $n - m$ free variables. So here we can solve $Ax = b$ for every $b$.
 
     $$A = \begin{bmatrix}1 & 2& 6 & 5 \\ 3 & 1 & 1 & 1\end{bmatrix}$$
 
@@ -119,7 +123,7 @@ Now for a $m$ x $n$ matrix $A$ of rank $r$, let's see what happens when $r = m$,
 
     $$R = \begin{bmatrix}I & F\end{bmatrix}$$
 
-3. Full rank $(r =m = n)$: Here since $r = m = n$, the matrix is a square and is invertible. So,
+3. ***Full rank $(r =m = n)$***: Here since $r = m = n$, the matrix is a square and is invertible. So,
    
     $$R = I$$
     
@@ -129,14 +133,14 @@ In a nutshell, we get the following table.
 
 | Full rank (r = m = n) | Full column rank(r = n < m) | Full row rank (r = m < n) | r < m < n|
 |---|---|---|---|
-|$R = I$| $R = \begin{bmatrix}I \\ 0\end{bmatrix}$ | $R = \begin{bmatrix}I & F\end{bmatrix}$ | $R = \begin{bmatrix}I & F \\ 0 & 0\end{bmatrix}$
+|$R = I$| $$R = \begin{bmatrix}I \\ 0\end{bmatrix}$$ | $R = \begin{bmatrix}I & F\end{bmatrix}$ | $$R = \begin{bmatrix}I & F \\ 0 & 0\end{bmatrix}$$
 | 1 solution | 0 or 1 solution | $\infty$ solutions | $0$ or $\infty$ solutions |
 
 
 
 ## Solving Ax = b
 
-The goal of this section is to find the complete solution of $Ax = b$ if it has a solution. Let's use the linear system that we used in the previous post.
+The goal of this section is to find the complete solution of $Ax = b$ if it has a solution. Let's use the linear system from earlier.
 
 $$x_1 + 2x_2 + 2x_3 + 2x_4 = b_1$$
 
@@ -160,22 +164,22 @@ As we see in $R_3$, the combinations of rows is **zero row** (that is **0 = 0**,
 
 $b_3 - b_2 - b_1 = 0$.
 
-That is for $b_1 = 1, b_2 = 8, b_3 = 9$, we get $b_3 - b_2 - b_1 = 0$.
+Then for $b_1 = 1, b_2 = 8, b_3 = 9$, we get $b_3 - b_2 - b_1 = 0$.
 
 
 So now we know that the solution *exists*. In order to find the **complete solution** we will,
 
 1. *Find $X_{particular}$*:
    
-- Set all free variables to zero.
-- Solve $Ax = b$ for pivot variables.
+   - Set all free variables to zero.
+   - Solve $Ax = b$ for pivot variables.
 
 2. *Find $X_{null space}$*
 3. *$X_{complete}$ = $X_{particular}$ + $X_{null space}$*
 
 ### Finding $X_{particular}$
 
-This is quite straightforward, set $X_2 = 0$ and $X_4 = 0$, so the system becomes,
+This is quite straightforward, we set free vaiables as $0$ i.e. $X_2 = 0$ and $X_4 = 0$, so the system becomes,
 
 $$x_1 + 2x_3 = 1$$
 
@@ -196,30 +200,33 @@ $$U = \begin{bmatrix} 1& 2 & 2 & 2 \\ 0 & 0 & 2 & 4 \\ 0& 0& 0& 0 \end{bmatrix}$
 Here $C_1$ and $C_3$ are pivot columns and $C_2$ and $C_4$ are free columns. So if we set free variables $x_2 = 1$ and $x_4 =0$, we get
 
 $$x_1 + 2 + 2x_3 = 0$$
+
 $$       2x_3 = 0$$
 
 which gives $x_1 = -2, x_3 = 0$.
 
-Similarly, if we set $x_2 = 0$ and $x_4 =1$.
+Similarly, if we set $x_2 = 0$ and $x_4 =1$, we get $x_1 = 2$ and $x_3 = -2$
 
 We finally get the whole Null space,
 
-$$X = c_1\begin{bmatrix}-2\\1 \\ 0 \\ 0\end{bmatrix} + c_2\begin{bmatrix}2\\ 0 \\ -2 \\ 1\end{bmatrix}$$
+$$X_{null} = c_1\begin{bmatrix}-2\\1 \\ 0 \\ 0\end{bmatrix} + c_2\begin{bmatrix}2\\ 0 \\ -2 \\ 1\end{bmatrix}$$
 
 for any constant $c_1$ and $c_2$.
 
-Now if we take $U$ to reduced row-echelon form R,
+Now if we take $U$ to reduced row-echelon form $R$,
 
 $$R = \begin{bmatrix}1 & 2 & 0& -2\\ 0 & 0 & 1 & 2 \\ 0 & 0& 0& 0\end{bmatrix}$$
 
-This reduced row echelon form has a structure: Identity matrix in pivot columns, Free matrix in free column and zeros below.
+This reduced row echelon form has a structure: Identity matrix in pivot columns, free matrix in free column and zeros below.
 
 $$R = \begin{bmatrix}I & F\\ 0 & 0\end{bmatrix}$$
- with $I = \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}$, $F = \begin{bmatrix}2 & -2 \\ 0 & 2\end{bmatrix}$
+ with $$I = \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}$$, $$F = \begin{bmatrix}2 & -2 \\ 0 & 2\end{bmatrix}$$
 
-We can notice here the Null space is actually in the form:
+We can notice here that the Null space is actually in the form:
 
-$$X = c\begin{bmatrix}-F \\ I\end{bmatrix}$$
+$$X_{null} = c\begin{bmatrix}-F \\ I\end{bmatrix}$$
+
+### Complete Solution $X_{complete}$
 
 Now we have both $X_{particular}$ and $X_{nullspace}$ and hence our complete solution is:
 

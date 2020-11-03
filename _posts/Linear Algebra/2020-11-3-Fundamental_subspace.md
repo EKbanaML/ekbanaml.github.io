@@ -8,13 +8,18 @@ tags:
   - Four Subspaces
   - Dependence and Independence
   - Span and Basis
+
 header:
   image: "https://images.pexels.com/photos/326235/pexels-photo-326235.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+  thumbnail: "https://images.pexels.com/photos/326235/pexels-photo-326235.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
   caption: "Photo credit: [**Pexel**](https://www.pexels.com/photo/scenic-view-of-mountains-against-sky-326235/)"
+
 toc: true
 toc_label: "Four Fundamental subspaces"
 toc_icon: "rocket"
+toc_sticky: "false"
 author: anilkumarshrestha
+# classes: wide
 ---
 
 ## Linear Independence
