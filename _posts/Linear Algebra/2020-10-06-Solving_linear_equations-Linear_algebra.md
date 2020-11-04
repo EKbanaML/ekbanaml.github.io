@@ -392,3 +392,9 @@ $$(A^{-1})^{T} =  (A^{T})^{-1}$$
 
 
 - $S$ is a symmetric matrix if $S = S^{T}$
+
+
+References
+
+1. Introduction to Linear Algebra, W. G. Strang
+2. Essence of linear algebra : [https://www.3blue1brown.com/](https://www.3blue1brown.com/)

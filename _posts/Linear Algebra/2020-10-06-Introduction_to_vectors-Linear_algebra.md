@@ -386,3 +386,9 @@ $$A\vec X = B$$
 $$\begin{bmatrix}a & b & c \\ d & e & f \\ g & h & i\end{bmatrix}\begin{bmatrix}x \\ y \\ z\end{bmatrix} = \begin{bmatrix}b1 \\ b2 \\ b3\end{bmatrix}$$
 
 - Our aim is to change $A$ into $U$. Where $U$ is an upper tringular matrix. 
+
+
+References
+
+1. Introduction to Linear Algebra, W. G. Strang
+2. Essence of linear algebra : [https://www.3blue1brown.com/](https://www.3blue1brown.com/)
