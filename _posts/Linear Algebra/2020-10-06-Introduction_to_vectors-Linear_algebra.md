@@ -12,7 +12,6 @@ header:
 author: rizzurohit
 ---
 
-# Introduction to Vectors
 
 ## 1.1 Linear combination
 ### Vectors  

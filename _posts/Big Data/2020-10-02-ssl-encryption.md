@@ -8,7 +8,6 @@ tags:
   - SSL
   - SASL
 ---
-# Encryption (SSL)
 
 Encryption solves the problem of the man in the middle (MITM) attack. That’s because your packets, while being routed to your destination, travel your network 
 and hop from machines to machines. If your data is PLAINTEXT, any of these routers could read the content of the data 

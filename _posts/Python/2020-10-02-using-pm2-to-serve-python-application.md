@@ -11,7 +11,6 @@ header:
   caption: "Photo credit: [**Pexel**](https://images.pexels.com/)"
 author: vaghawan
 ---
-## Using Pm2 To Serve Python Application 
 
 PM2 is a production process manager for Node.js applications with a built-in load balancer. It allows you to keep applications alive forever, to reload them without downtime and to facilitate common system admin tasks. [1]  It makes the deployment of an application/script simple and easy, also the development process by giving us an easy access of status and logs.
 
