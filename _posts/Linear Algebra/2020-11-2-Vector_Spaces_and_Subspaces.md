@@ -38,8 +38,8 @@ Now we are good to discuss vector spaces. A nonempty set V of elements $\vec{a},
 
 **II. Scalar multiplication** If c and k are any scalar, then c$\vec{a}$ should satisfy:
 
-5. *Distributive*: $c(\vec{a} + \vec{b}) = c\vec{a} + k\vec{b}$
-6. *Distributive*: (c + k)$\vec{a}$ = c$\vec{a}$ + k$\vec{b}$
+5. *Distributive*: $c(\vec{a} + \vec{b}) = c\vec{a} + c\vec{b}$
+6. *Distributive*: (c + k)$\vec{a}$ = c$\vec{a}$ + k$\vec{a}$
 7. *Associative*: c(k$\vec{a}$) = (ck)$\vec{a}$
 8. For every $\vec{a}$ in V, 1$\vec{a}$ = $\vec{a}$
 

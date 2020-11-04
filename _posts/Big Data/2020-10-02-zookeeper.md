@@ -12,8 +12,6 @@ header:
 author: bibek
 ---
 
-# Zookeeper Security
-
 The metadata stored in ZooKeeper is such that only brokers will be able to modify the corresponding znodes, but znodes are world readable. 
 
 The rationale behind this decision is that the data stored in ZooKeeper is not sensitive, but inappropriate manipulation of znodes can cause cluster disruption. 

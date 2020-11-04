@@ -146,6 +146,9 @@ defaults:
       share: true
       related: true
       show_date: true
+      toc: true
+      toc_icon: "rocket"
+      toc_sticky: "false"
   # _pages
   - scope:
       path: "_pages"

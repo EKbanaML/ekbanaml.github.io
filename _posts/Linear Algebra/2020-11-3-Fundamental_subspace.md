@@ -58,7 +58,7 @@ For example:
 $$v_1 = \begin{bmatrix}1 \\ 0\end{bmatrix}$$ and $$v_2 = \begin{bmatrix}0 \\ 1\end{bmatrix}$$
 span the whole 2-D space in $\mathbb{R}^2$.
 
-# Basis for Vector Space
+## Basis for Vector Space
 A basis for a vector is a sequence of vectors $v_1, v_2, v_3, ... , v_n$ with two properties:
 
 1. They are independent.
@@ -70,7 +70,7 @@ So what is the basis for column space of $A$ in the previous example we discusse
 
 For $A$, the basis are vectors $$\begin{bmatrix}1 \\ 2 \\ 3\end{bmatrix}$$ and $$\begin{bmatrix}2 \\ 6 \\ 8\end{bmatrix}$$ for it's column space and they are actually our pivot columns. So the basis for column space are the pivot columns.
 
-# Dimension of a Vector Space
+## Dimension of a Vector Space
 ***The dimension of a space is the number of vectors in every basis.*** For example there are two vectors in the basis of $A$ (same old example), so the dimension of column space of $A$ is $2$. In fact these two are the rank of the matrix. Ultimately we can say, **dimension of the column space = rank of the matrix = number of pivot columns.**
 
 Similarly, the dimension of ***Null space is the number of free variable***. So the dimension of Null space of A is 2.

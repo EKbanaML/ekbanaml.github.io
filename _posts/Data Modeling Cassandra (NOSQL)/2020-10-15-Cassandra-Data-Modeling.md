@@ -14,9 +14,6 @@ header:
 author: tchiring
 ---
 
-
-# Cassandra Data Modeling
----
 Before we start with our modeling, we must first educate ourselves with at least the rudimentary knowledge of Cassandra’s Architecture. Don’t worry we’re not going to dive deep in the how’s and what’s, but just get the gist of what’s happening under the hood.
 
 #### A Gist of Cassandra Architecture
