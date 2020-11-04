@@ -84,9 +84,9 @@ From URL
 To work more with this image and add overlay refer [this link](https://mmistakes.github.io/minimal-mistakes/docs/layouts/#header-overlay)
 
 ### Adding Table of Content
-                toc: true
-                toc_label: "My Table of Contents"
-                toc_icon: "cog"
+Tabel of contents are created by default. Header with ## is at the top-level followed by ### and so on. To disable ToC add following in your front-matter:
+                
+                toc: false
 
 
 ### 3. Add Images(Standard)
@@ -113,11 +113,24 @@ To add responsive video refer [this link](https://mmistakes.github.io/minimal-mi
 
 ### 4. Links 
 
-#### Links within site
+#### Link posts within site
 
         [name]({% post_url /subfolder/YYYY-MM-DD-file_name_without_md %})
         eg:
         [SASL_Kerberos]({% post_url /Big\ Data/2020-10-02-sasl_kerberos %})
+
+
+#### Other links with in site
+Do not just link the whole URL if it is with in the site.
+
+        Bad approach:
+                [Linrear Algebra](https://ekbanaml.github.io/categories/#linear-algebra)
+
+        Good approach:
+
+                [name](({{ site.baseurl }}/<path here>)
+                Eg:
+                [Linear Algebra](({{ site.baseurl }}/categories/#linear-algebra) 
 
 ## C: Assets
 
