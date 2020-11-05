@@ -18,7 +18,7 @@ In linear algebra systems of linear equations are viewed as matrix-vector operat
 
 ### Identity Matrix
 
-An identity matrix $I$ is $n*n$ square matrix where the elements of the  main diagonal are $1$ and rest are $0$.
+An identity matrix $I$ is $n \times n$ square matrix where the elements of the  main diagonal are $1$ and rest are $0$.
 
 Example:
 
@@ -34,7 +34,7 @@ As discussed in the previous chapter, we perform eliminations and row exchanges 
 
 Each elimination step can be viewed as a matrix.  
 
-$E_{21}$ is amatrix that converts $2^{nd}$ row and $1^{st}$ column to 0.
+$E_{21}$ is a matrix that converts $2^{nd}$ row and $1^{st}$ column to 0.
 
 $$E_{21}.A = U_{21}$$  
 
@@ -392,3 +392,9 @@ $$(A^{-1})^{T} =  (A^{T})^{-1}$$
 
 
 - $S$ is a symmetric matrix if $S = S^{T}$
+
+
+References
+
+1. Introduction to Linear Algebra, W. G. Strang
+2. Essence of linear algebra : [https://www.3blue1brown.com/](https://www.3blue1brown.com/)
