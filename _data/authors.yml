@@ -1,7 +1,7 @@
 anilkumarshrestha:
   name    : "Anil Kumar Shrestha"
   bio     : ""
-  avatar  : "/assets/images/userPhoto/no_photo.jpg"
+  avatar  : "/assets/images/userPhoto/anil.jpg"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
@@ -9,9 +9,9 @@ anilkumarshrestha:
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://anilkshrestha.com.np"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
+    - label: "LinkedIn"
+      icon: "fab fa-linkedin"
+      url: "www.linkedin.com/in/anilkumarshrestha6"
 
 ashuta:
   name: "Ashuta"

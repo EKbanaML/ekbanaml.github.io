@@ -21,6 +21,9 @@ toc_sticky: "false"
 author: anilkumarshrestha
 # classes: wide
 ---
+*This is a one of several posts in Linear Algebra series. All the posts are available [here]({{ site.baseurl }}/categories/#linear-algebra ). I assume you are familiar with basics of Vector Spaces and Subspaces if not refer [Vector Spaces and Subspaces]({% post_url /Linear\ Algebra/2020-11-2-Vector_Spaces_and_Subspaces %}).*
+
+*In this post we will dive into Independence, Span, Basis, and Dimension of a vector. Finally we will look into Four fundamental subspaces.*
 
 ## Linear Independence
 Vectors $\vec{x_1}, \vec{x_2}, ..., \vec{x_n}$ are **independent** if ***no combination gives zero vector except the zero combination.*** That is, *$Ax = 0$ only when $x = 0$*. Also, we know that Null space $N(A)$ has all the solutions when $Ax = 0$, the columns are independent if ***N(A) contains only the zero vector***.
@@ -132,9 +135,10 @@ Here is the summary of the four subspaces associated with $m$ by $n$ matrix $A$ 
 
 Here the row space $C(A^T)$ is the multiples of (1,2), the null space $N(A)$ is the multiples of (2, -1), column space $C(A)$ is the multiples of (1, 3) and left null space is the multiples of (3, -1).
 
-Also we can see that Row space is orthogonal to Null space and Column space is orthogonal to Left nullspace.
+Also we can see that Row space is orthogonal to Null space and Column space is orthogonal to Left nullspace. 
+<!-- More on this is available at [Orthogonality]() -->
 
-References
+**References**
 1. Introduction to Linear Algebra, W. G. Strang
-2. [http://fourier.eng.hmc.edu/e176/lectures/algebra/node19.html](http://fourier.eng.hmc.edu/e176/lectures/algebra/node19.html)
-3. [http://www.cse.iitm.ac.in/~vplab/courses/LARP_2018/Vector_Space_2.4.pdf](http://www.cse.iitm.ac.in/~vplab/courses/LARP_2018/Vector_Space_2.4.pdf)
+2. [The Fundamental Theorem of Linear Algebra](http://fourier.eng.hmc.edu/e176/lectures/algebra/node19.html)
+3. [The Four Fundamental Subspaces](http://www.cse.iitm.ac.in/~vplab/courses/LARP_2018/Vector_Space_2.4.pdf)

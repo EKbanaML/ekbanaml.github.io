@@ -19,9 +19,9 @@ toc_sticky: "false"
 author: anilkumarshrestha
 ---
 
-*To revise Vectors refer [Introduction to Vectors]({% post_url /Linear\ Algebra/2020-10-06-Introduction_to_vectors-Linear_algebra %}).*
+*This is a one of several posts in Linear Algebra series. All the posts are available [here]({{ site.baseurl }}/categories/#linear-algebra ). I assume you are familiar with vectors if not refer [Introduction to Vectors]({% post_url /Linear\ Algebra/2020-10-06-Introduction_to_vectors-Linear_algebra %}).*
 
-In this post we will start by introducing vector spaces and subspaces, then explore pivot columns, free columns and rank that we will need in the [next post]({% post_url /Linear\ Algebra/2020-11-3-Fundamental_subspace %}). Finally, we will find a complete solution of $Ax = b$.
+*In this post we will start by introducing vector spaces and subspaces, then explore pivot columns, free columns and rank that we will need in the [next post]({% post_url /Linear\ Algebra/2020-11-3-Fundamental_subspace %}). Finally, we will find a complete solution of $Ax = b$.*
 
 Before we dive into Vector spaces let's see what field is.
 
@@ -240,9 +240,9 @@ Plotting the solution we get,
 For further reading refer [here](https://ekbanaml.github.io/categories/#linear-algebra).
 
 
-References
+**References**
 1. Introduction to Linear Algebra, W. G. Strang
-2. [http://www.math.toronto.edu/gscott/WhatVS.pdf](http://www.math.toronto.edu/gscott/WhatVS.pdf)
-3. [https://www.cs.yale.edu/homes/aspnes/classes/202/notes.pdf](https://www.cs.yale.edu/homes/aspnes/classes/202/notes.pdf)
-4. [http://www.cse.iitm.ac.in/~vplab/courses/LARP_2018/Vector_Space_2.4.pdf](http://www.cse.iitm.ac.in/~vplab/courses/LARP_2018/Vector_Space_2.4.pdf)
-5. [https://web.mit.edu/18.06/www/Essays/newpaper_ver3.pdf](https://web.mit.edu/18.06/www/Essays/newpaper_ver3.pdf)
+2. [What is Vector space ? (Toronto)](http://www.math.toronto.edu/gscott/WhatVS.pdf)
+3. [Notes on Discrete Mathematics (Yale)](https://www.cs.yale.edu/homes/aspnes/classes/202/notes.pdf)
+4. [The Four Fundamental Subspaces (IITM)](http://www.cse.iitm.ac.in/~vplab/courses/LARP_2018/Vector_Space_2.4.pdf)
+5. [TheFourFundamentalSubspaces (MIT)](https://web.mit.edu/18.06/www/Essays/newpaper_ver3.pdf)
