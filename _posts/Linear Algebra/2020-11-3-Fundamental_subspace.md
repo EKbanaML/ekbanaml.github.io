@@ -99,7 +99,7 @@ The four fundamental subspaces are:
 
 3. Null space $N(A)$:
 
-    The nullspace of $U$ has dimension = n - r. The special solutions are the basis. The nullspace of $A$ is the same as the nullspace of $U$ and $R$.
+    The nullspace of $U$ has dimension = $n - r$. The special solutions are the basis. The nullspace of $A$ is the same as the nullspace of $U$ and $R$.
 
     The nullspace is also called the kernel of A, and its dimension $n-r$ is the nullity.
 
@@ -111,8 +111,8 @@ The four fundamental subspaces are:
 
     *dimension of $C(A^T)$ + dimension of $N(A^T)$ = m*
     
-    *$\implies$ $r$ + dimension of $N(A)$ = m*  
-    $\implies$  ***dimension of left null space N(A^T) = m - r***.
+    *$\implies$ $r$ + dimension of $N(A)$ = $m$*  
+    $\implies$  ***dimension of left null space $N(A^T) = m - r$***.
 
 Here is the summary of the four subspaces associated with $m$ by $n$ matrix $A$ of rank $r$.
 
@@ -133,7 +133,7 @@ Here is the summary of the four subspaces associated with $m$ by $n$ matrix $A$ 
 ![Plot four spaces]({{ site.url }}{{ site.baseurl }}/assets/images/linear_algebra/Four_funsamental_subspaces/plot_fundamental_subspaces.png)
 
 
-Here the row space $C(A^T)$ is the multiples of (1,2), the null space $N(A)$ is the multiples of (2, -1), column space $C(A)$ is the multiples of (1, 3) and left null space is the multiples of (3, -1).
+Here the row space $C(A^T)$ is the multiples of (1,2), the null space $N(A)$ is the multiples of $(2, -1)$, column space $C(A)$ is the multiples of $(1, 3)$ and left null space is the multiples of $(3, -1)$.
 
 Also we can see that Row space is orthogonal to Null space and Column space is orthogonal to Left nullspace. 
 <!-- More on this is available at [Orthogonality]() -->

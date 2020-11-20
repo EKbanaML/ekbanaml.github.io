@@ -19,13 +19,13 @@ toc_sticky: "false"
 author: anilkumarshrestha
 ---
 
-*This is a one of several posts in Linear Algebra series. All the posts are available [here]({{ site.baseurl }}/categories/#linear-algebra ). I assume you are familiar with vectors if not refer [Introduction to Vectors]({% post_url /Linear\ Algebra/2020-10-06-Introduction_to_vectors-Linear_algebra %}).*
+*This is a one of several posts in Linear Algebra series. All the posts are available [here]({{ site.baseurl }}/categories/#linear-algebra ). I assume you are familiar with vectors if not please refer [Introduction to Vectors]({% post_url /Linear\ Algebra/2020-10-06-Introduction_to_vectors-Linear_algebra %}).*
 
 *In this post we will start by introducing vector spaces and subspaces, then explore pivot columns, free columns and rank that we will need in the [next post]({% post_url /Linear\ Algebra/2020-11-3-Fundamental_subspace %}). Finally, we will find a complete solution of $Ax = b$.*
 
 Before we dive into Vector spaces let's see what field is.
 
-**Field**: Let $a, b$ $\epsilon$ $\mathbb{R}$, then $a + b, a - b, ab$ and $a/b$ all belongs to $\mathbb{R}$ (given that $b \not ={0}$). So, we say $\mathbb{R}$ is a **Field**. Similarly, $\mathbb{Q}$ and $\mathbb{C}$ are also fields. But are $\mathbb{N}$, $\mathbb{Z}$  fields? For example, $2$ and $5$ are in $\mathbb{N}$ but $2 - 5$ is not. So clearly, they are not a field.
+**Field**: Let $a, b$ $\varepsilon$ $\mathbb{R}$, then $a + b, a - b, a.b$ and $\frac{a}{b}$ all belongs to $\mathbb{R}$ (given that $b \not ={0}$). So, we say $\mathbb{R}$ is a **Field**. Similarly, $\mathbb{Q}$ and $\mathbb{C}$ are also fields. But are $\mathbb{N}$, $\mathbb{Z}$  fields? For example, $2$ and $5$ are in $\mathbb{N}$ but $2 - 5$ is not. So clearly, they are not a field.
 
 Now we are good to discuss vector spaces. A nonempty set V of elements $\vec{a}, \vec{b}, \vec{c}...$ is called a ***vector space*** if there are two defined algebraic operations:
 
@@ -44,7 +44,7 @@ Now we are good to discuss vector spaces. A nonempty set V of elements $\vec{a},
 8. For every $\vec{a}$ in V, 1$\vec{a}$ = $\vec{a}$
 
 
-Let's start with something that everyone is familiar with: $\mathbb{R}^2$, which is a XY-plane. In fact this is a vector space containing all column vectors $\vec{v}$ with 2 components. For 3 components, we have $\mathbb{R}^3$ vector space that we live in. That said, we can generalize it to:
+Let's start with something that everyone is familiar with: $\mathbb{R}^2$, which is a XY-plane. In fact this is a vector space containing all column vectors $\vec{v}$ with 2 components. For $3$ components, we have $\mathbb{R}^3$ vector space that we live in. That said, we can generalize it to:
 
 **$\mathbb{R}^n$ to be a vector space of all column vectors with n components.**
 
@@ -101,7 +101,7 @@ Here $C_1$ and $C_3$ are pivot columns and $C_2$ and $C_4$ are free columns. So 
 
 ## Rank of a matrix
 
-***Rank ($r$)*** *of a matrix is the number of pivots.* Rank of a matrix gives almost all information  about the solutions. This shows that there are r independent rows and columns in the given matrix. This also deals with spaces of vectors: ***the rank of a matrix is $r$ means, the column and row space are in $r$ dimensions.*** And the dimension of null space is $n-r$.
+***Rank ($r$)*** *of a matrix is the number of pivots.* Rank of a matrix gives almost all information  about the solutions. This shows that there are $r$ independent rows and columns in the given matrix. This also deals with spaces of vectors: ***the rank of a matrix is $r$ means, the column and row space are in $r$ dimensions.*** And the dimension of null space is $n-r$.
 
 The rank for above mentioned matrix $A$ = the number of pivots = $2$. So it's column space and row space is in $2$-dimension and null space is in $4-2 = 2$ dimension.
 
@@ -237,7 +237,7 @@ Plotting the solution we get,
 
 <img src='{{ site.url }}{{ site.baseurl }}/assets/images/linear_algebra/Vector_spaces_and_subspaces/complete_sol.png' width='700'>
 
-For further reading refer [here](https://ekbanaml.github.io/categories/#linear-algebra).
+For further reading please refer [here](https://ekbanaml.github.io/categories/#linear-algebra).
 
 
 **References**
