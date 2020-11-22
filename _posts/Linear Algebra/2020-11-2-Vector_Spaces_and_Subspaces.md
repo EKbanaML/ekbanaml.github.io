@@ -25,7 +25,9 @@ author: anilkumarshrestha
 
 Before we dive into Vector spaces let's see what field is.
 
-**Field**: Let $a, b$ $\varepsilon$ $\mathbb{R}$, then $a + b, a - b, a.b$ and $\frac{a}{b}$ all belongs to $\mathbb{R}$ (given that $b \not ={0}$). So, we say $\mathbb{R}$ is a **Field**. Similarly, $\mathbb{Q}$ and $\mathbb{C}$ are also fields. But are $\mathbb{N}$, $\mathbb{Z}$  fields? For example, $2$ and $5$ are in $\mathbb{N}$ but $2 - 5$ is not. So clearly, they are not a field.
+**Field**: Formally, a field is an algebraic structure with set of elements and two operations (called multiplication and addition) which follows the following strict properties called field axioms, which in itself is a separate topic in itself, which hopefully will be covered later in this linear algebra series.
+
+Intuitively, let $a, b$ $\varepsilon$ $\mathbb{R}$, then $a + b, a - b, a.b$ and $\frac{a}{b}$ all belongs to $\mathbb{R}$ (given that $b \not ={0}$). So, we say $\mathbb{R}$ is a **Field**. Similarly, $\mathbb{Q}$ and $\mathbb{C}$ are also fields. But are $\mathbb{N}$, $\mathbb{Z}$  fields? For example, $2$ and $5$ are in $\mathbb{N}$ but $2 - 5$ is not. So clearly, they are not a field.
 
 Now we are good to discuss vector spaces. A nonempty set V of elements $\vec{a}, \vec{b}, \vec{c}...$ is called a ***vector space*** if there are two defined algebraic operations:
 
