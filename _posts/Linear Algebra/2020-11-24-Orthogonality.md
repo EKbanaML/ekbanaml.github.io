@@ -304,14 +304,6 @@ $$q_{i}^{T}q_{j}=\left\{\begin{matrix}
  
 Matrices with orthonormal columns are a new class of important matrices besides triangular, diagonal, permutation, symmetric,reduced row echelon, and projection matrices. We call them **orthonormal matrices**. A square orthonormal matrix $Q$ is called an orthogonal matrix. If $Q$ is square, then $Q^{T}Q=I$ tells us that $Q^{T}=Q^{-1}$.
 
-The matrix $Q=\begin{bmatrix}
-cos\theta  & -sin\theta \\ 
-sin\theta  & cos\theta 
-\end{bmatrix}$ is orthogonal. The matrix $\begin{bmatrix}1 & 1 \\ 1  & -1 \end{bmatrix}$ is not, but we can  adjust that matrix to get the orthogonal matrix $Q=\frac{1}{\sqrt{2}}\begin{bmatrix}
-1 & 1 \\ 
-1  & -1 
-\end{bmatrix}$.
-
 
 **Orthonormal columns are good**
 
@@ -323,8 +315,8 @@ $$P = Q^{T}(Q^{T}Q)^{-1}Q^{T}.$$
 If the columns of $Q$ are orthonormal, then $Q^{T}Q = I$ and $P = QQ^{T}$. If $Q$ is
 square, then $P = I$ because the columns of $Q$ span the entire space.
 Many equations become trivial when using a matrix with orthonormal columns.
-If our basis is orthonormal, the projection component $\hat{x}_{i}$ is just
-$q^{T}_{i}b$ because $A^{T}A\hat{x} = A^{T}b$ becomes $\hat{x} = Q^{T}b$. 
+If our basis is orthonormal, the projection component becomes:
+$$\hat{x} = q^{T}b$$
 
 ## Gram-Schmidt
 
@@ -333,6 +325,7 @@ Our goal now is to make the matrix orthonormal. We start with two independent ve
 Let $A = a$. We get a vector orthogonal to $A$ in the space spanned by $a$ and
 $b$ by projecting $b$ onto $a$ and letting $B = b − p$. ($B$ is what we previously called
 $e$.)
+
 $$B=b-\frac{A^{T}b}{A^{T}A}A$$
 
 If we multiply both sides of this equation by $A^{T}$, we see that $A^{T}B=0$. If we had started with three independent vectors, $a,b$ and $c$, then we would find a vector $C$ orthogonal to both $A$ and $B$ by subtracting from $c$ its components in the $A$ and $B$ directions:
@@ -345,11 +338,11 @@ $a=\begin{bmatrix}
 1\\ 
 1\\ 
 1
-\end{bmatrix} and b=\begin{bmatrix}
+\end{bmatrix}$ and $b=\begin{bmatrix}
 1\\ 
 0\\ 
 2
-\end{bmatrix}$. Then $A=a$ and:
+\end{bmatrix}$ are column vectors. Then $A=a$ and:
 
 $$B=\begin{bmatrix}
 1\\ 
@@ -360,6 +353,7 @@ $$B=\begin{bmatrix}
 1\\ 
 1
 \end{bmatrix}$$
+
 $$=\begin{bmatrix}
 1\\ 
 0\\ 
@@ -369,6 +363,7 @@ $$=\begin{bmatrix}
 1\\ 
 1
 \end{bmatrix}$$
+
 $$=\begin{bmatrix}
 0\\ 
 -1\\ 
@@ -388,8 +383,11 @@ $$=\begin{bmatrix}
 The column space of $Q$ is the plane spanned by $a$ and $b$.
 The equation $A=QR$ relates to our starting matrix $A$ to the result $Q$ of the Gram-Schmidt process, where $R$ is upper triangular matrix.
 
-Suppose $A=\begin{bmatrix}a_{1} & a_{2} \end{bmatrix}$. Then:
+Suppose $A=\begin{bmatrix}a_{1} & a_{2} \end{bmatrix}$.
+Then:
+
 $$A = QR$$
+
 $$\begin{bmatrix}
 a_{1} & a_{2} 
 \end{bmatrix}=\begin{bmatrix}
