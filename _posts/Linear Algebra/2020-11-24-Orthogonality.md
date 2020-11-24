@@ -12,7 +12,7 @@ tags:
 header:
   image: "https://images.pexels.com/photos/772803/pexels-photo-772803.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
   caption: "Photo credit: [**Pexel**](https://images.pexels.com/)"
-author: Anjali Acharya
+author: Anjali
 ---
 
 In this post we'll get familiar with the idea of projection, projection onto any line, plane and subspaces.What are orthonormal vectors, orthogonality of subspaces and why it is useful when we are dealing with projection. Let's do a quick recap of the dot product since it defines orthogonality of the vectors.
@@ -72,13 +72,13 @@ at a line rather than the origin. Hence two planes in R3 can't be orthogonal.
 - **The row space is perpendicular to the null space.** Every row of A is perpendicular to
 every solution of Ax = 0.
 
-$Ax=\begin{bmatrix}row\,1\\ .\\ .\\ .\\ row\,m\end{bmatrix}\begin{bmatrix}x \end{bmatrix}=\begin{bmatrix}
+$$Ax=\begin{bmatrix}row\,1\\ .\\ .\\ .\\ row\,m\end{bmatrix}\begin{bmatrix}x \end{bmatrix}=\begin{bmatrix}
 0\\ 
 .\\ 
 .\\ 
 .\\ 
 0
-\end{bmatrix}$
+\end{bmatrix}$$
 
 $x$ is orthogonal to each seperate rows of $A$ and to the linear combinations of rows of $A$.
 
@@ -113,6 +113,8 @@ Figure below shows what happens to $Ax= Ax_{r} + Ax_{n}$:
 **From the row space to the column space, A is invertible.**
 
 ## Projection
+
+### Projection Onto a Line
 
 Our goal here is to find projection $p$ and the projection matrix $P$ onto any n-dimensional subspace. Every
 subspace of $R^{m}$ has its own $m*m$ projection matrix.
@@ -166,7 +168,7 @@ out by the same matrix matrix $P$.
 - When we do the projection twice, projection is the same point.
 $P^{2}=P$
 
-### Projecting onto 3-dimensional subspace
+### Projection Onto a Subspace
 
 **Why we do this projection?**
 
@@ -175,7 +177,7 @@ column space of $A$. We cant solve this system but we can solve closest problem,
 $A\hat{x} = p$ instead, where $p$ is the projection of $b$ onto the column space of $A$.
 
 
-Let us consider we have a plane $S$ in 3D (spanned by vectors $a1$ and $a2$) and a vector $b$ which is not in the plane. Refer to figure x, what we want to do is project $b$ down onto the plane $S$. The matrix A that describes the plane has two columns a1 and a2.
+Let us consider we have a plane $S$ in 3D (spanned by vectors $a1$ and $a2$) and a vector $b$ which is not in the plane. What we want to do is project $b$ down onto the plane $S$. The matrix A that describes the plane has two columns a1 and a2.
 - So $p$ is some multiple of a1 and a2
 
 $$p = \hat{x_{1}}a_{1}+\hat{x_{2}}a_{2}$$
@@ -186,15 +188,16 @@ We want to find the right combination, $\hat{x}$ of the columns of $A$ so that $
 
 We have,
 
-$e = b-A\hat{x}$
+$$e = b-A\hat{x}$$
 
-$a_{1}^{T}(b-A\hat{x})=0\:$ and $\:a_{2}^{T}(b-A\hat{x})=0$
+$$a_{1}^{T}(b-A\hat{x})=0$$
+$$and\; a_{2}^{T}(b-A\hat{x})=0$$
 
-$\begin{bmatrix}
+$$\begin{bmatrix}
 a_{1}^{T}\\a_{2}^{T}
-\end{bmatrix}\left (  b-A\hat{x}\right )=\begin{bmatrix}
+\end{bmatrix}\left (b-A\hat{x}\right )=\begin{bmatrix}
 0\\0 
-\end{bmatrix}$
+\end{bmatrix}$$
 
 
 $A^{T}(b-A\hat{x})=0$, which is similar to the equation $a^{T}(b-\hat{x}a)=0$ in case of 1-D
