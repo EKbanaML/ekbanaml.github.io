@@ -15,10 +15,10 @@ header:
 author: Anjali
 ---
 
-In this post we'll get familiar with the idea of projection, projection onto any line, plane and subspaces.What are orthonormal vectors, orthogonality of subspaces and why it is useful when we are dealing with projection. Let's do a quick recap of the dot product since it defines orthogonality of the vectors.
+In this post we'll familiarize ourselves with the concepts of projection; projection onto any line, plane and subspace, and we will also discuss about orthogonal vectors, orthogonality of subspaces and why we want to achieve orthogonality. Let's do a quick recap of the dot product, the dot product gives us a very nice method for determining if two vectors are orthogonal. 
 
 **The dot product**
-measures angles between vectors and computes the length of a vector.
+measures angles between vectors by summing the products of the corresponding entries.
 The dot product of two vectors $x,y$ in $R^{n}$ is
 
 $$
@@ -65,14 +65,14 @@ Refer to figure (a) below.
 
 <img src='{{ site.url }}{{ site.baseurl }}/assets/images/linear_algebra/orthogonality/subspaces.png' width='500'>
 
-- **Two planes in R3 cant be orthogonal to each other**.
+- **Two planes in R3 can't be orthogonal to each other**.
 If we consider adjacent walls in a room which represent two planes in R3 (figure b) and they intersect
 at a line rather than the origin. Hence two planes in R3 can't be orthogonal.
 
-- **The row space is perpendicular to the null space.** Every row of A is perpendicular to
-every solution of Ax = 0.
+- **The row space is perpendicular to the null space.** Every row of $A$ is perpendicular to
+every solution of $Ax = 0$.
 
-$$Ax=\begin{bmatrix}row\,1\\ .\\ .\\ .\\ row\,m\end{bmatrix}\begin{bmatrix}x \end{bmatrix}=\begin{bmatrix}
+$$Ax=\begin{bmatrix}row_1\\ .\\ .\\ .\\ row_m\end{bmatrix}\begin{bmatrix}x \end{bmatrix}=\begin{bmatrix}
 0\\ 
 .\\ 
 .\\ 
@@ -80,8 +80,7 @@ $$Ax=\begin{bmatrix}row\,1\\ .\\ .\\ .\\ row\,m\end{bmatrix}\begin{bmatrix}x \en
 0
 \end{bmatrix}$$
 
-$x$ is orthogonal to each seperate rows of $A$ and to the linear combinations of rows of $A$.
-
+$x$ is orthogonal to each separate rows of $A$ and to the linear combinations of rows of $A$.
 
 - **The column space is perpendicular to the nullspace of** $A^{T}$.
 
@@ -109,19 +108,19 @@ Figure below shows what happens to $Ax= Ax_{r} + Ax_{n}$:
 3. dim($W^\perp$) + dim($W$) = $n$
 
 
-**There is an r by r invertible matrix hiding inside A, if we throw away the two nullspaces.**
-**From the row space to the column space, A is invertible.**
+**There is an $r\;by\;r$ invertible matrix hiding inside $A$, if we throw away the two nullspaces**
+**from the row space to the column space, $A$ is invertible.**
 
 ## Projection
 
 ### Projection Onto a Line
 
 Our goal here is to find projection $p$ and the projection matrix $P$ onto any n-dimensional subspace. Every
-subspace of $R^{m}$ has its own $m*m$ projection matrix.
+subspace of $R^{m}$ has its own $m \times m$ projection matrix.
 So projection onto any subspace is same as projecting onto the column space of $A$, where $A$ is a 
 matrix with basis vectors in its columns.
 
-What we do here is project any vector $b$ onto the column space of any $m*n$ matrix. 
+What we do here is project any vector $b$ onto the column space of any $m \times n$ matrix. 
 For ease we are going to consider 1-dimension example i.e. line, so matrix $A$ will have
 only one column which is $a$.
 
@@ -130,7 +129,7 @@ only one column which is $a$.
 
 In the figure, a line goes through the origin in the direction of $a$.
 Along that line, we want the point $p$ closest to $b$. Geometry tells us that we can find this closest
-point by dropping a **perpendicular line** (dotted line) from b to the space(a).
+point by dropping a **perpendicular line** (dotted line) from $b$ to the space($a$).
 That closest and best point $p$ is actually the projection of $b$ onto the line. In 
 another words, when $b$ is projected onto a line, its projection $p$ is the part of $b$ along that line.
 $p$ is some linear combination of $a$, say $p=\hat{x}a$. So we need to find the $\hat{x}$ that minimizes
@@ -177,8 +176,8 @@ column space of $A$. We cant solve this system but we can solve closest problem,
 $A\hat{x} = p$ instead, where $p$ is the projection of $b$ onto the column space of $A$.
 
 
-Let us consider we have a plane $S$ in 3D (spanned by vectors $a1$ and $a2$) and a vector $b$ which is not in the plane. What we want to do is project $b$ down onto the plane $S$. The matrix A that describes the plane has two columns a1 and a2.
-- So $p$ is some multiple of a1 and a2
+Let us consider we have a plane $S$ in 3D (spanned by vectors $a_{1}$ and $a_{2}$) and a vector $b$ which is not in the plane. What we want to do is project $b$ down onto the plane $S$. The matrix A that describes the plane has two columns $a_{1}$ and $a_{2}$.
+- So $p$ is some multiple of $a_{1}$ and $a_{2}$
 
 $$p = \hat{x_{1}}a_{1}+\hat{x_{2}}a_{2}$$
 
@@ -242,7 +241,7 @@ $$A^{T}A=\begin{bmatrix}1 &1  & 1\\1&2  &5 \end{bmatrix}\begin{bmatrix}1& 1\\ 1&
 8 & 30
 \end{bmatrix}$$ 
 
-- Here $A^{T}A$ is invrtible since A has independent columns. We can see beforehand if $A^{T}A$ is invertible from the columns of A. A is rank 2 matrix, so is $A^{T}A$. So the product of matrix $A$ won't have any bigger rank.
+- Here $A^{T}A$ is invertible since A has independent columns. We can see beforehand if $A^{T}A$ is invertible from the columns of $A$. $A$ is rank 2 matrix, so is $A^{T}A$. So the product of matrix $A$ won't have any bigger rank.
 
 
 ## Least Squares Approxomations
@@ -263,8 +262,8 @@ for all other vectors $x$ in $R^{n}$.
 
 We know the distance between two vectors $v$ and  $w$ is $dist(v,w)=\left \| v-w \right \|$. The term "least squares" comes from the fact that $dist(b,Ax)=\left \| b-A\hat{x} \right \|$ is  the square root of the sum of the squares of the entries of the vector $b-A\hat{x}$. So a least-squares solution solves the equation $Ax=b$ as closely as possible, in the sense that the sum of the squares of the difference $b-Ax$ is minimized.
 
-Column space of A, $Col(A)$ is the set of all vectors of the form $Ax$. Hence, the closest vector of the form $Ax$ 
-to b is the **orthogonal projection** of $b$ onto $Col(A)$ denoted by $b_{Col(A)}$.
+Column space of $A$, $Col(A)$ is the set of all vectors of the form $Ax$. Hence, the closest vector of the form $Ax$ 
+to $b$ is the **orthogonal projection** of $b$ onto $Col(A)$ denoted by $b_{Col(A)}$.
 
 
 <img src='{{ site.url }}{{ site.baseurl }}/assets/images/linear_algebra/orthogonality/least-squares.png' width='500'>
@@ -279,10 +278,10 @@ A least-squares solution of $Ax=b$ is a solution $\hat{x}$ of the consistent equ
 
 This part highlights on why orthogonality is good and how can we achieve it. 
 Using an orthonormal basis or a matrix with orthonormal columns makes calculations
-much easier.Dot products are zero, so $A^{T}A$ will be diagonal. It becomes easy to find
+much easier. Dot products are zero, so $A^{T}A$ will be diagonal. It becomes easy to find
 $\hat{x}$ and $p=A\hat{x}$. Gram-Schmidt
 chooses combinations of the original basis vectors to produce right angles. Those original
-vectors are the columns of A, probably not orthogonal. The orthonormal basis vectors
+vectors are the columns of $A$, probably not orthogonal. The orthonormal basis vectors
 will be the columns of a new matrix $Q$. 
 
 
@@ -291,18 +290,18 @@ Suppose we have a set of vectors $q_{1},q_{2}...,q_{n}$ and it is not just any s
  $\left \| q_{i} \right \|=1$ for $i=1,2,...,n$  or 
  $\left \| q_{i} \right \|^{2}=1$ or $q_{i}.q_{i}=1$
  
- - All of the vectors are orthogonal to each other. When we dot a vector with itself we get length =1 and length = 0
- when we dot a vector with any other vectors in the set.
+ - All of the vectors are orthogonal to each other. The dot product of a vector with itself is 1
+ and with any other vectors in the set, it is zero .
  
  - So this set of unit and orthogonal vectors is known as orthonormal set. One fact about orthonormal set is that the vectors are linearly independent.
 
 The vectors $q_{1},q_{2}...,q_{n}$ are orthonormal if 
 $$q_{i}^{T}q_{j}=\left\{\begin{matrix}
-0\; when\; i\neq j(orthogonal vectors)\\ 
-1\; when \;i=j\;(unit\;vectors)
+0\; when\; i\neq j \; \text{(orthogonal vectors)}\\ 
+1\; when \;i=j\;\text{(unit vectors)}
 \end{matrix}\right.$$ 
- 
-Matrices with orthonormal columns are a new class of important matrices besides triangular, diagonal, permutation, symmetric,reduced row echelon, and projection matrices. We call them **orthonormal matrices**. A square orthonormal matrix $Q$ is called an orthogonal matrix. If $Q$ is square, then $Q^{T}Q=I$ tells us that $Q^{T}=Q^{-1}$.
+
+Matrices with orthonormal columns are a new class of important matrices besides triangular, diagonal, permutation, symmetric, reduced row echelon, and projection matrices. We call them **orthonormal matrices**. A square orthonormal matrix $Q$ is called an orthogonal matrix. If $Q$ is square, then $Q^{T}Q=I$ tells us that $Q^{T}=Q^{-1}$.
 
 
 **Orthonormal columns are good**
@@ -320,7 +319,7 @@ $$\hat{x} = q^{T}b$$
 
 ## Gram-Schmidt
 
-Our goal now is to make the matrix orthonormal. We start with two independent vectors $a$ and $b$ and want to find orthonormal vectors $q1$ and $q2$ that span the same plane. We start by finding orthogonal vectors $A$ and $B$ that span the same space as $a$ and $b$. Then the unit vectors $q_{1}=\frac{A}{\left \| A \right \|}$ and $q_{2}=\frac{B}{\left \| B \right \|}$ form the desired orthonormal basis.
+Our goal now is to make the matrix orthonormal. We start with two independent vectors $a$ and $b$ and want to find orthonormal vectors $q_1$ and $q_2$ that span the same plane. We start by finding orthogonal vectors $A$ and $B$ that span the same space as $a$ and $b$. Then the unit vectors $q_{1}=\frac{A}{\left \| A \right \|}$ and $q_{2}=\frac{B}{\left \| B \right \|}$ form the desired orthonormal basis.
 
 Let $A = a$. We get a vector orthogonal to $A$ in the space spanned by $a$ and
 $b$ by projecting $b$ onto $a$ and letting $B = b − p$. ($B$ is what we previously called
