@@ -1,6 +1,6 @@
 ---
 title: "Determinants"
-excerpt: "This post will brifly walk you through the determinants, its properties, Cramer's rule and some applications of determinants."
+excerpt: "This post will briefly walk you through the determinants, its properties, Cramer's rule and some applications of determinants."
 last_modified_at: 2020-12-13
 categories:
   - Linear Algebra
