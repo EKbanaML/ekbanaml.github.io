@@ -1,6 +1,6 @@
 ---
 title: "Determinants"
-excerpt: "This post will brifly walk you through the determinants, its properties, Cramer's rule and some applications of determinants."
+excerpt: "This post will briefly walk you through the determinants, its properties, Cramer's rule and some applications of determinants."
 last_modified_at: 2020-12-13
 categories:
   - Linear Algebra
@@ -23,7 +23,7 @@ author: anilkumarshrestha
 *This post will briefly walk you through the determinants, its properties, Cramer's rule and some applications of determinants.*
 ## Overview
 
-Let $A$ = [$a_{ij}$] be a square matrix of order n, then we can associate a number (complex or real) called determinant of matrix $A$, written as det $A$ or . The determinants are defined only for square matrices. So if we have a square matrix
+If $A$ = [$a_{ij}$] is a square matrix of order $n$, then we can associate a number (complex or real) called determinant of matrix $A$, written as det $A$ or $\|A\|$. The determinants are defined only for square matrices. So if we have a square matrix
 
 $$A = \begin{bmatrix}
 a & b \\
@@ -53,7 +53,7 @@ scales and transformers the matrix.
 
 ## Properties of the determinant
 
-1.The determinant of an Identity matrix is 1. $det I = 1$
+1. The determinant of an Identity matrix is 1. $det I = 1$
    
    $$ \begin{vmatrix}
 
@@ -74,7 +74,7 @@ scales and transformers the matrix.
    = 1
    $$
    
-2.If we exchange two rows of a matrix, the sign of the determinant gets *reversed*.
+2. If we exchange two rows of a matrix, the sign of the determinant gets *reversed*.
 
   $$ \begin{vmatrix}
 
@@ -87,43 +87,43 @@ scales and transformers the matrix.
     a & b
   \end{vmatrix}$$ 
   
-3.(a) If we multiply one row of a matrix by $t$, the determinant is multiplied by $t$.
-
-  $$
+3. 
+   (a) If we multiply one row of a matrix by $t$, the determinant is multiplied by $t$.
+   $$
  
-  \begin{vmatrix}
-    ta & tb \\
-    c & d
-  \end{vmatrix}
-  = t
-  \begin{vmatrix}
-    a & b\\
-    c & d
-  \end{vmatrix}
-  $$
+    \begin{vmatrix}
+      ta & tb \\
+      c & d
+    \end{vmatrix}
+    = t
+    \begin{vmatrix}
+      a & b\\
+      c & d
+    \end{vmatrix}
+    $$
+  
+    (b) The determinant behaves like a *linear function* on the rows of the matrix.
 
-  (b) The determinant behaves like a *linear function* on the rows of the matrix.
+    $$
+    \begin{vmatrix}
+      a + a' & b + b' \\
+      c & d\\
+    \end{vmatrix}
+    =
+    \begin{vmatrix}
+      a & b\\
+      c & d
+    \end{vmatrix}
+    \begin{vmatrix}
+      a' & b'\\
+      c & d
+    \end{vmatrix}
+  
+    $$
 
-  $$
-  \begin{vmatrix}
-    a + a' & b + b' \\
-    c & d\\
-  \end{vmatrix}
-  =
-  \begin{vmatrix}
-    a & b\\
-    c & d
-  \end{vmatrix}
-  \begin{vmatrix}
-    a' & b'\\
-    c & d
-  \end{vmatrix}
- 
-  $$
+    Rest of the properties can be deduced from these three properties.
 
-Rest of the properties can be deduced from these three properties.
-
-4.If two rows of a matrix, $A$ are equal, *$det A$ is zero*.
+4. If two rows of a matrix, $A$ are equal, *$det A$ is zero*.
 
   $$
   \begin{vmatrix}
@@ -132,9 +132,8 @@ Rest of the properties can be deduced from these three properties.
   \end{vmatrix}
   = ab - ab = 0
   $$
-
-
-5.If we subtract a multiple of one row from another row, *$det A$ does not change.*
+  
+5. If we subtract a multiple of one row from another row, *$det A$ does not change.*
 
   $$
  
@@ -171,7 +170,7 @@ Rest of the properties can be deduced from these three properties.
   \end{vmatrix}
   $$
 
-6.If $A$ has a row that is all zeros, then *$det A$ = 0*.
+6. If $A$ has a row that is all zeros, then *$det A$ = 0*.
 
   $$
   \begin{vmatrix}
@@ -181,7 +180,7 @@ Rest of the properties can be deduced from these three properties.
   = 0
   $$
 
-7.If $A$ is a triangular matrix then det A = product of diagonals (pivots) = $d_1, d_2, d_3,..., d_n$.
+7. If $A$ is a triangular matrix then det A = product of diagonals (pivots) = $d_1, d_2, d_3,..., d_n$.
 
   $$
   \begin{vmatrix}
@@ -191,36 +190,36 @@ Rest of the properties can be deduced from these three properties.
   = (d_1)(d_2)
   $$
 
-8.If $A$ is singular then det A = 0. If A is invertible then *$det A$ $\not ={0}$*.
-
-If $A$ is singular, we can get zero row by elimination and hence by property $6$, $det A = 0$.
-
-
+8. If $A$ is singular then det A = 0. If A is invertible then *$det A$ $\not ={0}$*.
+   
+    If $A$ is singular, we can get zero row by elimination and hence by property $6$, $det A = 0$.
 
 
-9.Determinant $\|AB\| = \|A\|\|B\|$
 
-  From this we get,
 
-  $$
-  det A^{-1} = \dfrac{1}{detA}
-  $$
-  as $(det A)(det A^{-1}) = det I = 1$
+9.  Determinant $\|AB\| = \|A\|\|B\|$
 
-10.$det A^T = det A$
+    From this we get,
 
-  $$
-  \begin{vmatrix}
-    a & b\\
-    c & d
-  \end{vmatrix}
-  =
-  \begin{vmatrix}
-    a & c\\
-    b & d
-  \end{vmatrix}
-  = ad - bc
-  $$
+    $$
+    det A^{-1} = \dfrac{1}{detA}
+    $$
+    as $(det A)(det A^{-1}) = det I = 1$
+  
+10. $det A^T = det A$
+
+    $$
+    \begin{vmatrix}
+      a & b\\
+      c & d
+    \end{vmatrix}
+    =
+    \begin{vmatrix}
+      a & c\\
+      b & d
+    \end{vmatrix}
+    = ad - bc
+    $$
 
 
 Determinant of an $n$ by $n$ matrix can be found in three ways:
@@ -293,7 +292,8 @@ $$
   a_{21}\\
   &a_{32}\\
 \end{vmatrix}
-+ \begin{vmatrix}
++ \\ 
+\begin{vmatrix}
   a_{11} \\
   &&a_{23}\\
   &a_{32}\\
@@ -376,7 +376,7 @@ $a_{11}C_{11} + a_{12}C_{12} + a_{13}C_{13}$
 
 ## Cramer's Rule
 
-Cramer's rule involves the use of determinants to find the solution. With Cramer's rule we can find the value of $x$, $y$, or $z$ individually. We don't need the values of $x$ and $y$ to find the value of $x$. For $3x3$ matrix $A$ and $Ax = b$, it looks like:
+Cramer's rule involves the use of determinants to find the solution. With Cramer's rule we can find the value of $x$, $y$, or $z$ individually. We don't need the values of $x$ and $y$ to find the value of $x$. For $3\times3$ matrix $A$ and $Ax = b$, it looks like:
 
 $$
 x = \dfrac{D_x}{D}, y =  \dfrac{D_y}{D}, z = \dfrac{D_z}{D}
