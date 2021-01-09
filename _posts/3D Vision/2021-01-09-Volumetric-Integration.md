@@ -75,7 +75,7 @@ The algorithm is summarized as follows
 - With the new weight and signed distance, the weight and signed distance are updated as follows
 <center>
 
-![Updating Parameters]({{ site.url }}{{ site.baseurl }}/assets/images/3d-vision/)
+![Updating Parameters]({{ site.url }}{{ site.baseurl }}/assets/images/3d-vision/volumetric-integration.png)
 </center>
 
 - Once all the range images are used to compute and update the weights and signed distance values for each voxel, the zero crossing can be determined to obtain an overall iso-surface.
