@@ -69,13 +69,13 @@ The entire field-of-view accross a set of range images is represented by a voxel
 The algorithm is summarized as follows
 - Each voxel is initialized with a weight of zero, which will eventually be overwritten by updated values
 - Each range image is tesellated by constructing triangles from the neareast neighbors on the sampled lattice. This gives a continuous surface from a discrete range image. 
-- Weights are computed at each certex of the triangle mesh by taking a dot product between each vertex normal and viewing direction (indicating greater uncertainty when the illumination is at grazing angles to the surface). Now, we have a triangle mesh with a weight at each vertex.
+- Weights are computed at each vertex of the triangle mesh by taking a dot product between each vertex normal and viewing direction (indicating greater uncertainty when the illumination is at grazing angles to the surface). Now, we have a triangle mesh with a weight at each vertex.
 - A signed distance contribution is computed for each voxel in the sensor's field-of-view by casting rays from the sensor through the voxels' centers, and then intersecting them with the triangle mesh.
 - Weight for the voxel is computed by linearly interpolating the weights of the intersection triangle's vertices.
 - With the new weight and signed distance, the weight and signed distance are updated as follows
 <center>
 
-![Updating Parameters]({{ site.url }}{{ site.baseurl }}/assets/images/3d-vision/)
+![Updating Parameters]({{ site.url }}{{ site.baseurl }}/assets/images/3d-vision/volumetric-integration.png)
 </center>
 
 - Once all the range images are used to compute and update the weights and signed distance values for each voxel, the zero crossing can be determined to obtain an overall iso-surface.
