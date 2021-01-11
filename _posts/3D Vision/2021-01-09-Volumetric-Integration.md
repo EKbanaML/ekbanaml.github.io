@@ -25,13 +25,13 @@ The core idea of this method is to generate an iso-surface by integrating a bunc
 ---
 
 ### Key Terms
-- **Range and Depth Images**
+- **Range and Depth Images**<br />
 The range and depth images are pictoral representation of 3D information captured by a depth sensing camera. To store various levels of range/depth, each pixel of the image are assigned a different intensity. 
-The only fundamental **difference** between the two types of representations is that a range image represents the distances of the observed points and the depth sensor, while a depth image represents the distances perpendicular to the sensor plane.
-- **Voxel**
+The only fundamental **difference** between the two types of representations is that a range image represents the distances between the observed points and the depth sensor, while a depth image represents the distances perpendicular to the sensor plane.
+- **Voxel**<br />
 A Voxel (**vo**lumetric pi**xel**) is a three-dimensional reprisentation of a point in a grid. Just like a pixel (Picture Element) that represents a point in two dimensional space (picture) using two co-ordinates, a voxel does the same but using three co-ordinates.
-- **Signed Distance Function (SDF)**
-Signed Distance Function (SDF) of a voxel is the distance between its center and the nearest object surface in the direction of current measurement (ray between the camera and the voxel).<br /> The SDF is positive infront of a surface (in free space), heighest value being right infront of the camera, and are negative behind (inside) the surface.<br />
+- **Signed Distance Function (SDF)**<br />
+Signed Distance Function (SDF) of a voxel is the distance between its center and the nearest object surface in the direction of current measurement (ray between the camera and the voxel).<br /> The SDF is positive infront of a surface (in free space), heighest value being right infront of the camera, and is negative behind (inside) the surface.<br />
 <p align="center">
 <img src="{{ site.url }}{{ site.baseurl }}/assets/images/3d-vision/sdf.png" /><br />
 Fig 1: Signed Distance of a voxel x for the shown camera
@@ -44,7 +44,7 @@ As shown in the Fig 1, for the <i>ith</i> observation, the signed distance value
 *pic(x)* is the projection of the voxel  center x onto the depth image. So *depth<sub>i</sub>(pic(x))* is the measured depth in between the camera and the nearest object surface point p on the viewing ray crossing x. Accordingly, *cam<sub>z</sub>(x)* is the distance in between the voxel and the camera along the optical axis.
 Note that sdf is also measured along the optical axis of the camera.
 
-- **Truncated Signed Distance Function (TSDF)**
+- **Truncated Signed Distance Function (TSDF)**<br />
 For the purpose of surface reconstruction, the signed-distance values are normalized/truncated because large distances are not relevant in this case. Thus they are called Truncated Signed Distance Function (TSDF).
 <p align="center">
 <i>
@@ -52,11 +52,11 @@ tsdf<sub>i</sub>(x) = max (-1, min(1,sdf<sub>i</sub>(x)/t))
 </i>
 </p>
 
-- **Zero-Crossing**
+- **Zero-Crossing**<br />
 The Zero-Crossing for a voxel, along the ray of measurement, is the point in the voxel grid in which the signed distance function changes from positive to negative.
-- **Iso-Surface**
+- **Iso-Surface**<br />
 An iso-surface is a surface of points of constant value within a volume of three-dimensional space. It is analogous to an iso-line in two-dimensional area. The equation of an iso-surface would be ```f(x,y,z) = c```.
-- **Implicit Functions**
+- **Implicit Functions**<br />
 Implicit functions are the functions that are defined by associating one of the variables with the others. Such functions can be used to define a iso-surface as follows
 <center>
 z = f(x,y)
@@ -73,10 +73,9 @@ The algorithm is summarized as follows
 - A signed distance contribution is computed for each voxel in the sensor's field-of-view by casting rays from the sensor through the voxels' centers, and then intersecting them with the triangle mesh.
 - Weight for the voxel is computed by linearly interpolating the weights of the intersection triangle's vertices.
 - With the new weight and signed distance, the weight and signed distance are updated as follows
-<center>
-
-![Updating Parameters]({{ site.url }}{{ site.baseurl }}/assets/images/3d-vision/volumetric-integration.png)
-</center>
+<p align="center">
+<img src="{{ site.url }}{{ site.baseurl }}/assets/images/3d-vision/volumetric-integration.png" />
+</p>
 
 - Once all the range images are used to compute and update the weights and signed distance values for each voxel, the zero crossing can be determined to obtain an overall iso-surface.
 - Finally, a refined mesh surface without redundancy and overlapping can be obtained by using marching cubes algorithm from the obtained iso-surface.
