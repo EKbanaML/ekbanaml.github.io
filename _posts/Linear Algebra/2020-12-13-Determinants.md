@@ -41,10 +41,12 @@ $$ |A| = \begin{vmatrix}
 The determinant encodes a lot of information about the matrix. The matrix $A$ is invertible exactly when the determinant is non-zero and hence we can solve $Ax = b$. When $A$ is invertible, the determinant of $A^{-1}$ is $\dfrac{1}{det A}$.
 
 Interestingly, the sign of the determinant tells us the nature of the transformation associated with the matrix. For example: multiplying a unit square matrix with a matrix with negative determinant 
+
 $$\begin{bmatrix}
   -2 & 0\\
   0 &-2 \\
 \end{bmatrix}$$ 
+
 scales and transformers the matrix.
 (Explained in detail [here](https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.11-The-determinant/) ).
 
@@ -75,139 +77,134 @@ scales and transformers the matrix.
    $$
    
 2. If we exchange two rows of a matrix, the sign of the determinant gets *reversed*.
+     
+   $$ \begin{vmatrix}
+   a & b\\
+   c & d\\    
+   \end{vmatrix}
+   = -
+   \begin{vmatrix}
+     c &d\\
+     a & b
+   \end{vmatrix}$$
 
-  $$ \begin{vmatrix}
-
-  a & b\\
-  c & d\\    
-  \end{vmatrix}
-  = -
-  \begin{vmatrix}
-    c &d\\
-    a & b
-  \end{vmatrix}$$ 
-  
 3. 
    (a) If we multiply one row of a matrix by $t$, the determinant is multiplied by $t$.
+
    $$
- 
-    \begin{vmatrix}
-      ta & tb \\
-      c & d
-    \end{vmatrix}
-    = t
-    \begin{vmatrix}
-      a & b\\
-      c & d
-    \end{vmatrix}
-    $$
-  
-    (b) The determinant behaves like a *linear function* on the rows of the matrix.
+   \begin{vmatrix}
+     ta & tb \\
+     c & d
+   \end{vmatrix}
+   = t
+   \begin{vmatrix}
+     a & b\\
+     c & d
+   \end{vmatrix}
+   $$
 
-    $$
-    \begin{vmatrix}
-      a + a' & b + b' \\
-      c & d\\
-    \end{vmatrix}
-    =
-    \begin{vmatrix}
-      a & b\\
-      c & d
-    \end{vmatrix}
-    \begin{vmatrix}
-      a' & b'\\
-      c & d
-    \end{vmatrix}
-  
-    $$
-
-    Rest of the properties can be deduced from these three properties.
-
+   (b) The determinant behaves like a *linear function* on the rows of the matrix.
+    
+   $$
+   \begin{vmatrix}
+     a + a' & b + b' \\
+     c & d\\
+   \end{vmatrix}
+   =
+   \begin{vmatrix}
+     a & b\\
+     c & d
+   \end{vmatrix}
+   \begin{vmatrix}
+     a' & b'\\
+     c & d
+   \end{vmatrix}
+   $$
+   
+   Rest of the properties can be deduced from these three properties.
+   
 4. If two rows of a matrix, $A$ are equal, *$det A$ is zero*.
+   
+   $$
+   \begin{vmatrix}
+     a & b\\
+     a & b
+   \end{vmatrix}
+   = ab - ab = 0
+   $$
 
-  $$
-  \begin{vmatrix}
-    a & b\\
-    a & b
-  \end{vmatrix}
-  = ab - ab = 0
-  $$
-  
 5. If we subtract a multiple of one row from another row, *$det A$ does not change.*
-
-  $$
- 
-  \begin{vmatrix}
-    a & b\\
-    c - la & d - lb
-  \end{vmatrix}
-  =
-  \begin{vmatrix}
-    a & b\\
-    c & d
-  \end{vmatrix}
-  -
-  \begin{vmatrix}
-    a & b\\
-    tc & td\\
-  \end{vmatrix}
-  \\
-  =
-  \begin{vmatrix}
-    a & b\\
-    c & d
-  \end{vmatrix}
-  - t
-  \begin{vmatrix}
-    a & b\\
-    a & b
-  \end{vmatrix}
-  \\
-  =
-  \begin{vmatrix}
-    a & b\\
-    c & d
-  \end{vmatrix}
-  $$
+   
+   $$ 
+   \begin{vmatrix}
+     a & b\\
+     c - la & d - lb
+   \end{vmatrix}
+   =
+   \begin{vmatrix}
+     a & b\\
+     c & d
+   \end{vmatrix}
+   -
+   \begin{vmatrix}
+     a & b\\
+     tc & td\\
+   \end{vmatrix}
+   \\
+   =
+   \begin{vmatrix}
+     a & b\\
+     c & d
+   \end{vmatrix}
+   - t
+   \begin{vmatrix}
+     a & b\\
+     a & b
+   \end{vmatrix}
+   \\
+   =
+   \begin{vmatrix}
+     a & b\\
+     c & d
+   \end{vmatrix}
+   $$
 
 6. If $A$ has a row that is all zeros, then *$det A$ = 0*.
-
-  $$
-  \begin{vmatrix}
-    0 & 0\\
-    c & d
-  \end{vmatrix}
-  = 0
-  $$
-
+   
+   $$
+   \begin{vmatrix}
+     0 & 0\\
+     c & d
+   \end{vmatrix}
+   = 0
+   $$
+   
 7. If $A$ is a triangular matrix then det A = product of diagonals (pivots) = $d_1, d_2, d_3,..., d_n$.
-
-  $$
-  \begin{vmatrix}
-    d_1 & 0\\
-    0 & d_2
-  \end{vmatrix}
-  = (d_1)(d_2)
-  $$
+   
+   $$
+   \begin{vmatrix}
+     d_1 & 0\\
+     0 & d_2
+   \end{vmatrix}
+   = (d_1)(d_2)
+   $$
 
 8. If $A$ is singular then det A = 0. If A is invertible then *$det A$ $\not ={0}$*.
    
     If $A$ is singular, we can get zero row by elimination and hence by property $6$, $det A = 0$.
 
 
-
-
 9.  Determinant $\|AB\| = \|A\|\|B\|$
-
+    
     From this we get,
 
     $$
     det A^{-1} = \dfrac{1}{detA}
     $$
     as $(det A)(det A^{-1}) = det I = 1$
-  
-10. $det A^T = det A$
 
+10. $det A^T = det A$
+    
     $$
     \begin{vmatrix}
       a & b\\
@@ -220,8 +217,7 @@ scales and transformers the matrix.
     \end{vmatrix}
     = ad - bc
     $$
-
-
+    
 Determinant of an $n$ by $n$ matrix can be found in three ways:
 
 1. *Pivot formula*: multiply the $n$ pivots
