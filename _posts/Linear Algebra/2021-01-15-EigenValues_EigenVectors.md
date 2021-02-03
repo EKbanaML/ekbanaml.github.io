@@ -58,7 +58,9 @@ $$|A-\lambda I|=0$$
 * Calculating the determinants we get, $(-6-\lambda)(5-\lambda)-3 \times 4=0$, quadratic equation $\lambda^{2}+\lambda -42=0$, and solving it we get $\lambda=-7$ or $6$    
 * For eigen value $\lambda=6$, use the equation $Ax=\lambda x$ to find its corresponding eigen vector and for eigen value $\lambda=-7$ we use the same equation to find its corresponding eigen vector.  
   
-For $\lambda=-7$ ,  $\begin{pmatrix}
+For $\lambda$ = $6$,  
+
+$$\begin{pmatrix}
  -6 & 3 \\
  4 & 5 
  \end{pmatrix}\begin{pmatrix}
@@ -67,15 +69,22 @@ For $\lambda=-7$ ,  $\begin{pmatrix}
  \end{pmatrix}=6\begin{pmatrix}
  x \\
  y 
- \end{pmatrix}$. After multiplying we get these two equations: 
- $-12x+3y=0$ and $4x-y=0$. Either equation reveals that $y = 4x$, so the eigenvector is any non-zero multiple of this:$\begin{pmatrix}
+ \end{pmatrix}$$
+ 
+ . After multiplying we get these two equations: 
+ $-12x+3y=0$ and $4x-y=0$. Either equation reveals that $y = 4x$, so the eigenvector is any non-zero multiple of this:
+ 
+ $$\begin{pmatrix}
  1 \\
  4 
- \end{pmatrix}$. 
- Similarly, for $\lambda=-7$ the eigen vector is :$\begin{pmatrix}
+ \end{pmatrix}$$. 
+
+ Similarly, for $\lambda=-7$ the eigen vector is :
+ 
+ $$\begin{pmatrix}
  -3 \\
  1
- \end{pmatrix}$
+ \end{pmatrix}$$
 
 
 **Some useful properties:**  
@@ -84,10 +93,12 @@ For $\lambda=-7$ ,  $\begin{pmatrix}
 * Sum of diagonal entries of a matrix is called the trace of that matrix.  
   $\lambda_1 + \lambda_2 +...\lambda_n$= trace =$a_{11}+a_{22}+...a_{nn}$
 
-* The eigen values might not be real numbers even if the matrix is real. For example a 90 degree rotation matrix   $Q=\begin{pmatrix}
-0 & -1 \\
-1 & 0 
-\end{pmatrix}$ 
+* The eigen values might not be real numbers even if the matrix is real. For example a 90 degree rotation matrix   
+  $$Q=\begin{pmatrix}
+  0 & -1 \\
+  1 & 0 
+  \end{pmatrix}$$ 
+
 has no real eigen values. It's eigen values are $\lambda_1=i$ and $\lambda_2=-i$  
 * The eigen values of a triangular matrix will always lie along its diagonal. For example 
   $$A=\begin{pmatrix} 
@@ -222,50 +233,60 @@ $$u(t)=c_1e^{\lambda_1 t}+c_2e^{\lambda_2 t}+...+c_ne^{\lambda_n t}$$
 
 For example: 
 
-We need to convert the differential equation $2y''+5y'-3y=0$ with the initial conditions:$y(0)=-4, y'(0)=4$ into a system and solve the system and use this solution to get the solution to the original differential equation.
+We need to convert the differential equation 
+
+$$2y''+5y'-3y=0$$
+
+with the initial conditions:$y(0)=-4, y'(0)=4$ into a system and solve the system and use this solution to get the solution to the original differential equation.
 * We first write the 2nd order differential equation as a system of first order, linear differential equations.
     
-  $x_1=y$ 
-  $x_1'=y'=x_2$  
+  $x_1=y,  x_1'=y'=x_2$  
+  
   $x_2=y'$ 
   
   $x_2'=y''=\frac{3}{2}y-\frac{5}{2}y'=\frac{3}{2}x_1-\frac{5}{2}x_2$
 
 * The system then becomes: 
    
- $x'=\begin{pmatrix}
+ $$x'=\begin{pmatrix}
  0 & 1 \\
  \frac{3}{2} & \frac{-5}{2}
- \end{pmatrix}x$   
- $x(0)=\begin{pmatrix}
-  -4 \\ 9 
-  \end{pmatrix}$
+ \end{pmatrix}x$$
 
-* The eigen values of the matrix  let $A=\begin{pmatrix}
- 0 & 1 \\
- \frac{3}{2} & \frac{-5}{2}
- \end{pmatrix}$ is 
- $\lambda_1=-3, \lambda_2=0.5$ and thier corresponding eigen vectors are $\begin{pmatrix}
+ $$x(0)=\begin{pmatrix}
+  -4 \\ 9 
+  \end{pmatrix}$$
+
+* The eigen values of the matrix  let 
+  $$A=\begin{pmatrix}
+  0 & 1 \\
+  \frac{3}{2} & \frac{-5}{2}
+  \end{pmatrix}$$
+   is 
+ $\lambda_1=-3, \lambda_2=0.5$ and thier corresponding eigen vectors are 
+ $$\begin{pmatrix}
  1 \\
  -3
- \end{pmatrix}$ and 
- $\begin{pmatrix}
+ \end{pmatrix}$$
+  and 
+ $$\begin{pmatrix}
  2 \\
  1
- \end{pmatrix}$
+ \end{pmatrix}$$
 
 * The general solution is then,
-  $x(t)=c_1e^{-3t}\begin{pmatrix}
+  $$x(t)=c_1e^{-3t}\begin{pmatrix}
  1 \\
  -3
- \end{pmatrix} + c_2e^{0.5t}\begin{pmatrix}
+ \end{pmatrix} + c_2e^{0.5t}$$
+ $$\begin{pmatrix}
  2 \\
  1
- \end{pmatrix}$
+ \end{pmatrix}$$
 
 * Using the initial condition the value of constants $c_1, c_2$ is determined:
   
-$x(0)=\begin{pmatrix}
+$$x(0)=\begin{pmatrix}
  -4 \\
  9
  \end{pmatrix}=c_1\begin{pmatrix}
@@ -274,27 +295,32 @@ $x(0)=\begin{pmatrix}
  \end{pmatrix}+c_2\begin{pmatrix}
  2 \\
  1
- \end{pmatrix}$   
+ \end{pmatrix}$$
+    
  $c_1=\frac{-22}{7}, c_2=\frac{-3}{7}$  
 * The actual solution to the system is then, 
-$x(t)=\frac{-22}{7}e^{-3t}\begin{pmatrix}
+$$x(t)=\frac{-22}{7}e^{-3t}\begin{pmatrix}
  1 \\
  -3
  \end{pmatrix}-\frac{-3}{7}e^{0.5t} \begin{pmatrix}
  2 \\
  1
- \end{pmatrix}$  
-* $x(t)=\begin{pmatrix}
- y(t) \\
- y^{'}(t)
- \end{pmatrix}$  the solution to the original differential equation is just the top row of the solution to the matrix system. The solution to the original differential equation is then,   
- $y(t)=\frac{-22}{7}e^{-3t}\begin{pmatrix}
- 1 \\
- -3
- \end{pmatrix}-\frac{-3}{7}e^{0.5t} \begin{pmatrix}
- 2 \\
- 1
- \end{pmatrix}$. In this case, the bottom row should be the derivative of the top row.
+ \end{pmatrix}$$  
+* $$x(t)=\begin{pmatrix}
+  y(t) \\
+  y^{'}(t)
+  \end{pmatrix}$$
+ 
+   the solution to the original differential equation is just the top row of the solution to the matrix system. The solution to the original differential equation is then,   
+  $$y(t)=\frac{-22}{7}e^{-3t}\begin{pmatrix}
+  1 \\
+  -3
+  \end{pmatrix}-\frac{-3}{7}e^{0.5t} \begin{pmatrix}
+  2 \\
+  1
+  \end{pmatrix}$$. 
+  
+  In this case, the bottom row should be the derivative of the top row.
 
 The 3 important properties of a solution:
 
