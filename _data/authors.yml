@@ -111,3 +111,15 @@ Prashant Ghimire:
     - label: "LinkedIn"
       icon: "fab fa-linkedin"
       url: "https://www.linkedin.com/in/prashant-ghimire-8579b6188/"
+
+Anish Thapaliya:
+  name    : "Anish Thapaliya"
+  bio     : ""
+  avatar  : "/assets/images/userPhoto/no_photo.jpg"
+  links:
+    - label:  "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "thapaliyanish123@gmail.com"
+    - label: "LinkedIn"
+      icon: "fab fa-linkedin"
+      url: "https://www.linkedin.com/in/anish-thapaliya-83a806194/"
