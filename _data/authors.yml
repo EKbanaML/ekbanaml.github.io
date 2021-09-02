@@ -123,3 +123,15 @@ Anish Thapaliya:
     - label: "LinkedIn"
       icon: "fab fa-linkedin"
       url: "https://www.linkedin.com/in/anish-thapaliya-83a806194/"
+      
+Yachana Aryal:
+  name: "Yachana Aryal"
+  bio: ""
+  avatar: "/assets/images/userPhoto/no_photo.jpg"
+  links:
+    - label:  "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "yachhna@gmail.com"
+    - label: "LinkedIn"
+      icon: "fab fa-linkedin"
+      url: "https://www.linkedin.com/in/yachana-aryal-0875841ab/"
