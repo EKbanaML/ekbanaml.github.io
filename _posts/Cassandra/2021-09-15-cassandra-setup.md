@@ -14,17 +14,17 @@ header:
 author: sudip
 ---
 
-Before we dive into the installation of Cassandra, let's first familiarize ourselves with what is Cassandra and its architecture. 
+Before we dive into the installation of Cassandra, let's first familiarize ourselves with what Cassandra is and its architecture. 
 
 #### What is Cassandra?
 Cassandra is a NoSQL distributed database(decentralised) based on peer-peer architecture as it is masterless with high availability,
- scalability and data distribution across multiple nodes. With high availability service, there is no single point of failure.
+ scalability and data distribution across multiple nodes. Cassandra provides a high availability service with no single point of failure.
 
 #### Architecture of Cassandra
 ![architectureofcassandra]({{ site.url }}{{ site.baseurl }}/assets/images/cassandra/architecture.png)
 
-The design of cassandra is based to handle enormous amount of data across multiple nodes without any single point of failure. Cassandra
-has peer-peer distributed system across it’s nodes, and data is distributed among all the nodes in a cluster.
+The design of cassandra is based to handle enormous amounts of data across multiple nodes without any single point of failure. Cassandra
+has a peer-peer distributed system across it’s nodes, and data is distributed among all the nodes in a cluster.
 
 1) All the nodes in a cluster play the same role. Each node is independent and at the same time interconnected to other nodes.
 
@@ -46,20 +46,20 @@ Let’s start, there are three common methods of installing the cassandra i.e.
 
 3) **Tarball binary file**
 
-For **Docker image installation**, you need Docker be installed in your system. If you already have it, then you need to pull the cassandra
-image from dockerhub. To install it, click on this [link](https://cassandra.apache.org/doc/latest/cassandra/getting_started/installing.html#installing-the-docker-image).
+For **Docker image installation**, you need Docker to be installed in your system. If you already have it, then you need to pull the cassandra
+image from [dockerhub](https://cassandra.apache.org/doc/latest/cassandra/getting_started/installing.html#installing-the-docker-image).
  
-For **Package installation** in  Debian-based distributions(ubuntu), you can install cassandra using APT. Note that to install cassandra using
-APT requires root permission and a new Cassandra OS user is created along with its binaries and configuration files. To install it, click on this [link](https://cassandra.apache.org/doc/latest/cassandra/getting_started/installing.html#installing-the-debian-packages).
+For **Package installation** in  Debian-based distributions(ubuntu), you can install cassandra using [APT](https://cassandra.apache.org/doc/latest/cassandra/getting_started/installing.html#installing-the-debian-packages). Note that to install cassandra using
+APT requires root permission and a new Cassandra OS user is created along with its binaries and configuration files.
 
-For **Tarball binary file installation**, download the tar file and extract it. The tarball file extracts all of its contents and its binaries,
-configuration in the directory respectively. Here, we are going to install the cassandra using tarball binary file. To install it, click on this [link](https://cassandra.apache.org/doc/latest/cassandra/getting_started/installing.html#installing-the-binary-tarball). 
+For **Tarball binary file installation**, download the tar [file](https://cassandra.apache.org/doc/latest/cassandra/getting_started/installing.html#installing-the-binary-tarball) and extract it. The tarball file extracts all of its contents and its binaries,
+configuration in the directory respectively. Here, we are going to install the cassandra using tarball binary file.
 
 #### Installing the cassandra using binary tarball
 
 1) Verify if **java** is installed in your system. Otherwise install **java** in your system.
 
-2) Download the tarball file of cassandra from this site and extract it.
+2) Download the tarball file of cassandra from this [site](https://cassandra.apache.org/doc/latest/cassandra/getting_started/installing.html#installing-the-binary-tarball) and extract it.
 
 The directories after extracting the tarball file is shown:
 ```
@@ -77,21 +77,21 @@ tools/
 1) The **bin** directory consists of commands to run cassandra, nodetool, cqlsh and SSTable tools.
 
 2) The **conf** directory consists of a cassandra.yaml file in which the configuration is available to start a single node cassandra cluster.
-   For multi-node cluster, the configuration must be modified to required criteria. 
+   For multi-node clusters, the configuration must be modified to required criteria. 
 
 3) The **data** directory consists of information on commit logs, hints and SSTables.
 
-4) The **logs** directory consist of system and debug logs.
+4) The **logs** directory consists of system and debug logs.
 
 #### Setting Up Cassandra in Cluster 
 
-In our cluster,we are using 4 nodes and setting up cassandra in it. But you can setup up in any number of clusters in your machine.
+In our cluster,we are using 4 nodes and setting up cassandra in it. But you can set up any number of clusters in your machine.
  The process of setting up cassandra is given below:
 
-1) Firstly, Install the cassandra using tarball file in your machine(node) as mentioned in  [above]({{ site.baseurl }} #installation-methods).
+1) Firstly, Install the cassandra using tarball file in your machine(node) as mentioned [above]({{ site.baseurl }} #installation-methods).
 
-2) Secondly, in the **conf** directory there is cassandra.yaml file which holds the configuration file and loads during startup of cassandra.
-    Add ip address of the nodes which you wanna connect in the seeds field found in cassandra.yaml file.
+2) Secondly, in the **conf** directory there is **cassandra.yaml** file which holds the configuration file and loads during startup of cassandra.
+    Add ip address of the nodes which you wanna connect in the seeds field found in **cassandra.yaml** file.
 
 ![seedsInfo]({{ site.url }}{{ site.baseurl }}/assets/images/cassandra/seeds.png)
 
