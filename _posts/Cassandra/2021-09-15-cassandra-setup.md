@@ -17,7 +17,7 @@ author: sudip
 Before we dive into the installation of Cassandra, let's first familiarize ourselves with what is Cassandra and its architecture. 
 
 #### What is Cassandra?
-Cassandra is a NoSQL distributed database(Decentralised) based on peer-peer architecture as it is masterless with high availability,
+Cassandra is a NoSQL distributed database(decentralised) based on peer-peer architecture as it is masterless with high availability,
  scalability and data distribution across multiple nodes. With high availability service, there is no single point of failure.
 
 #### Architecture of Cassandra
