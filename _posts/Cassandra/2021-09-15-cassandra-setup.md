@@ -23,8 +23,8 @@ Cassandra is a NoSQL distributed database(decentralised) based on peer-peer arch
 #### Architecture of Cassandra
 ![architectureofcassandra]({{ site.url }}{{ site.baseurl }}/assets/images/cassandra/architecture.png)
 
-The design of cassandra is based to handle enormous amounts of data across multiple nodes without any single point of failure. Cassandra
-has a peer-peer distributed system across it’s nodes, and data is distributed among all the nodes in a cluster.
+The design of cassandra is done in such a way that it can handle enormous amounts of data across multiple nodes without any single point of failure. Cassandra
+has a peer-peer distributed system across it’s nodes, and the data is distributed among all the nodes in a cluster.
 
 1) All the nodes in a cluster play the same role. Each node is independent and at the same time interconnected to other nodes.
 
@@ -85,7 +85,7 @@ tools/
 
 #### Setting Up Cassandra in Cluster 
 
-In our cluster,we are using 4 nodes and setting up cassandra in it. But you can set up any number of clusters in your machine.
+In our cluster, we are using 4 nodes and setting up cassandra in it. But you can set up any number of clusters in your machine.
  The process of setting up cassandra is given below:
 
 1) Firstly, Install the cassandra using tarball file in your machine(node) as mentioned [above]({{ site.baseurl }} #installation-methods).
@@ -99,3 +99,23 @@ In our cluster,we are using 4 nodes and setting up cassandra in it. But you can 
 
 4) At last start the cassandra in every node using the command:
    **bin/cassandra -f**   which is found in the **bin** directory of the extracted tarball file of cassandra.
+
+#### Conclusion
+
+You have successfully installed Cassandra in your system.
+
+Large volumes of unstructured data can be an issue for traditional relational databases. This popular NoSQL database solution is going to
+allow you to capture and store a lot more of increasingly valuable data.
+
+#### References:
+
+1. [https://cassandra.apache.org/doc/latest/cassandra/getting_started/installing.html](https://cassandra.apache.org/doc/latest/cassandra/getting_started/installing.html)
+
+2. [https://www.tutorialspoint.com/cassandra/cassandra_installation.htm](https://www.tutorialspoint.com/cassandra/cassandra_installation.htm)
+
+3. [https://en.wikipedia.org/wiki/Apache_Cassandra](https://en.wikipedia.org/wiki/Apache_Cassandra)
+
+4. [https://phoenixnap.com/kb/install-cassandra-on-ubuntu](https://phoenixnap.com/kb/install-cassandra-on-ubuntu)
+
+5. [https://cassandra.apache.org/doc/latest/cassandra/getting_started/configuring.html](https://cassandra.apache.org/doc/latest/cassandra/getting_started/configuring.html)
+
