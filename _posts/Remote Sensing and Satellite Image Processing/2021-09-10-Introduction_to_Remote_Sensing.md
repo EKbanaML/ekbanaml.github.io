@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Remote Sensing"
-excerpt_separator: "A brief introduction to remote sensing."
+excerpt_separator: "A brief note on introduction to remote sensing."
 last_modified_at: 2021-09-10T16:20:02-05:00
 categories:
   - Remote Sensing and Satellite Image Processing
@@ -26,11 +26,11 @@ When the energy travels from its source (A) to the target (C), it will come in c
 
 ### Electromagnetic Radiation and Spectrum
 
-Electromagnetic radiation consists of an _electrical field (E)_ and _magnetic field (M)_. E varies in magnitude perpendicular to the direction in which the radiation travels and M at right angles to the electrical field as shown in figure.
+Electromagnetic radiation consists of an _electrical field (E)_ and _magnetic field (M)_. E varies in magnitude perpendicular to the direction in which the radiation travels and M at right angles to the electrical field as shown in figure below.
 
 ![remote sensing]({{ site.url }}{{ site.baseurl }}/assets/images/remote-sensing-and-satellite-image/Introduction_to_Remote_sensing/image1.png)
 
-_[Image source](https://depts.washington.edu/cmditr/modules/lum/400px-Emwavepropagation.jpg)_
+_[Image source: depts.washington.edu](https://depts.washington.edu/cmditr/modules/lum/400px-Emwavepropagation.jpg)_
 
 In remote sensing **wavelength** and **frequency** are of major concern. Understanding the
 characteristics of electromagnetic radiation in terms of their wavelength and frequency is
@@ -84,4 +84,48 @@ Like our eyes see colors and detect them, remote sensors gather and store inform
 **Panchromatic images**
 Panchromatic images are created by combining RGB bands and sometimes infrared channels as well resulting in single band images. Panchromatic images have lower spatial resolution which can be improved by combining with multispectral images. The resulting image is called pansharpened.
 
-Co-Authors: Shital Adhikari and Anil Kumar Shrestha
+
+
+## Satellites and Sensors
+
+### Spatial Resolution    
+Spatial Resolution is the area in the ground which is represented by a single pixel in an image. SR of passive sensors depends on Instantaneous Field of View (IFOV), which determines the area on the earth’s surface seen from a given altitude at a given point in time. The total size thus obtained by multiplying IFOV and distance from the ground is called resolution cell. This determines the maximum spatial resolution of a cell.
+
+### Spectral Resolution
+Spectral resolution describes the ability of the sensor to define fine wavelength intervals. Spectral resolution of hyperspectral band, multispectral is greater than pan sharpened. Broadband is better in some cases than the narrowband because narrow bands are susceptible to signal to noise ratio (SNR). For mine extraction, narrowband is more suitable since each metal reflects EM waves of different wavelengths in the given range only. 
+
+### Radiometric Resolution
+Radiometric Resolution is similar to the number of quantization bits. Higher the radiometric resolution, more accurately the sensor data can be represented in an image with a distinct value. If we use 8-bit quantisation, then we can represent the given pixel using digital value between 0 to 255. Similarly if we use 2-bit quantisation, it would be between 0 to 3. A comparison between these can be seen in the figure below:
+
+![radiometric]({{ site.url }}{{ site.baseurl }}/assets/images/remote-sensing-and-satellite-image/Introduction_to_Remote_sensing/radiometric.png)
+
+
+### Temporal resolution
+Temporal resolution is the frequency at which an image of a certain area is being captured. Higher temporal resolution means that area has been scanned frequently. Increasing the temporal resolution will decrease the spatial resolution since we need to cover a large area in a small amount of time. Temporal dataset can be used for ground deformation mapping, modeling of exploitation of resources. In the case of Nepal, a temporal dataset was used to map the ground deformation due to the earthquake of 2015.  
+
+### Multispectral scanning
+A scanning system used for collecting data over different wavelength ranges is multispectral scanning. Remote sensors acquire data using such systems. There are basically two modes of scanning: Across-track scanners and Along-track scanners.
+
+### Sources for datasets:
+  [Landsat dataset](https://earthexplorer.usgs.gov/)
+
+
+
+## Other topics
+
+### Radiation and target Interaction
+Different bodies have different wavelengths of reflection. We can use this information to separate bodies based on their wavelength in different bands of image. For example, pure water has no color while water combined with other impurities have higher reflectance. Along with impurities, if the water bodies are shallow and sediments are visible then also we may have color due to sediments. Similarly Algae also absorbs blue wavelengths and reflects green wavelengths. 
+The healthy vegetation contains the chlorophyll which has a different signature of reflection than unhealthy vegetation. This can be used to identify the health of vegetation and using temporal data we can identify the degradation of vegetation in an area over the time. 
+Along with water bodies and vegetation, air pollutants, soil quality, salinity of water, concentration of minerals can be detected with satellite images in different bands. 
+
+### How can you calculate your position using a classical map?
+We can use the two reference points in the real world and calculate the orientation of those points with respect to us using a magnetic compass. Then we can draw similar angled lines in our map. Two reference points are sufficient for our location on the map. Similarly GPS also uses a minimum of 3 satellites to calculate the 2d position while inorder to calculate the 3D location, at least 4 satellites are used. But currently multiple satellites are used to figure out the exact location. 
+
+
+Co-Authors: [Shital Adhikari](https://shitaladhikari.github.io/) and [Anil Kumar Shrestha](https://anilkshrestha.com.np)
+
+
+Resources:
+
+- [Fundamentals of Remote sensing](https://www.nrcan.gc.ca/sites/www.nrcan.gc.ca/files/earthsciences/pdf/resource/tutor/fundam/pdf/fundamentals_e.pdf)
+- [Video lecture (IIT)](https://www.youtube.com/playlist?list=PLLy_2iUCG87ADRApV6xRnmEegxSz1XqnY)
