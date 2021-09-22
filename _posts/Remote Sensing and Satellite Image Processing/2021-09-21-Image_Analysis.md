@@ -145,6 +145,8 @@ Common classification procedures can be broken down into two broad subdivisions 
 In unsupervised learning, we have unlabeled data, so our model will itself find clusters of similar pixels. So here any pixel that looks similar are grouped in same class irrespective of what they actually represent.
 
 
+Co-Authors: [Shital Adhikari](https://shitaladhikari.github.io/) and [Anil Kumar Shrestha](https://anilkshrestha.com.np)
+
 
 
 ## Resources
