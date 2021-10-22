@@ -10,7 +10,6 @@ header:
   image: "https://images.pexels.com/photos/772803/pexels-photo-772803.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
   caption: "Photo credit: [**Pexel**](https://images.pexels.com/)"
 author: rizzurohit  
-co-author: Anish
 ---
 ## 2.3 Elimination using matrices  
 
@@ -490,8 +489,9 @@ $$(A^{-1})^{T} =  (A^{T})^{-1}$$
 
 - $S$ is a symmetric matrix if $S = S^{T}$
 
+<strong>co-author: </strong><a href="https://www.linkedin.com/in/anish-thapaliya-83a806194/">Anish</a>  
 
-References
+## References
 
 1. Introduction to Linear Algebra, W. G. Strang
 2. Essence of linear algebra : [https://www.3blue1brown.com/](https://www.3blue1brown.com/)
