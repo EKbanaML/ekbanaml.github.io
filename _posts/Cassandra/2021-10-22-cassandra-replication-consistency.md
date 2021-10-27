@@ -1,7 +1,7 @@
 ---
 title: "Replication & Consistency in Cassandra"
 excerpt_separator: "Replication & Consistency in Cassandra."
-last_modified_at: 2021-09-15T16:20:02-05:00
+last_modified_at: 2021-10-22T16:20:02-05:00
 categories:
   - Cassandra
 tags:
@@ -131,11 +131,11 @@ Cassandra stores replicas on multiple nodes to ensure reliability and fault tole
 #### References:
 
 
-1. [https://www.tutorialspoint.com/cassandra/cassandra_installation.htm](https://www.tutorialspoint.com/cassandra/cassandra_installation.htm)
+1. [Cassandra Installation](https://www.tutorialspoint.com/cassandra/cassandra_installation.htm)
 
-2. [https://en.wikipedia.org/wiki/Apache_Cassandra](https://en.wikipedia.org/wiki/Apache_Cassandra)
+2. [Apache Cassandra](https://en.wikipedia.org/wiki/Apache_Cassandra)
 
-3. [https://docs.apigee.com/private-cloud/v4.18.05/about-cassandra-replication-factor-and-consistency-level#:~:text=The%20Cassandra%20consistency%20level%20is,operation%20can%20be%20considered%20successful.&text=As%20described%20above%2C%20the%20default,three%20Cassandra%20nodes%20is%20three.](https://docs.apigee.com/private-cloud/v4.18.05/about-cassandra-replication-factor-and-consistency-level#:~:text=The%20Cassandra%20consistency%20level%20is,operation%20can%20be%20considered%20successful.&text=As%20described%20above%2C%20the%20default,three%20Cassandra%20nodes%20is%20three.)
+3. [About Cassandra Replication Factor And Consistency Level](https://docs.apigee.com/private-cloud/v4.18.05/about-cassandra-replication-factor-and-consistency-level#:~:text=The%20Cassandra%20consistency%20level%20is,operation%20can%20be%20considered%20successful.&text=As%20described%20above%2C%20the%20default,three%20Cassandra%20nodes%20is%20three.)
 
-4. [https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html)
+4. [dml Config Consistency](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html)
 

@@ -107,7 +107,7 @@ Prashant Ghimire:
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "ghimireprashant.p@gmail.com"
+      url: "mailto:ghimireprashant.p@gmail.com"
     - label: "LinkedIn"
       icon: "fab fa-linkedin"
       url: "https://www.linkedin.com/in/prashant-ghimire-8579b6188/"
@@ -119,7 +119,7 @@ Anish Thapaliya:
   links:
     - label:  "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "thapaliyanish123@gmail.com"
+      url: "mailto:thapaliyanish123@gmail.com"
     - label: "LinkedIn"
       icon: "fab fa-linkedin"
       url: "https://www.linkedin.com/in/anish-thapaliya-83a806194/"
@@ -131,7 +131,7 @@ Yachana Aryal:
   links:
     - label:  "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "yachhna@gmail.com"
+      url: "mailto:yachhna@gmail.com"
     - label: "LinkedIn"
       icon: "fab fa-linkedin"
       url: "https://www.linkedin.com/in/yachana-aryal-0875841ab/"
@@ -143,7 +143,7 @@ sudip:
   links:
     - label:  "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "sudipmanandhar2560@gmail.com"
+      url: "mailto:sudipmanandhar2560@gmail.com"
     - label: "Github"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/"
