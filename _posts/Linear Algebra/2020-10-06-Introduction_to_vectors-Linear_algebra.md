@@ -36,6 +36,16 @@ Like, how 6 is my magnitude in the height axis and 70 is my magnitude in the wei
 
 ### Vector Operations
 These Vectors can have some operations done on them.  
+
+### Scalars
+Let's suppose a vector of house price and interest rate. And imagine if the prices and rates doubled. We would denote it as 
+
+$$\vec A = \begin{bmatrix}4\\5\end{bmatrix},  c = 2$$ (4 crores, 5%)  
+$$c.\vec A = \begin{bmatrix}8\\10\end{bmatrix}$$ 
+
+Here, $c$ is a scalar.  
+Scalars are numbers which scale a vector when multiplied with a vector. A scaled vector has the same direction or the opposite direction depending on whether it is scaled by a positive or negative scalar.  
+
 #### Addition     
 
 $$\vec C = \begin{bmatrix}0.5\\2\end{bmatrix}$$
@@ -49,11 +59,26 @@ It is like putting one vector at tip of another and seeing where it lands.
 
 To add 2 vectors, you add the corresponding components.  
 
+For instance, let us suppose a Robot is as the origin in a 2D space. If we need to command it to go 5 meters forward in positive X-direction, and 3 meters forward in forward Y-direction, this command can be realized as a vector adiition as follows:   
+Initial position: I = (0,0)   
+Command: C = (5,3)   
+Final position: F = I + C   
+
+$$\vec I = \begin{bmatrix}0\\0\end{bmatrix}$$   
+$$\vec C = \begin{bmatrix}5\\3\end{bmatrix}$$   
+$$\vec F = \vec I + \vec C$$   
+i.e., $$\vec F = \begin{bmatrix}0\\0\end{bmatrix} + \begin{bmatrix}5\\3\end{bmatrix}$$ 
+i.e., $$\vec F = \begin{bmatrix}5\\3\end{bmatrix}$$
+
+#### Subtraction
+
 Subtracting 2 Vectors is just adding one vector and the negative of the other vector.  
 The negative of a vector is a vector with the same magnitude but opposite direction.
 
 $$\vec R - \vec C = \begin{bmatrix}6-0.5\\70-2\end{bmatrix}$$
 
+So, a vector subtraction can be understood as a combination of vector addition and a scalar multiplication   
+$$\vec A - \vec B = \vec A + (-1). \vec B$$
 
 ### Scalars
 Let's suppose a vector of house price and interest rate. And imagine if the prices and rates doubled. We would denote it as 
@@ -387,8 +412,10 @@ $$\begin{bmatrix}a & b & c \\ d & e & f \\ g & h & i\end{bmatrix}\begin{bmatrix}
 
 - Our aim is to change $A$ into $U$. Where $U$ is an upper tringular matrix. 
 
+**Co-author**: Anish Shrestha (https://www.linkedin.com/in/anish-shrestha-a99759144/)
 
 References
 
 1. Introduction to Linear Algebra, W. G. Strang
-2. Essence of linear algebra : [https://www.3blue1brown.com/](https://www.3blue1brown.com/)
+2. Gilbert Strang lectures on Linear Algebra (MIT), W. G. Srtang (https://www.youtube.com/watch?v=ZK3O402wf1c&list=PL49CF3715CB9EF31D&index=2)
+3. Essence of linear algebra : [https://www.3blue1brown.com/](https://www.3blue1brown.com/)
