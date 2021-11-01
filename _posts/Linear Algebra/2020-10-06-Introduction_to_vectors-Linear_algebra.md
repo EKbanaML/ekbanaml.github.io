@@ -80,14 +80,6 @@ $$\vec R - \vec C = \begin{bmatrix}6-0.5\\70-2\end{bmatrix}$$
 So, a vector subtraction can be understood as a combination of vector addition and a scalar multiplication   
 $$\vec A - \vec B = \vec A + (-1). \vec B$$
 
-### Scalars
-Let's suppose a vector of house price and interest rate. And imagine if the prices and rates doubled. We would denote it as 
-
-$$\vec A = \begin{bmatrix}4\\5\end{bmatrix},  c = 2$$ (4 crores, 5%)  
-$$c.\vec A = \begin{bmatrix}8\\10\end{bmatrix}$$ 
-
-Here, $c$ is a scalar.  
-Scalars are numbers which scale a vector when multiplied with a vector. A scaled vector has the same direction or the opposite direction depending on whether it is scaled by a positive or negative scalar.  
 
 ### Linear Combination   
 In mathematics, a linear combination is an expression constructed from a set of terms by multiplying each term by a constant and adding the results.  
