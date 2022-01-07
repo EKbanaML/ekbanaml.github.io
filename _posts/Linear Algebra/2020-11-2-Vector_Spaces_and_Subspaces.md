@@ -59,6 +59,14 @@ $P$ and $L$ are subspaces, but what about their union and intersections. Do they
 - $P \cup L$ is not a subspace.
 - $P \cap L$ is actually a zero vector so it's a subspace.
 
+
+If plane $P1$ and plane $P2$ are subspaces in $\mathbb{R}^3$ as shown in the figure.
+
+![Subspace_plane]({{ site.url }}{{ site.baseurl }}/assets/images/linear_algebra/Vector_spaces_and_subspaces/subspaces_plane.png)
+
+- $P1 \cup P2$ is not a subspace.
+- $P1 \cap P2$ is actually one dimensional line and any linear combination of vectors inside the line will give vector within the line so it's a subspace.
+
 ## Row Space, Column Space and Null Space
  The **row space**, $R(A)$ is a set of vectors that contains all the linear combinations of rows of a matrix and the **column space**, $C(A)$ is a set of vectors that contains all the linear combinations of columns. The row space and column space are subspaces in $\mathbb{R}^n$ and $\mathbb{R}^m$ respectively for a matrix with $m$ rows and $n$ columns. Then if we have,
 
@@ -69,7 +77,7 @@ $P$ and $L$ are subspaces, but what about their union and intersections. Do they
  
  In the equation $Ax = b$, if we take all their linear combinations, this gives the column space of $A$. So *if b is in that column space, we can solve the equation $Ax = b$.*
  
-What if $b = 0$ ? The immediate solution we get is $x = 0$. This is the only solution for invertible matrices but for non-invertible matrices, there are nonzero solutions along with zero and belongs to a space. We call this space a **Null space**, N(A). As the solution vector $x$ has $n$ components, the nullspace is a subspace of $\mathbb{R}^n$.
+What if $b = 0$ ? The immediate solution we get is $x = 0$. This is the only solution for invertible matrices but for non-invertible matrices, there are nonzero solutions along with zero and belongs to a space. We call this space a **Null space**, N(A). As the solution vector $x$ has $n$ components, the nullspace is a subspace of $\mathbb{R}^n$. The solutions obtained are called special solutions when $Ax = 0$.
 
 But when $b \not ={0}$, does the solution $x$ form a subspace? No, because $x = 0$ does not solve the equation and hence the solution does not have zero vector.
 
@@ -216,6 +224,12 @@ $$X_{null} = c_1\begin{bmatrix}-2\\1 \\ 0 \\ 0\end{bmatrix} + c_2\begin{bmatrix}
 for any constant $c_1$ and $c_2$.
 
 Now if we take $U$ to reduced row-echelon form $R$,
+
+$$R_2 = R_2/2$$
+
+$$R = \begin{bmatrix}1& 2 & 2 & 2\\ 0 & 0 & 1 & 2 \\ 0 & 0& 0& 0\end{bmatrix}$$
+
+$$R_1 = R_1-2*R_2$$
 
 $$R = \begin{bmatrix}1 & 2 & 0& -2\\ 0 & 0 & 1 & 2 \\ 0 & 0& 0& 0\end{bmatrix}$$
 

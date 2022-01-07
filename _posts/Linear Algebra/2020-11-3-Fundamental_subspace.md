@@ -78,6 +78,19 @@ For $A$, the basis are vectors $$\begin{bmatrix}1 \\ 2 \\ 3\end{bmatrix}$$ and $
 
 Similarly, the dimension of ***Null space is the number of free variable***. So the dimension of Null space of A is 2.
 
+## Bases of Matrices 
+Until now we have talked about column space and row space which are made by a linear combination of columns vectors and row vectors but there is another form of vector space and that is matrix space. For example, all 2*2 matrices give space M and matrices inside M satisfy rules i.e. we can add them, multiply them by a scalar, some combination of matrices might give zero matrices. **Subspace of the matrix space M are symmetric matrices, upper triangular matrices, diagonal matrices.**
+
+One of the basis for 2*2 matrices is $A_1$, $A_2$, $A_3$, $A_4$ $$\begin{bmatrix}1 & 0\\ 0 & 0\end{bmatrix}$$ , $$\begin{bmatrix}0 & 1\\ 0 & 0\end{bmatrix}$$ , $$\begin{bmatrix}0 & 0\\ 1 & 0\end{bmatrix}$$ , $$\begin{bmatrix}0 & 0\\ 0 & 1\end{bmatrix}$$
+
+These matrices are linearly independent as we are seeing the entire matrix not just a single column and a linear combination of these bases will span the entire matrix space.   
+
+Combination of basis matrices $c_1A_1+c_1A_1+c_1A_1+c_1A_1$ = $$\begin{bmatrix}c_1 & c_2\\ c_3 & c_4\end{bmatrix}$$ = $A$
+
+A is zero only if the c's are all zero and this proves independence of $A_1$, $A_2$, $A_3$, $A_4$. The three matrices $A_1$, $A_2$, $A_4$  are a basis for a subspace-the upper triangular matrices. Its dimension is 3. $A_1$ and $A_4$  are a basis for the diagonal matrices. What is a basis for the symmetric matrices? Keep $A_1$ and $A_4$ , and throw in $A_2$+$A_3$.
+
+To push this further, think about the space of all n by n matrices. One possible basis uses matrices that have only a single nonzero entry (that entry is 1). There are $n^2$ positions for that 1, so there are $n^2$ basis matrices and the dimension is $n^2$. Similarly dimension of the subspace of symmetric and upper triangular matrices is $\frac{1}{2} n^2+\frac{1}{2} n$. The dimension of the subspace of Diagonal matrices is $n$
+
 ## Four fundamental subspaces
 
 As we already know, subspaces can be described in two ways: a set of vectors that span the space (example: The Columns span the column space) and the space that satisfy certain conditions (example: Null space consists of all vectors that satisfy Ax = 0.)
@@ -88,13 +101,13 @@ As we already know, subspaces can be described in two ways: a set of vectors tha
 The four fundamental subspaces are:
 1. Row space, $C(A^T)$:
    
-   The row space of A is the column space of $A^T$. For the echelon matrix U obtained from A in our example above, the row space is all combinations of rows. And we can see that the last row contributes nothing. The first two rows are the basis for the row space. So the nonzero rows are basis and the row space has  dimension r. As we perform elimination, we do not change row space so $A$ has the same dimension $r$ as the row space of $U$. It has the same bases.  
+   The row space of A is the column space of $A^T$. For the echelon matrix U obtained from A in our example above, the row space is all combinations of rows. And we can see that the last row contributes nothing. The first two rows are the basis for the row space. So the nonzero rows are basis and the row space has  dimension r. As we perform elimination, we do not change row space so $A$ has the same dimension $r$ as the row space of $U$. It has the same bases. Basis for row space is first r rows of R where R is row reduce echelon form of A.
    
 2. Column space, $C(A)$:
    
    If we look at this space from domain and range view, we see that C(A) is the range (set of all possible values $f(x)$; $x$ is in the domain). So our function is $f(x) = Ax$ and has domain all $x$ in $R^n$.
 
-   Columns $C_1$ and $C_3$ of $U$ are the basis for its column space as they are the pivot columns. This is true for A as well even though they have different column space. The dimension of the column space is rank $r$.
+   Columns $C_1$ and $C_3$ of $U$ are the basis for its column space as they are the pivot columns. This is true for A as well even though they have different column space. The dimension of the column space is rank $r$ which equals the dimension of the row space. The number of independent columns equals the number of independent rows. Performing elimination on matrix changes Columns space i.e $C(U)\not ={}C(A)$. 
 
 
 3. Null space $N(A)$:
