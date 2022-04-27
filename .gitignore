@@ -99,4 +99,4 @@ _config.yml
 _site/
 Gemfile
 Gemfile.lock
-
+.DS_Store
