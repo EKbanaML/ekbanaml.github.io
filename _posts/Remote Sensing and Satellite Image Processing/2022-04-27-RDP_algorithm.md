@@ -106,24 +106,22 @@ Here are some results from the above code:
 
 ![Masks ]({{ site.url }}{{ site.baseurl }}/assets/images/remote-sensing-and-satellite-image/rdp_algorithm/1.png)
 
-(a) RDP result for epsilon=0.1
+Fig 3. RDP result for epsilon=0.1
 
 ![Masks ]({{ site.url }}{{ site.baseurl }}/assets/images/remote-sensing-and-satellite-image/rdp_algorithm/2.png)
 
-(b) RDP result for epsilon=0.2
+Fig 4. RDP result for epsilon=0.2
 
 ![Masks ]({{ site.url }}{{ site.baseurl }}/assets/images/remote-sensing-and-satellite-image/rdp_algorithm/3.png)
 
-(c) RDP result for epsilon=0.5
+Fig 5. RDP result for epsilon=0.5
 
 ![Masks ]({{ site.url }}{{ site.baseurl }}/assets/images/remote-sensing-and-satellite-image/rdp_algorithm/sine.png)
 
-(d) RDP result for sin function
-
+Fig 6. RDP result for sin function
 
 
 Co-Authors: [Shital Adhikari](https://shitaladhikari.github.io/) and [Anil Kumar Shrestha](https://anilkshrestha.com.np)
-
 
 
 ## Resources
