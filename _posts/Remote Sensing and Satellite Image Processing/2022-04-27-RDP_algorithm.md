@@ -11,7 +11,7 @@ header:
   caption: "Photo credit: [**Mehmet Turgut Kirkgoz **]"
 ---
 
-# The Problem
+## The Problem
 
 When we were working on a satellite image of one of the local area of Nepal, we had to simplify the obtained mask to feed into the GIS system. In order to simplify, we ended up using a very interesting yet simple algorithm, **Ramer-Douglas-Peucker algorithm** (also called **Douglas-Peucker algorithm**). 
 
@@ -29,7 +29,7 @@ Here is a sample image and it's corresponding masks:
 <figcaption>Fig 2. Masks of houses (left) and result after simplifying using RDP algorithm (right).</figcaption>
 </figure>
 
-# The Algorithm
+## The Algorithm
 In 1973, David H. Douglas and Thomas K. Peucker introduced an algorithm that produced a simplified polyline than the original in their paper: *“Algorithms for the reduction of the number of points required to represent a digitized line or its caricature”.* The algorithm generates a new curve similar to the original curve, but with fewer points.
 
 The original paper defines the first point as ***anchor*** and last point as ***floater***. All the remaining points are examined to find the one with the greatest perpendicular distance between the point and the line joining anchor and floater. If the distance is less than the tolerance defined, then all points are terminated and the straight line segment represents the whole line. Otherwise, the point with greatest distance is set as a new floater. The algorithm recursively calls itself with anchor and floaters and finally merges it to give the simplified polyline.
@@ -40,7 +40,7 @@ There is this simple gif from [Mysid](https://en.wikipedia.org/wiki/User:Mysid) 
 
 In the worst case, this algorithm has a running time of $O(n^2)$ and in the best case, it has running time of $O(nlog ⁡n)$. [2](https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm)
 
-# Code
+## Code
 
 ```
 def perpendicular_distance(line, point):
@@ -126,7 +126,7 @@ Co-Authors: [Shital Adhikari](https://shitaladhikari.github.io/) and [Anil Kumar
 
 
 
-# Resources
+## Resources
 1. Douglas, D. H., & Peucker, T. K. (1973). Algorithms for the reduction of the number of points required to represent a digitized line or its caricature.
 2. [Wikipedia](https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm)
 3. Wu et al. A non-self-intersection Douglas-Peucker algorithm. https://www.dca.fee.unicamp.br/~ting/Publications/P2001-2005/wu-roci-2003-rfm.pdf 
