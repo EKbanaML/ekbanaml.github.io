@@ -126,7 +126,7 @@ Co-Authors: [Shital Adhikari](https://shitaladhikari.github.io/) and [Anil Kumar
 
 
 
-## Resources
+# Resources
 1. Douglas, D. H., & Peucker, T. K. (1973). Algorithms for the reduction of the number of points required to represent a digitized line or its caricature.
 2. [Wikipedia](https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm)
 3. Wu et al. A non-self-intersection Douglas-Peucker algorithm. https://www.dca.fee.unicamp.br/~ting/Publications/P2001-2005/wu-roci-2003-rfm.pdf 
