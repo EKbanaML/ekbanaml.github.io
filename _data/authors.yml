@@ -22,6 +22,15 @@ ashuta:
       icon: "fab fa-fw fa-github"
       url: "https://github.com/ashuta03"
 
+bishwash:
+  name    : "Bishwash Khanal"
+  bio     : ""
+  avatar  : "/assets/images/userPhoto/no_photo.jpg"
+  links:
+    - label: "Github"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/bkhanal-11"
+
 sajita: 
   name: "Sajita"
   bio: ""
