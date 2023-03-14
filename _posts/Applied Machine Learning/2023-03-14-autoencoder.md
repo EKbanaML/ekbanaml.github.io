@@ -44,13 +44,73 @@ Autoencoders are a type of neural network that can be used to learn a compressed
 
 The encoder takes an input image and compresses it into a lower-dimensional latent representation, also known as the encoding. The encoder can consist of several layers of convolutional or pooling operations followed by fully connected layers, which map the input image to a lower-dimensional vector representation.
 
+```python
+class Encoder(nn.Module):
+    def __init__(self, channels, embedding_dim):
+        super(Encoder, self).__init__()
+        self.conv1 = nn.Conv2d(channels, 32, kernel_size=3, stride=2, padding=1)
+        self.conv2 = nn.Conv2d(32, 64, kernel_size=3, stride=2, padding=1)
+        self.conv3 = nn.Conv2d(64, 128, kernel_size=3, stride=2, padding=1)
+        self.flatten = nn.Flatten()
+        self.fc = nn.Linear(128 * 4 * 4, embedding_dim)
+        
+    def forward(self, x):
+        x = self.conv1(x)
+        x = nn.GELU()(x)
+        x = self.conv2(x)
+        x = nn.GELU()(x)
+        x = self.conv3(x)
+        x = nn.GELU()(x)
+        x = self.flatten(x)
+        x = self.fc(x)
+        return x
+```
+
 The decoder takes the encoding produced by the encoder and generates a reconstructed output image. The decoder can consist of several layers of convolutional or upsampling operations followed by fully connected layers, which map the latent representation back to the original image space.
+
+```python
+class Decoder(nn.Module):
+    def __init__(self, channels, embedding_dim):
+        super(Decoder, self).__init__()
+        self.fc = nn.Linear(embedding_dim, 128 * 4 * 4)
+        self.unflatten = nn.Unflatten(1, (128, 4, 4))
+        self.deconv1 = nn.ConvTranspose2d(128, 128, kernel_size=3, stride=2, padding=1, output_padding=1)
+        self.deconv2 = nn.ConvTranspose2d(128, 64, kernel_size=3, stride=2, padding=1, output_padding=1)
+        self.deconv3 = nn.ConvTranspose2d(64, 32, kernel_size=3, stride=2, padding=1, output_padding=1)
+        self.output = nn.Conv2d(32, channels, kernel_size=1, stride=1)
+        
+    def forward(self, x):
+        x = self.fc(x)
+        # x = x.reshape(x.shape[0], 128, 4, 4)
+        x = self.unflatten(x)
+        x = self.deconv1(x)
+        x = nn.GELU()(x)
+        x = self.deconv2(x)
+        x = nn.GELU()(x)
+        x = self.deconv3(x)
+        x = nn.GELU()(x)
+        x = self.output(x)
+        return x
+```
 
 Here is an example of an autoencoder architecture:
 
 ![Autoencoder Architecture](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstarship-knowledge.com%2Fwp-content%2Fuploads%2F2020%2F10%2Fautoencoder-676x478.jpeg&f=1&nofb=1&ipt=58fa19346665631b026038a4891b8e5d3e4f2bb6ddea34c6574baab27a8c8958&ipo=images)
 
 The encoder and decoder are trained together to minimize the difference between the input image and the reconstructed output image using a loss function such as mean squared error. During training, the encoder learns to capture the essential features of the input image in the latent representation, while the decoder learns to reconstruct the image from the latent representation.
+
+```python
+class Autoencoder(nn.Module):
+    def __init__(self, channels, embedding_dim):
+        super(Autoencoder, self).__init__()
+        self.encoder = Encoder(channels, embedding_dim)
+        self.decoder = Decoder(channels, embedding_dim)
+        
+    def forward(self, x):
+        x = self.encoder(x)
+        x = self.decoder(x)
+        return x
+```
 
 The architecture of an autoencoder can vary depending on the specific application and the characteristics of the input data. For example, variations of autoencoders such as denoising autoencoders, variational autoencoders, and adversarial autoencoders can be used for specific tasks and to overcome certain limitations of traditional autoencoders.
 
