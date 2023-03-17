@@ -20,13 +20,13 @@ author: bishwash
 
 ### Generative modelling
 
-Generative modelling is a statistical modeling technique that aims to model the entire probability distribution of the data. In other words, it tries to model the underlying patterns and relationships that generate the observed data. Given a set of inputs, a generative model generates new examples that are similar to the training data. Generative models are trained to learn the joint probability distribution p(X,Y) of the input X and the output Y.
+Generative modelling is a statistical modeling technique that aims to model the entire probability distribution of the data. In other words, it tries to model the underlying patterns and relationships that generate the observed data. Given a set of inputs, a generative model generates new examples that are similar to the training data. Generative models are trained to learn the joint probability distribution $P(X,Y)$ of the input $X$ and the output $Y$.
 
 Some examples of generative models include Gaussian mixture models, Hidden Markov Models, and Variational Autoencoders.
 
 ### Discriminative modelling
 
-Discriminative modelling, on the other hand, focuses on modeling the conditional probability distribution p(Y|X), which is the probability of the output Y given the input X. Discriminative models try to learn the decision boundary that separates different classes in the data. Discriminative models are trained to learn the mapping function from input X to output Y.
+Discriminative modelling, on the other hand, focuses on modeling the conditional probability distribution $P(Y|X)$, which is the probability of the output $Y$ given the input $X$. Discriminative models try to learn the decision boundary that separates different classes in the data. Discriminative models are trained to learn the mapping function from input X to output $Y$.
 
 Some examples of discriminative models include Logistic Regression, Support Vector Machines, and Neural Networks.
 
@@ -56,11 +56,11 @@ class Encoder(nn.Module):
         
     def forward(self, x):
         x = self.conv1(x)
-        x = nn.GELU()(x)
+        x = nn.ReLU()(x)
         x = self.conv2(x)
-        x = nn.GELU()(x)
+        x = nn.ReLU()(x)
         x = self.conv3(x)
-        x = nn.GELU()(x)
+        x = nn.ReLU()(x)
         x = self.flatten(x)
         x = self.fc(x)
         return x
@@ -84,11 +84,11 @@ class Decoder(nn.Module):
         # x = x.reshape(x.shape[0], 128, 4, 4)
         x = self.unflatten(x)
         x = self.deconv1(x)
-        x = nn.GELU()(x)
+        x = nn.ReLU()(x)
         x = self.deconv2(x)
-        x = nn.GELU()(x)
+        x = nn.ReLU()(x)
         x = self.deconv3(x)
-        x = nn.GELU()(x)
+        x = nn.ReLU()(x)
         x = self.output(x)
         return x
 ```
@@ -113,6 +113,15 @@ class Autoencoder(nn.Module):
 ```
 
 The architecture of an autoencoder can vary depending on the specific application and the characteristics of the input data. For example, variations of autoencoders such as denoising autoencoders, variational autoencoders, and adversarial autoencoders can be used for specific tasks and to overcome certain limitations of traditional autoencoders.
+
+## Visualization of Results from Autoencoder on MNIST dataset
+| Original Image | Reconstructed Image|
+|-------|-------|
+| ![Original Image](../../assets/images/autoencoder/original-image.png)| ![Reconstructed Image](../../assets/images/autoencoder/reconstructed-image.png)|
+
+While learning the representation of MNIST dataset on a low dimensional latent space. we can force that dimension to be 2D and visualize the representation of numbers in their repective clusters.
+
+![2D Latent Space of MNIST dataset](../../assets/images/autoencoder/latent-space.png)
 
 ## Autoencoder vs PCA vs SVD
 
