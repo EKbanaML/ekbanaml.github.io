@@ -36,6 +36,10 @@ The main motivation behind Autoencoders is to learn an efficient data representa
 
 The basic idea of an autoencoder is to compress the input data into a lower-dimensional representation and then reconstruct the original data from this compressed representation. The encoder maps the input data to a lower-dimensional latent space, while the decoder maps the latent space back to the original data space. The goal of training the autoencoder is to minimize the difference between the input data and the reconstructed output data, which is typically measured using a loss function such as mean squared error.
 
+Here is an example of an autoencoder architecture:
+
+![Autoencoder Architecture](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstarship-knowledge.com%2Fwp-content%2Fuploads%2F2020%2F10%2Fautoencoder-676x478.jpeg&f=1&nofb=1&ipt=58fa19346665631b026038a4891b8e5d3e4f2bb6ddea34c6574baab27a8c8958&ipo=images)
+
 One of the main advantages of using autoencoders is that they can learn representations of the data that are robust to noise and can capture the underlying structure of the data. Autoencoders have been successfully used in a variety of applications, including image and speech recognition, anomaly detection, and natural language processing.
 
 ## Basic structure of Autoencoder
@@ -92,10 +96,6 @@ class Decoder(nn.Module):
         x = self.output(x)
         return x
 ```
-
-Here is an example of an autoencoder architecture:
-
-![Autoencoder Architecture](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstarship-knowledge.com%2Fwp-content%2Fuploads%2F2020%2F10%2Fautoencoder-676x478.jpeg&f=1&nofb=1&ipt=58fa19346665631b026038a4891b8e5d3e4f2bb6ddea34c6574baab27a8c8958&ipo=images)
 
 The encoder and decoder are trained together to minimize the difference between the input image and the reconstructed output image using a loss function such as mean squared error. During training, the encoder learns to capture the essential features of the input image in the latent representation, while the decoder learns to reconstruct the image from the latent representation.
 
