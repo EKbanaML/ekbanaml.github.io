@@ -3,7 +3,7 @@ title: "Introduction to Autoencoder"
 excerpt_separator: "<!--more-->"
 last_modified_at: 2023-03-14T14:36:02-05:00
 categories:
-  - Applied Machine Learning
+  - Generative Deep Learning
 tags:
 - Generative Modelling
 - Autoencoder
@@ -20,13 +20,13 @@ author: bishwash
 
 ### Generative modelling
 
-Generative modelling is a statistical modeling technique that aims to model the entire probability distribution of the data. In other words, it tries to model the underlying patterns and relationships that generate the observed data. Given a set of inputs, a generative model generates new examples that are similar to the training data. Generative models are trained to learn the joint probability distribution p(X,Y) of the input X and the output Y.
+Generative modelling is a statistical modeling technique that aims to model the entire probability distribution of the data. In other words, it tries to model the underlying patterns and relationships that generate the observed data. Given a set of inputs, a generative model generates new examples that are similar to the training data. Generative models are trained to learn the joint probability distribution $P(X,Y)$ of the input $X$ and the output $Y$.
 
 Some examples of generative models include Gaussian mixture models, Hidden Markov Models, and Variational Autoencoders.
 
 ### Discriminative modelling
 
-Discriminative modelling, on the other hand, focuses on modeling the conditional probability distribution p(Y|X), which is the probability of the output Y given the input X. Discriminative models try to learn the decision boundary that separates different classes in the data. Discriminative models are trained to learn the mapping function from input X to output Y.
+Discriminative modelling, on the other hand, focuses on modeling the conditional probability distribution $P(Y|X)$, which is the probability of the output $Y$ given the input $X$. Discriminative models try to learn the decision boundary that separates different classes in the data. Discriminative models are trained to learn the mapping function from input X to output $Y$.
 
 Some examples of discriminative models include Logistic Regression, Support Vector Machines, and Neural Networks.
 
@@ -35,6 +35,14 @@ Some examples of discriminative models include Logistic Regression, Support Vect
 The main motivation behind Autoencoders is to learn an efficient data representation or encoding of the input data, which can be used for tasks such as data compression, denoising, feature extraction, and data generation. Autoencoders are a type of neural network that consists of an encoder and a decoder, which are trained together to learn a compressed representation of the input data.
 
 The basic idea of an autoencoder is to compress the input data into a lower-dimensional representation and then reconstruct the original data from this compressed representation. The encoder maps the input data to a lower-dimensional latent space, while the decoder maps the latent space back to the original data space. The goal of training the autoencoder is to minimize the difference between the input data and the reconstructed output data, which is typically measured using a loss function such as mean squared error.
+
+Here is an example of an autoencoder architecture:
+
+<p align="center">
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstarship-knowledge.com%2Fwp-content%2Fuploads%2F2020%2F10%2Fautoencoder-676x478.jpeg&f=1&nofb=1&ipt=58fa19346665631b026038a4891b8e5d3e4f2bb6ddea34c6574baab27a8c8958&ipo=images" width="600" />
+
+</p>
+
 
 One of the main advantages of using autoencoders is that they can learn representations of the data that are robust to noise and can capture the underlying structure of the data. Autoencoders have been successfully used in a variety of applications, including image and speech recognition, anomaly detection, and natural language processing.
 
@@ -56,11 +64,11 @@ class Encoder(nn.Module):
         
     def forward(self, x):
         x = self.conv1(x)
-        x = nn.GELU()(x)
+        x = nn.ReLU()(x)
         x = self.conv2(x)
-        x = nn.GELU()(x)
+        x = nn.ReLU()(x)
         x = self.conv3(x)
-        x = nn.GELU()(x)
+        x = nn.ReLU()(x)
         x = self.flatten(x)
         x = self.fc(x)
         return x
@@ -84,18 +92,14 @@ class Decoder(nn.Module):
         # x = x.reshape(x.shape[0], 128, 4, 4)
         x = self.unflatten(x)
         x = self.deconv1(x)
-        x = nn.GELU()(x)
+        x = nn.ReLU()(x)
         x = self.deconv2(x)
-        x = nn.GELU()(x)
+        x = nn.ReLU()(x)
         x = self.deconv3(x)
-        x = nn.GELU()(x)
+        x = nn.ReLU()(x)
         x = self.output(x)
         return x
 ```
-
-Here is an example of an autoencoder architecture:
-
-![Autoencoder Architecture](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstarship-knowledge.com%2Fwp-content%2Fuploads%2F2020%2F10%2Fautoencoder-676x478.jpeg&f=1&nofb=1&ipt=58fa19346665631b026038a4891b8e5d3e4f2bb6ddea34c6574baab27a8c8958&ipo=images)
 
 The encoder and decoder are trained together to minimize the difference between the input image and the reconstructed output image using a loss function such as mean squared error. During training, the encoder learns to capture the essential features of the input image in the latent representation, while the decoder learns to reconstruct the image from the latent representation.
 
@@ -114,7 +118,19 @@ class Autoencoder(nn.Module):
 
 The architecture of an autoencoder can vary depending on the specific application and the characteristics of the input data. For example, variations of autoencoders such as denoising autoencoders, variational autoencoders, and adversarial autoencoders can be used for specific tasks and to overcome certain limitations of traditional autoencoders.
 
-## Autoencoder vs PCA vs SVD
+## Visualization of Results from Autoencoder on MNIST dataset
+| Original Image | Reconstructed Image|
+|-------|-------|
+| <p align="center"> <img src="{{ site.url }}{{ site.baseurl }}/assets/images/autoencoder/original-image.png" width="600" /> </p> | <p align="center"> <img src="{{ site.url }}{{ site.baseurl }}/assets/images/autoencoder/reconstructed-image.png" width="600" /> </p>|
+
+While learning the representation of MNIST dataset on a low dimensional latent space. we can force that dimension to be 2D and visualize the representation of numbers in their repective clusters.
+
+<p align="center">
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/autoencoder/latent-space.png" width="600" />
+</p>
+
+
+# Autoencoder vs PCA vs SVD
 
 Autoencoder, Principal Component Analysis (PCA), and Singular Value Decomposition (SVD) are all methods for reducing the dimensionality of data. However, there are several key differences between these methods.
 
@@ -124,7 +140,7 @@ PCA is a statistical technique that uses linear algebra to transform high-dimens
 
 SVD is a matrix factorization technique that can be used for dimensionality reduction. SVD works by decomposing a data matrix into three matrices, where the middle matrix represents the singular values of the data. The singular values can be used to select the most important components of the data, which can then be used for projection into a lower-dimensional subspace. SVD is a linear technique and can be limited in its ability to capture non-linear relationships between the input data.
 
-## Limitation of Autoencoder and introduction to Variational Autoencoder
+# Limitation of Autoencoder and Introduction to Variational Autoencoder
 
 One of the limitations of a standard autoencoder is that it does not have a probabilistic interpretation, which can make it difficult to generate new data samples or to perform tasks such as anomaly detection. The output of a standard autoencoder is a deterministic reconstruction of the input data, which may not accurately capture the variability in the data.
 
@@ -136,6 +152,15 @@ The advantage of using a probabilistic framework is that it allows the generatio
 
 One of the key differences between VAE and a standard autoencoder is the use of a loss function that incorporates both the reconstruction error and a regularization term. The regularization term ensures that the learned distribution over the encoding space follows a predefined distribution, such as a Gaussian distribution. This helps to prevent overfitting and encourages the model to learn a smooth and continuous representation of the data.
 
-## Conclusion
+# Conclusion
 
 In all, Autoencoder is a powerful neural network architecture that has a wide range of applications in data compression, feature extraction, and data generation. It can learn a compressed representation of the input data that can be used for various downstream tasks. However, autoencoder has some limitations, such as its inability to model the probabilistic nature of data and its tendency to reconstruct the input data without capturing the variability in the data. Nonetheless, researchers have developed various variants of autoencoder, such as Variational Autoencoder (VAE) and Convolutional Autoencoder (CAE), which have overcome some of these limitations and have shown promising results in various fields.
+
+# References
+
+[1] [A Simple AutoEncoder and Latent Space Visualization with PyTorch](https://medium.com/@outerrencedl/a-simple-autoencoder-and-latent-space-visualization-with-pytorch-568e4cd2112a)
+
+[2] [Difference between AutoEncoder (AE) and Variational AutoEncoder (VAE)](https://towardsdatascience.com/difference-between-autoencoder-ae-and-variational-autoencoder-vae-ed7be1c038f2)
+
+[3] [Generative Deep Learning, 2nd Edition](https://www.oreilly.com/library/view/generative-deep-learning/9781098134174/)
+
