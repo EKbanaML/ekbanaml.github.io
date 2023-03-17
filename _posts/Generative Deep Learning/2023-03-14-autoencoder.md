@@ -3,7 +3,7 @@ title: "Introduction to Autoencoder"
 excerpt_separator: "<!--more-->"
 last_modified_at: 2023-03-14T14:36:02-05:00
 categories:
-  - Applied Machine Learning
+  - Generative Deep Learning
 tags:
 - Generative Modelling
 - Autoencoder
@@ -38,7 +38,11 @@ The basic idea of an autoencoder is to compress the input data into a lower-dime
 
 Here is an example of an autoencoder architecture:
 
-![Autoencoder Architecture](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstarship-knowledge.com%2Fwp-content%2Fuploads%2F2020%2F10%2Fautoencoder-676x478.jpeg&f=1&nofb=1&ipt=58fa19346665631b026038a4891b8e5d3e4f2bb6ddea34c6574baab27a8c8958&ipo=images)
+<p align="center">
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstarship-knowledge.com%2Fwp-content%2Fuploads%2F2020%2F10%2Fautoencoder-676x478.jpeg&f=1&nofb=1&ipt=58fa19346665631b026038a4891b8e5d3e4f2bb6ddea34c6574baab27a8c8958&ipo=images" width="600" />
+
+</p>
+
 
 One of the main advantages of using autoencoders is that they can learn representations of the data that are robust to noise and can capture the underlying structure of the data. Autoencoders have been successfully used in a variety of applications, including image and speech recognition, anomaly detection, and natural language processing.
 
@@ -117,13 +121,16 @@ The architecture of an autoencoder can vary depending on the specific applicatio
 ## Visualization of Results from Autoencoder on MNIST dataset
 | Original Image | Reconstructed Image|
 |-------|-------|
-| ![Original Image](../../assets/images/autoencoder/original-image.png)| ![Reconstructed Image](../../assets/images/autoencoder/reconstructed-image.png)|
+| <p align="center"> <img src="{{ site.url }}{{ site.baseurl }}/assets/images/autoencoder/original-image.png" width="600" /> </p> | <p align="center"> <img src="{{ site.url }}{{ site.baseurl }}/assets/images/autoencoder/reconstructed-image.png" width="600" /> </p>|
 
 While learning the representation of MNIST dataset on a low dimensional latent space. we can force that dimension to be 2D and visualize the representation of numbers in their repective clusters.
 
-![2D Latent Space of MNIST dataset](../../assets/images/autoencoder/latent-space.png)
+<p align="center">
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/autoencoder/latent-space.png" width="600" />
+</p>
 
-## Autoencoder vs PCA vs SVD
+
+# Autoencoder vs PCA vs SVD
 
 Autoencoder, Principal Component Analysis (PCA), and Singular Value Decomposition (SVD) are all methods for reducing the dimensionality of data. However, there are several key differences between these methods.
 
@@ -133,7 +140,7 @@ PCA is a statistical technique that uses linear algebra to transform high-dimens
 
 SVD is a matrix factorization technique that can be used for dimensionality reduction. SVD works by decomposing a data matrix into three matrices, where the middle matrix represents the singular values of the data. The singular values can be used to select the most important components of the data, which can then be used for projection into a lower-dimensional subspace. SVD is a linear technique and can be limited in its ability to capture non-linear relationships between the input data.
 
-## Limitation of Autoencoder and Introduction to Variational Autoencoder
+# Limitation of Autoencoder and Introduction to Variational Autoencoder
 
 One of the limitations of a standard autoencoder is that it does not have a probabilistic interpretation, which can make it difficult to generate new data samples or to perform tasks such as anomaly detection. The output of a standard autoencoder is a deterministic reconstruction of the input data, which may not accurately capture the variability in the data.
 
@@ -145,6 +152,15 @@ The advantage of using a probabilistic framework is that it allows the generatio
 
 One of the key differences between VAE and a standard autoencoder is the use of a loss function that incorporates both the reconstruction error and a regularization term. The regularization term ensures that the learned distribution over the encoding space follows a predefined distribution, such as a Gaussian distribution. This helps to prevent overfitting and encourages the model to learn a smooth and continuous representation of the data.
 
-## Conclusion
+# Conclusion
 
 In all, Autoencoder is a powerful neural network architecture that has a wide range of applications in data compression, feature extraction, and data generation. It can learn a compressed representation of the input data that can be used for various downstream tasks. However, autoencoder has some limitations, such as its inability to model the probabilistic nature of data and its tendency to reconstruct the input data without capturing the variability in the data. Nonetheless, researchers have developed various variants of autoencoder, such as Variational Autoencoder (VAE) and Convolutional Autoencoder (CAE), which have overcome some of these limitations and have shown promising results in various fields.
+
+# References
+
+[1] [A Simple AutoEncoder and Latent Space Visualization with PyTorch](https://medium.com/@outerrencedl/a-simple-autoencoder-and-latent-space-visualization-with-pytorch-568e4cd2112a)
+
+[2] [Difference between AutoEncoder (AE) and Variational AutoEncoder (VAE)](https://towardsdatascience.com/difference-between-autoencoder-ae-and-variational-autoencoder-vae-ed7be1c038f2)
+
+[3] [Generative Deep Learning, 2nd Edition](https://www.oreilly.com/library/view/generative-deep-learning/9781098134174/)
+
