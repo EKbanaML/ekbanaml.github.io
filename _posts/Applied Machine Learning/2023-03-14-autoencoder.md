@@ -133,7 +133,7 @@ PCA is a statistical technique that uses linear algebra to transform high-dimens
 
 SVD is a matrix factorization technique that can be used for dimensionality reduction. SVD works by decomposing a data matrix into three matrices, where the middle matrix represents the singular values of the data. The singular values can be used to select the most important components of the data, which can then be used for projection into a lower-dimensional subspace. SVD is a linear technique and can be limited in its ability to capture non-linear relationships between the input data.
 
-## Limitation of Autoencoder and introduction to Variational Autoencoder
+## Limitation of Autoencoder and Introduction to Variational Autoencoder
 
 One of the limitations of a standard autoencoder is that it does not have a probabilistic interpretation, which can make it difficult to generate new data samples or to perform tasks such as anomaly detection. The output of a standard autoencoder is a deterministic reconstruction of the input data, which may not accurately capture the variability in the data.
 
