@@ -26,7 +26,7 @@ Some examples of generative models include Gaussian mixture models, Hidden Marko
 
 ### Discriminative modelling
 
-Discriminative modelling, on the other hand, focuses on modeling the conditional probability distribution $P(Y|X)$, which is the probability of the output $Y$ given the input $X$. Discriminative models try to learn the decision boundary that separates different classes in the data. Discriminative models are trained to learn the mapping function from input X to output $Y$.
+Discriminative modelling, on the other hand, focuses on modeling the conditional probability distribution $P(Y, X)$, which is the probability of the output $Y$ given the input $X$. Discriminative models try to learn the decision boundary that separates different classes in the data. Discriminative models are trained to learn the mapping function from input X to output $Y$.
 
 Some examples of discriminative models include Logistic Regression, Support Vector Machines, and Neural Networks.
 
@@ -119,9 +119,14 @@ class Autoencoder(nn.Module):
 The architecture of an autoencoder can vary depending on the specific application and the characteristics of the input data. For example, variations of autoencoders such as denoising autoencoders, variational autoencoders, and adversarial autoencoders can be used for specific tasks and to overcome certain limitations of traditional autoencoders.
 
 ## Visualization of Results from Autoencoder on MNIST dataset
-| Original Image | Reconstructed Image|
-|-------|-------|
-| <p align="center"> <img src="{{ site.url }}{{ site.baseurl }}/assets/images/autoencoder/original-image.png" width="600" /> </p> | <p align="center"> <img src="{{ site.url }}{{ site.baseurl }}/assets/images/autoencoder/reconstructed-image.png" width="600" /> </p>|
+
+<p align="center"> 
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/autoencoder/original-image.png" width="600" /> 
+</p> 
+
+<p align="center"> 
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/images/autoencoder/reconstructed-image.png" width="600" /> 
+</p>
 
 While learning the representation of MNIST dataset on a low dimensional latent space. we can force that dimension to be 2D and visualize the representation of numbers in their repective clusters.
 
