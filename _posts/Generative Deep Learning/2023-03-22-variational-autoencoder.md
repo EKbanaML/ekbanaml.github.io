@@ -26,4 +26,3 @@ header:
 ## Visualization of Results from Variational autoencoder on MNIST dataset (Bishwash)
 
 # Nash Equllibrium (Sanjay)
-
