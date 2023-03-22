@@ -15,6 +15,8 @@ header:
 
 # KL Divergence (Dipesh Dai) 
 
+# Limitations of Autoencoder (Suruchi)
+
 # Variational Autoencoder
 
 ## Basic Architecture of Variational Autoencoder (Rajan)
