@@ -156,3 +156,15 @@ sudip:
     - label: "Github"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/"
+
+Ankur Baral:
+  name: "Ankur Baral"
+  bio: """
+  avatar  : "/assets/images/userPhoto/AnkurBaral_profile.jpg"
+  links:
+    - label:  "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:ankurbaral@gmail.com"
+    - label: "Github"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/ankurbaral"
