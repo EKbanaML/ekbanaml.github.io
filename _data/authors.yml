@@ -174,7 +174,7 @@ Prastut:
       url: "https://www.linkedin.com/in/prastut-bhattarai-b336b5216/"
 Ankur Baral:
   name: "Ankur Baral"
-  bio: """
+  bio: ""
   avatar  : "/assets/images/userPhoto/AnkurBaral_profile.jpg"
   links:
     - label:  "Email"
