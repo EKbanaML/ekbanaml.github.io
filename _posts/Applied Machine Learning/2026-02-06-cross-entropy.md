@@ -16,7 +16,7 @@ header:
 author: Ankur Baral
 ---
 
-# Binary Cross Entropy from First Principles
+
 We encounter binary cross-entropy loss a lot while working on deep learning classification problems. Often we use it like a black-box. I ignored the details because I thought these type of functions are very complex and have mathematical notions beyond my reasoning.  
 
 But, upon study, I found out that this loss function has notably simple mathematical foundation: negative log-likelihood. Under the hood, it is a simple function that we use in order to do complex tasks.
@@ -297,8 +297,6 @@ $P(y \mid \hat{y}) = \prod_{c=1}^{C} (\hat{y}_c)^{y_c}$
 
 Since y is one-hot, if c is the correct class where yc = 1, it contributes ŷc. If c is incorrect where yc = 0, it contributes (ŷc)⁰ = 1.
 
-### Derivation
-
 Taking the log-likelihood:
 
 $$
@@ -331,9 +329,8 @@ The tools we use for the most sophisticated AI systems are built on foundations 
 
 ## References
 
-1. Shannon, C.E. (1948). "A Mathematical Theory of Communication." *Bell System Technical Journal*, 27(3), 379-423.
-
-2. Shlens, J. (2014). "Notes on Kullback-Leibler Divergence and Likelihood." *arXiv preprint arXiv:1404.2000*.  
+1. Shannon, C. E. (1948). A mathematical theory of communication. *Bell System Technical Journal*, *27*(3), 379–423. [https://doi.org/10.1002/j.1538-7305.1948.tb01338.x](https://doi.org/10.1002/j.1538-7305.1948.tb01338.x)
+2. Shlens, J. (2014). *Notes on Kullback-Leibler divergence and likelihood*. arXiv. [https://doi.org/10.48550/arXiv.1404.2000](https://doi.org/10.48550/arXiv.1404.2000)
 3. Brownlee, J. (2020). "A Gentle Introduction to Cross-Entropy for Machine Learning." MachineLearningMastery.com. Retrieved from https://machinelearningmastery.com/cross-entropy-for-machine-learning/
 4. Wikipedia contributors. (n.d.). "Cross-entropy." Wikipedia, The Free Encyclopedia. Retrieved January 06, 2026, from https://en.wikipedia.org/wiki/Cross-entropy
 

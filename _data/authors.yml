@@ -159,7 +159,7 @@ sudip:
 
 Ankur Baral:
   name: "Ankur Baral"
-  bio: """
+  bio: ""
   avatar  : "/assets/images/userPhoto/AnkurBaral_profile.jpg"
   links:
     - label:  "Email"
