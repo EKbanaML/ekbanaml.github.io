@@ -1,72 +1,109 @@
-# Stochastic Gradient Descent: Theory, Numerical Examples, and Implementation
+---
+title: "Stochastic Gradient Descent: Theory, Numerical Examples, and Implementation"
+excerpt: "A comprehensive guide to Stochastic Gradient Descent (SGD), covering mathematical foundations, variance analysis, convergence theory, numerical step-by-step examples, and practical optimizer implementations including Momentum and Adam."
+excerpt_separator: "<!--more-->"
+last_modified_at: 2026-02-13T11:46:02-05:00
+categories:
+  - Applied Machine Learning
+tags:
+  - Optimization
+  - Stochastic Gradient Descent
+  - Deep Learning
+  - Machine Learning
+  - Numerical Methods
+  - Adam Optimizer
+  - Momentum
+author: Yugratna Humagain
+---
 
 ## Introduction
 
 Welcome to this comprehensive guide on Stochastic Gradient Descent (SGD), one of the most fundamental optimization algorithms in machine learning. This document provides a complete exploration of SGD from theoretical foundations to practical implementation, featuring detailed mathematical explanations, step-by-step numerical examples, and real-world coding applications.
 
-# Theory
-
 Now that we've introduced the fundamental concepts of SGD, let's dive deeper into the theoretical foundations that make this optimization algorithm mathematically sound and practically effective.
 
-## Gradient Descent vs Stochastic Gradient Descent
+**Gradient Descent vs Stochastic Gradient Descent** 
 
 | **Feature** | **Gradient Descent (GD)** | **Stochastic Gradient Descent (SGD)** |
 | --- | --- | --- |
-| **Scope** | Uses **ALL** data points (n) for every step. | Uses **ONE random** data point (1) per step. |
-| **Mathematical Foundation** | Calculates the **True Gradient** ∇R(θ) = (1/n)∑∇l(θ;xi,yi). | Calculates an **Unbiased Estimate** ∇l(θ;ξ) where ξ ~ D. |
+| **Scope** | Uses **ALL** data points ($n$) for every step. | Uses **ONE random** data point (1) per step. |
+| **Mathematical Foundation** | Calculates the **True Gradient** $ \nabla R(\theta) = \frac{1}{n}\sum \nabla \ell(\theta; x_i, y_i) $. | Calculates an **Unbiased Estimate** $ \nabla \ell(\theta; \xi) $ where $ \xi \sim D $. |
 | **Path Characteristics** | Smooth, direct, and **deterministic**. | Noisy, **zig-zag trajectory** (High Variance). |
-| **Computational Cost** | Very slow / **Computationally expensive** (O(n)). | Instant / **Computationally cheap** (O(1)). |
+| **Computational Cost** | Very slow / **Computationally expensive** ($O(n)$). | Instant / **Computationally cheap** ($O(1)$). |
 | **Memory Requirements** | Requires full dataset in memory. | Single sample at a time. |
 | **Convergence Properties** | Guaranteed convergence to local/global minimum. | Converges in expectation with proper learning rate decay. |
 | **Analogy** | "Walking with a complete **GPS map**." | "Walking in the fog, seeing **1 step ahead**." |
 
-## **Mathematical Foundations**
+---
 
-### **Expected Risk & Gradient Expectation (The Foundation)**
+## Mathematical Foundations
 
-**Mathematical Statement:**
-The expected risk R(θ) is defined as the expected loss over the true data distribution D:
+**Expected Risk & Gradient Expectation (The Foundation)**
 
-```
-R(θ) = E[ℓ(θ; (x, y))] = ∫ ℓ(θ; (x, y)) dP(x, y)
-```
+**Mathematical Statement:**  
+The expected risk $R(\theta)$ is defined as the expected loss over the true data distribution $D$:
+
+$$
+R(\theta) = \mathbb{E}[\ell(\theta; (x, y))] 
+= \int \ell(\theta; (x, y)) \, dP(x, y)
+$$
 
 **The Unbiased Estimator Property:**
 
-```
-∇R(θ) = E[∇ℓ(θ; ξ)] where ξ ~ D
-```
+$$
+\nabla R(\theta) = \mathbb{E}[\nabla \ell(\theta; \xi)] 
+\quad \text{where } \xi \sim D
+$$
 
 **Proof Intuition:**
-- The true gradient ∇R(θ) represents the gradient computed using the entire dataset
-- A single sample gradient ∇ℓ(θ; ξ) is a random variable
+- The true gradient $ \nabla R(\theta) $ represents the gradient computed using the entire dataset
+- A single sample gradient $ \nabla \ell(\theta; \xi) $ is a random variable
 - When we average many single-sample gradients, we approach the true gradient
 - This is the mathematical foundation that makes SGD theoretically valid
 
 **Implications:**
-- SGD is not "wrong" - it's an unbiased estimator of the true gradient
+- SGD is not "wrong" — it's an unbiased estimator of the true gradient
 - Individual steps may be incorrect, but on average they point in the right direction
 - This property is essential for SGD's mathematical legitimacy
 
 ---
 
-### **Unbiasedness of Mini-Batch SGD (Real-World Application)**
+**Unbiasedness of Mini-Batch SGD (Real-World Application)**
 
-**Mathematical Statement:**
-For a mini-batch B of size m with samples {ξ₁, ξ₂, ..., ξₘ}:
-```
-g(θ) = (1/m) ∑ᵢ∈B ∇ℓ(θ; ξᵢ)
-E[g(θ)] = ∇R(θ)
-```
+**Mathematical Statement:**  
+For a mini-batch $B$ of size $m$ with samples $ \{\xi_1, \xi_2, \dots, \xi_m\} $:
+
+$$
+g(\theta) = \frac{1}{m} \sum_{i \in B} \nabla \ell(\theta; \xi_i)
+$$
+
+$$
+\mathbb{E}[g(\theta)] = \nabla R(\theta)
+$$
 
 **Proof:**
-```
-E[g(θ)] = E[(1/m) ∑ᵢ∈B ∇ℓ(θ; ξᵢ)]
-        = (1/m) ∑ᵢ∈B E[∇ℓ(θ; ξᵢ)]     (Linearity of expectation)
-        = (1/m) ∑ᵢ∈B ∇R(θ)             (From Task 3.1)
-        = (1/m) · m · ∇R(θ)
-        = ∇R(θ)
-```
+
+$
+\mathbb{E}[g(\theta)] 
+= \mathbb{E}\left[\frac{1}{m} \sum_{i \in B} \nabla \ell(\theta; \xi_i)\right]
+$
+
+$
+= \frac{1}{m} \sum_{i \in B} \mathbb{E}[\nabla \ell(\theta; \xi_i)]
+\quad \text{(Linearity of expectation)}
+$
+
+$
+= \frac{1}{m} \sum_{i \in B} \nabla R(\theta)
+$
+
+$
+= \frac{1}{m} \cdot m \cdot \nabla R(\theta)
+$
+
+$
+= \nabla R(\theta)
+$
 
 **Practical Implications:**
 - Mini-batching maintains the unbiased property while reducing variance
@@ -75,14 +112,18 @@ E[g(θ)] = E[(1/m) ∑ᵢ∈B ∇ℓ(θ; ξᵢ)]
 
 ---
 
-### **Variance Scaling Analysis (The Problem)**
+**Variance Scaling Analysis (The Problem)**
 
-**Mathematical Statement:**
+**Mathematical Statement:**  
 The variance of the mini-batch gradient estimator scales with batch size:
-```
-Var[g(θ)] = (1/m) · σ²(θ)
-```
-where σ²(θ) is the variance of individual sample gradients.
+
+$$
+\operatorname{Var}[g(\theta)] = \frac{1}{m} \cdot \sigma^2(\theta)
+$$
+
+where $ \sigma^2(\theta) $ is the variance of individual sample gradients.
+
+---
 
 **Key Insight:**
 - Variance decreases linearly with batch size
@@ -90,57 +131,77 @@ where σ²(θ) is the variance of individual sample gradients.
 - To halve the standard deviation (noise), you need to quadruple the batch size
 - Even with large batches, variance never completely disappears
 
-**Mathematical Consequence:**
-With constant learning rate η, SGD will oscillate around the minimum rather than converge exactly:
-```
-lim sup E[||θₜ - θ*||²] ≥ C · η    (for some constant C)
-```
+---
+
+**Mathematical Consequence:**  
+With constant learning rate $ \eta $, SGD will oscillate around the minimum rather than converge exactly:
+
+$$
+\limsup_{t \to \infty} 
+\mathbb{E}\left[\lVert \theta_t - \theta^* \rVert^2\right] 
+\ge C \cdot \eta
+$$
+
+(for some constant $ C $)
 
 ---
 
-### **Convergence Analysis: Robbins-Monro Conditions (The Solution)**
+**Convergence Analysis: Robbins-Monro Conditions (The Solution)**
 
-**The Challenge:**
+**The Challenge:**  
 Due to persistent variance, constant learning rates cause SGD to oscillate around the minimum.
 
-**The Solution:**
-Use time-varying learning rates ηₜ that satisfy the **Robbins-Monro conditions**:
+---
 
-1. **∑ₜ ηₜ = ∞** (Sum diverges - ensures progress toward minimum)
+**The Solution:**  
+Use time-varying learning rates $ \eta_t $ that satisfy the **Robbins–Monro conditions**:
+
+1. **$ \sum_t \eta_t = \infty $** (Sum diverges — ensures progress toward minimum)  
    - This condition guarantees that the algorithm takes sufficiently large steps to reach the optimum
-   
-2. **∑ₜ ηₜ² < ∞** (Sum of squares converges - ensures variance dies out)
+
+2. **$ \sum_t \eta_t^2 < \infty $** (Sum of squares converges — ensures variance dies out)  
    - This condition ensures that the steps become small enough to prevent oscillation around the minimum
 
-**Common Learning Rate Schedules:**
+---
 
-| Schedule Type | Formula | Description |
-|---------------|---------|-------------|
-| **Inverse decay** | ηₜ = η₀ / (1 + λt) | Learning rate decreases proportionally to inverse of iteration |
-| **Step decay** | ηₜ = η₀ × 0.1^(floor(t/T)) | Learning rate drops by factor every T epochs |
-| **Exponential decay** | ηₜ = η₀ × 0.95^t | Learning rate decreases exponentially |
-| **Polynomial decay** | ηₜ = η₀ × t^(-α) where α ∈ (0.5, 1] | Learning rate follows polynomial decay |
+## Common Learning Rate Schedules
 
-**Important Note on Exponential Decay:**
-While exponential decay (ηₜ = η₀ × 0.95^t) does not strictly satisfy the Robbins-Monro conditions (since ∑ₜ ηₜ may converge for rapidly decaying rates), it is widely used in practice due to its effectiveness in achieving faster convergence during finite training periods. The practical benefits often outweigh the theoretical concerns in real-world applications.
+| Schedule Type        | Formula                                      | Description |
+|----------------------|----------------------------------------------|-------------|
+| **Inverse decay**    | $ \eta_t = \frac{\eta_0}{1 + \lambda t} $    | Learning rate decreases proportionally to inverse of iteration |
+| **Step decay**       | $ \eta_t = \eta_0 \times 0.1^{\lfloor t/T \rfloor} $ | Learning rate drops by factor every $T$ epochs |
+| **Exponential decay**| $ \eta_t = \eta_0 \times 0.95^t $             | Learning rate decreases exponentially |
+| **Polynomial decay** | $ \eta_t = \eta_0 \times t^{-\alpha}, \ \alpha \in (0.5, 1] $ | Learning rate follows polynomial decay |
 
-**Convergence Theorem:**
-Under the Robbins-Monro conditions and appropriate smoothness assumptions:
-```
-lim E[||∇R(θₜ)||²] = 0
-```
+---
+
+**Important Note on Exponential Decay**
+
+While exponential decay ($ \eta_t = \eta_0 \times 0.95^t $) does not strictly satisfy the Robbins–Monro conditions (since $ \sum_t \eta_t $ may converge for rapidly decaying rates), it is widely used in practice due to its effectiveness in achieving faster convergence during finite training periods. The practical benefits often outweigh the theoretical concerns in real-world applications.
+
+---
+
+## Convergence Theorem
+
+Under the Robbins–Monro conditions and appropriate smoothness assumptions:
+
+$$
+\lim_{t \to \infty} 
+\mathbb{E}\left[\lVert \nabla R(\theta_t) \rVert^2\right] = 0
+$$
+
 meaning SGD converges to a stationary point in expectation.
 
 ---
 
-### **The Complete Theoretical Framework**
+**The Complete Theoretical Framework**
 
 | **Component** | **Mathematical Statement** | **Purpose** | **Real-World Impact** |
 | --- | --- | --- | --- |
-| **Unbiasedness** | E[∇ℓ(θ; ξ)] = ∇R(θ) | Validity foundation | SGD points in right direction on average |
-| **Mini-batch Scaling** | E[g(θ)] = ∇R(θ) | Practical efficiency | Enables batch processing |
-| **Variance Analysis** | Var[g(θ)] = σ²(θ)/m | Noise quantification | Explains zig-zag behavior |
-| **Convergence Conditions** | ∑ηₜ=∞, ∑ηₜ²<∞ | Convergence guarantee | Learning rate decay rules |
+| **Unbiasedness** | $ \mathbb{E}[\nabla \ell(\theta; \xi)] = \nabla R(\theta) $ | Validity foundation | SGD points in right direction on average |
+| **Mini-batch Scaling** | $ \mathbb{E}[g(\theta)] = \nabla R(\theta) $ | Practical efficiency | Enables batch processing |
+| **Variance Analysis** | $ \operatorname{Var}[g(\theta)] = \frac{\sigma^2(\theta)}{m} $ | Noise quantification | Explains zig-zag behavior |
+| **Convergence Conditions** | $ \sum_t \eta_t = \infty,\ \sum_t \eta_t^2 < \infty $ | Convergence guarantee | Learning rate decay rules |
 
 # Numerical
 
@@ -148,113 +209,244 @@ meaning SGD converges to a stationary point in expectation.
 
 Let's trace through a complete SGD iteration with logistic regression:
 
-**Model:** ŷ = σ(wx + b) where σ(z) = 1/(1 + e^(-z))
-**Loss:** L = -[y·log(ŷ) + (1-y)·log(1-ŷ)] (Binary Cross-Entropy)
-**Update Rule:** θ ← θ - η∇L where η = 0.5 (learning rate)
+**Model:**
 
-| **Iteration** | **Sample Data (x,y)** | **Current            θ[w,b]** | **Logits     z** | **Pred        $\hat{y}$**           | **Loss       L** | **Gradient         ∇[w,b]** | **Updated   θ[w,b]** |
+$$
+\hat{y} = \sigma(wx + b)
+$$
+
+where
+
+$$
+\sigma(z) = \frac{1}{1 + e^{-z}}
+$$
+
+**Loss (Binary Cross-Entropy):**
+
+$$
+L = -\left[y \log(\hat{y}) + (1-y)\log(1-\hat{y})\right]
+$$
+
+**Update Rule:**
+
+$$
+\theta \leftarrow \theta - \eta \nabla L
+$$
+
+where $ \eta = 0.5 $ (learning rate).
+
+---
+
+| **Iteration** | **Sample Data (x,y)** | **Current $\theta[w,b]$** | **Logits $z$** | **Pred $\hat{y}$** | **Loss $L$** | **Gradient $\nabla[w,b]$** | **Updated $\theta[w,b]$** |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | **1** | (3, 1) | [0, 0] | 0 | 0.500 | 0.693 | [-1.5000, -0.5000] | [0.750, 0.250] |
 | **2** | (3, 0) | [0.7500, 0.2500] | 2.5 | 0.924 | 2.577 | [2.7723, 0.9241] | [-0.636, -0.212] |
-| **3** | (1, 1) | [-0.6362, -0.2121] | 0.848 | 0.300 | 1.203 | [-0.7002, -0.7002] | [-0.286, 0.138] |
+| **3** | (1, 1) | [-0.6362, -0.2121] | -0.848 | 0.300 | 1.204 | [-0.7002, -0.7002] | [-0.286, 0.138] |
 
-### Detailed Calculation for Iteration 1: (x=3, y=1) with θ=[0, 0]
+---
 
-1. **Forward Pass:**
-   - z = wx + b = 0×3 + 0 = 0
-   - ŷ = σ(0) = 1/(1 + e^0) = 1/2 = 0.5
+**Detailed Calculation for Iteration 1**  
+**(x = 3, y = 1) with $\theta = [0, 0]$**
 
-2. **Loss Calculation:**
-   - L = -[1×log(0.5) + (1-1)×log(1-0.5)] = -log(0.5) = ln(2) ≈ 0.693
+**1. Forward Pass**
 
-3. **Gradient Computation:**
-   - For logistic regression: ∇w = (ŷ - y)×x = (0.5 - 1)×3 = -1.5
-   - ∇b = (ŷ - y)×1 = (0.5 - 1)×1 = -0.5
-   - ∇[w,b] = [-1.5, -0.5]
+$$
+z = wx + b = 0 \times 3 + 0 = 0
+$$
 
-4. **Parameter Update:**
-   - w_new = w_old - η×∇w = 0 - 0.5×(-1.5) = 0.75
-   - b_new = b_old - η×∇b = 0 - 0.5×(-0.5) = 0.25
-   - θ_new = [0.75, 0.25]
+$$
+\hat{y} = \sigma(0) = \frac{1}{1 + e^{0}} = \frac{1}{2} = 0.5
+$$
 
-### Detailed Calculation for Iteration 2: (x=3, y=0) with θ=[0.75, 0.25]
+**2. Loss Calculation**
 
-1. **Forward Pass:**
-   - z = wx + b = 0.75×3 + 0.25 = 2.25 + 0.25 = 2.5
-   - ŷ = σ(2.5) = 1/(1 + e^(-2.5)) ≈ 0.924
+$$
+L = -\left[1 \cdot \log(0.5) + 0 \cdot \log(0.5)\right]
+= -\log(0.5) = \ln(2) \approx 0.693
+$$
 
-2. **Loss Calculation:**
-   - L = -[0×log(0.924) + (1-0)×log(1-0.924)] = -log(0.076) ≈ 2.577
+**3. Gradient Computation**
 
-3. **Gradient Computation:**
-   - ∇w = (ŷ - y)×x = (0.924 - 0)×3 = 2.772
-   - ∇b = (ŷ - y)×1 = (0.924 - 0)×1 = 0.924
-   - ∇[w,b] = [2.772, 0.924]
+For logistic regression:
 
-4. **Parameter Update:**
-   - w_new = 0.75 - 0.5×2.772 = 0.75 - 1.386 = -0.636
-   - b_new = 0.25 - 0.5×0.924 = 0.25 - 0.462 = -0.212
+$$
+\nabla_w = (\hat{y} - y)x = (0.5 - 1) \times 3 = -1.5
+$$
 
-### Detailed Calculation for Iteration 3: (x=1, y=1) with θ=[-0.636, -0.212]
+$$
+\nabla_b = (\hat{y} - y) = (0.5 - 1) = -0.5
+$$
 
-1. **Forward Pass:**
-   - z = wx + b = -0.636×1 + (-0.212) = -0.848
-   - ŷ = σ(-0.848) = 1/(1 + e^0.848) ≈ 0.300
+$$
+\nabla [w,b] = [-1.5, -0.5]
+$$
 
-2. **Loss Calculation:**
-   - L = -[1×log(0.300) + 0×log(0.700)] = -log(0.300) ≈ 1.204
+**4. Parameter Update**
 
-3. **Gradient Computation:**
-   - ∇w = (0.300 - 1)×1 = -0.700
-   - ∇b = (0.300 - 1)×1 = -0.700
-   - ∇[w,b] = [-0.700, -0.700]
+$$
+w_{\text{new}} = 0 - 0.5(-1.5) = 0.75
+$$
 
-4. **Parameter Update:**
-   - w_new = -0.636 - 0.5×(-0.700) = -0.636 + 0.350 = -0.286
-   - b_new = -0.212 - 0.5×(-0.700) = -0.212 + 0.350 = 0.138
+$$
+b_{\text{new}} = 0 - 0.5(-0.5) = 0.25
+$$
 
-## Key Observations:
+$$
+\theta_{\text{new}} = [0.75, 0.25]
+$$
 
-- **Iteration 1** saw a data point `(3, 1)`. The model learned: "Large positive inputs mean Label 1". It set w=0.75.
-- **Iteration 2** sees a data point `(3, 0)`. This contradicts Iteration 1. It says: "Large positive inputs mean Label 0".
+---
 
-## Conflict Analysis (The Math of Variance):
+**Detailed Calculation for Iteration 2**  
+**(x = 3, y = 0) with $\theta = [0.75, 0.25]$**
 
-1. **Prediction (0.924):** Because w=0.75, the model is *extremely confident* (92%) that the label is 1.
-2. **The Shock (y=0):** The reality is 0.
-3. **The Gradient (2.772):** This is massive. A typical gradient might be 0.1 or 0.5. A gradient of 2.772 means we are very wrong.
-4. **The Over-Correction:** The update changes w from 0.75 all the way to -0.636.
-• **Insight:** If we had used the **Full Batch (GD)**, it would have seen *both* `(3,1)` and `(3,0)` at the same time. The gradients would have canceled each other out (1.5 and -1.5), leading to a small, cautious step. SGD doesn't wait; it reacts violently to the immediate signal.
+**1. Forward Pass**
 
-**Key Takeaway:** "The massive jump in Loss (0.693 to 2.577) and the swing in weights in Iteration 2 is not a mistake; it is the **visual definition of Variance** in SGD. The estimator is unbiased *on average*, but individually, it is highly volatile."
+$$
+z = 0.75 \times 3 + 0.25 = 2.5
+$$
 
-## Convergence Behavior Analysis
+$$
+\hat{y} = \sigma(2.5) = \frac{1}{1 + e^{-2.5}} \approx 0.924
+$$
 
-### Learning Rate Impact
+**2. Loss Calculation**
 
-The learning rate η controls the step size in SGD updates:
-- **Too large (η > 1.0):** May overshoot the minimum, causing oscillations or divergence
-- **Too small (η < 0.01):** Converges very slowly
-- **Typical range (η ≈ 0.1-0.5):** Often provides good balance between speed and stability for basic SGD
-- **Important Note:** The "optimal" learning rate is highly problem-dependent and varies based on:
-  - Model architecture and complexity
-  - Choice of optimizer (SGD vs Adam vs others)
-  - Dataset characteristics (size, dimensionality, noise level)
-  - Batch size used during training
-  - Specific learning task (classification vs regression vs other)
-  - In practice, values like 0.001 (especially for Adam optimizer) are commonly used
+$$
+L = -\log(1 - 0.924) = -\log(0.076) \approx 2.577
+$$
 
-### Variance Reduction Techniques
+**3. Gradient Computation**
 
-1. **Mini-batching:** Averaging gradients over multiple samples reduces noise
-2. **Learning rate decay:** Gradually reducing η helps settle near the minimum
-3. **Momentum:** Incorporating past gradients smooths the path
+$$
+\nabla_w = (0.924 - 0) \times 3 = 2.772
+$$
 
-### Mathematical Properties Demonstrated
+$$
+\nabla_b = (0.924 - 0) = 0.924
+$$
 
-- **Unbiasedness:** E[∇L_single] = ∇L_full_batch (on average, SGD points in the right direction)
-- **Variance:** Individual gradients fluctuate significantly around the true gradient
-- **Convergence:** With proper learning rate decay, SGD converges to the optimal solution
+$$
+\nabla [w,b] = [2.772, 0.924]
+$$
+
+**4. Parameter Update**
+
+$$
+w_{\text{new}} = 0.75 - 0.5(2.772) = -0.636
+$$
+
+$$
+b_{\text{new}} = 0.25 - 0.5(0.924) = -0.212
+$$
+
+---
+
+**Detailed Calculation for Iteration 3** 
+**(x = 1, y = 1) with $\theta = [-0.636, -0.212]$**
+
+**1. Forward Pass**
+
+$$
+z = -0.636(1) - 0.212 = -0.848
+$$
+
+$$
+\hat{y} = \sigma(-0.848) \approx 0.300
+$$
+
+**2. Loss Calculation**
+
+$$
+L = -\log(0.300) \approx 1.204
+$$
+
+**3. Gradient Computation**
+
+$$
+\nabla_w = (0.300 - 1) \times 1 = -0.700
+$$
+
+$$
+\nabla_b = (0.300 - 1) = -0.700
+$$
+
+$$
+\nabla [w,b] = [-0.700, -0.700]
+$$
+
+**4. Parameter Update**
+
+$$
+w_{\text{new}} = -0.636 - 0.5(-0.700) = -0.286
+$$
+
+$$
+b_{\text{new}} = -0.212 - 0.5(-0.700) = 0.138
+$$
+
+---
+
+**Key Observations**
+
+- **Iteration 1** saw $(3,1)$. The model learned: "Large positive inputs mean Label 1."
+- **Iteration 2** saw $(3,0)$. This directly contradicted Iteration 1.
+
+---
+
+**Conflict Analysis (The Math of Variance)**
+
+1. **Prediction (0.924):** The model is extremely confident (92%) that the label is 1.  
+2. **The Shock (y = 0):** The truth contradicts the prediction.  
+3. **The Gradient (2.772):** Large magnitude indicates severe error.  
+4. **The Over-Correction:** Weight flips from $0.75$ to $-0.636$.
+
+**Insight:**  
+If we had used full-batch GD, it would have processed $(3,1)$ and $(3,0)$ together.  
+The gradients $-1.5$ and $+1.5$ would largely cancel, producing a cautious step.
+
+SGD reacts immediately — this is variance in action.
+
+**Key Takeaway:**  
+The large jump in loss (0.693 → 2.577) and weight swing in Iteration 2 is not a bug.  
+It is the **visual definition of variance** in SGD. The estimator is unbiased *on average*, but individually highly volatile.
+
+---
+
+# Convergence Behavior Analysis
+
+## Learning Rate Impact
+
+The learning rate $ \eta $ controls the step size:
+
+- **Too large ($\eta > 1.0$):** May overshoot → oscillation or divergence  
+- **Too small ($\eta < 0.01$):** Very slow convergence  
+- **Typical range ($\eta \approx 0.1 - 0.5$):** Good balance for basic SGD  
+
+**Important:** Optimal $ \eta $ is highly problem-dependent.
+
+---
+
+## Variance Reduction Techniques
+
+1. **Mini-batching:** Averages gradients to reduce noise  
+2. **Learning rate decay:** Gradually reduces oscillations  
+3. **Momentum:** Uses past gradients to smooth updates  
+
+---
+
+**Mathematical Properties Demonstrated**
+
+- **Unbiasedness:**
+  $$
+  \mathbb{E}[\nabla L_{\text{single}}] = \nabla L_{\text{full batch}}
+  $$
+
+- **Variance:**  
+  Individual gradients fluctuate significantly.
+
+- **Convergence:**  
+  With proper learning rate decay, SGD converges to the optimal solution.
 
 # Coding
 
@@ -262,12 +454,15 @@ The learning rate η controls the step size in SGD updates:
 
 Optimizers are the algorithms or methods used to change the attributes of your neural network (such as weights and learning rate) in order to reduce the losses. Each optimizer has distinct mathematical properties and use cases.
 
-### 1. Batch Gradient Descent (BGD)
+1. Batch Gradient Descent (BGD)
 
 **Mathematical Formulation:**
-```
-θ_{t+1} = θ_t - η∇R(θ_t) = θ_t - η(1/n)∑∇ℓ(θ_t; x_i, y_i)
-```
+
+$$
+\theta_{t+1} 
+= \theta_t - \eta \nabla R(\theta_t) 
+= \theta_t - \eta \frac{1}{n} \sum_{i=1}^{n} \nabla \ell(\theta_t; x_i, y_i)
+$$
 
 **Characteristics:**
 - Uses the entire dataset for each update
@@ -276,18 +471,21 @@ Optimizers are the algorithms or methods used to change the attributes of your n
 - Memory intensive for large datasets
 
 **Implementation:**
+
 ```python
 def batch_gradient_descent(params, gradients, learning_rate):
     new_params = params - learning_rate * gradients
     return new_params
 ```
 
-### 2. Stochastic Gradient Descent (SGD)
-
+2. Stochastic Gradient Descent (SGD)
 **Mathematical Formulation:**
-```
-θ_{t+1} = θ_t - η∇ℓ(θ_t; x_i, y_i)  where (x_i, y_i) is randomly selected
-```
+
+$$
+\theta_{t+1} 
+= \theta_t - \eta \nabla \ell(\theta_t; x_i, y_i),
+\quad \text{where } (x_i, y_i) \text{ is randomly selected}
+$$
 
 **Characteristics:**
 - Uses a single sample per update
@@ -296,26 +494,37 @@ def batch_gradient_descent(params, gradients, learning_rate):
 - Requires careful learning rate tuning
 
 **Implementation:**
+
 ```python
 def sgd(params, gradient, learning_rate):
     new_params = params - learning_rate * gradient
     return new_params
 ```
 
-### 3. SGD with Momentum
+
+3. SGD with Momentum
 
 **Mathematical Formulation:**
-```
-v_{t+1} = βv_t + (1-β)∇ℓ(θ_t)    # Velocity accumulation with gradient weighting
-θ_{t+1} = θ_t - ηv_{t+1}
-```
-where v is the velocity, β is the momentum coefficient (typically 0.9), and η is the learning rate.
+
+$$
+v_{t+1} = \beta v_t + (1 - \beta)\nabla \ell(\theta_t)
+$$
+
+$$
+\theta_{t+1} = \theta_t - \eta v_{t+1}
+$$
+
+where  
+- $v_t$ is the velocity (momentum term)  
+- $\beta$ is the momentum coefficient (typically $0.9$)  
+- $\eta$ is the learning rate  
 
 **Characteristics:**
-- Accumulates past gradients with exponential decay
-- Reduces oscillations in high-curvature directions
-- Accelerates convergence in consistent gradient directions
-- Helps overcome local minima and saddle points
+- Accumulates past gradients with exponential decay  
+- Reduces oscillations in high-curvature directions  
+- Accelerates convergence in consistent gradient directions  
+- Helps overcome local minima and saddle points  
+
 
 **Implementation:**
 ```python
@@ -326,7 +535,7 @@ def sgd_momentum(params, gradient, velocity, learning_rate, momentum=0.9):
     new_params = params - learning_rate * velocity
     return new_params, velocity
 
-# Alternative implementation (equivalent but more commonly used in practice):
+**Alternative implementation (equivalent but more commonly used in practice):**
 def sgd_momentum_alt(params, gradient, velocity, learning_rate, momentum=0.9):
     # Standard momentum: velocity accumulates gradient directly
     velocity = momentum * velocity + gradient
@@ -347,19 +556,24 @@ elif opt_type == "Momentum":
     b -= lr * vel_b
 ```
 
-### 4. Nesterov Accelerated Gradient (NAG)
+4. Nesterov Accelerated Gradient (NAG)
 
 **Mathematical Formulation:**
-```
-v_{t+1} = βv_t + ∇ℓ(θ_t - βv_t)    # Look-ahead gradient computation
-θ_{t+1} = θ_t - ηv_{t+1}
-```
+
+$$
+v_{t+1} = \beta v_t + \nabla \ell(\theta_t - \beta v_t)
+$$
+
+$$
+\theta_{t+1} = \theta_t - \eta v_{t+1}
+$$
 
 **Characteristics:**
-- "Look-ahead" property improves convergence
-- Better theoretical convergence rates
-- More stable than standard momentum
-- Anticipates the gradient at the next position
+- "Look-ahead" property improves convergence  
+- Better theoretical convergence rates  
+- More stable than standard momentum  
+- Anticipates the gradient at the next position  
+
 
 **Implementation:**
 ```python
@@ -374,7 +588,7 @@ def nag(params, gradient, velocity, learning_rate, momentum=0.9):
     new_params = params - learning_rate * velocity
     return new_params, velocity
 
-# Complete implementation from notebook:
+**Complete implementation from notebook:**
 elif opt_type == "NAG":
     # NAG is not explicitly implemented in the notebook, but conceptually:
     # Compute gradient at position adjusted by previous velocity
@@ -385,20 +599,26 @@ elif opt_type == "NAG":
     b -= lr * vel_b
 ```
 
-### 5. AdaGrad (Adaptive Gradient)
+5. AdaGrad (Adaptive Gradient)
 
 **Mathematical Formulation:**
-```
-G_t = G_{t-1} + [∇ℓ(θ_t)]²  # Element-wise square
-θ_{t+1} = θ_t - η/(√(G_t + ε)) * ∇ℓ(θ_t)
-```
-where ε is a small constant to prevent division by zero.
+
+$$
+G_t = G_{t-1} + [\nabla \ell(\theta_t)]^2 \quad \text{(element-wise square)}
+$$
+
+$$
+\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{G_t + \epsilon}} \, \nabla \ell(\theta_t)
+$$
+
+where $ \epsilon $ is a small constant to prevent division by zero.
 
 **Characteristics:**
-- Adapts learning rate per parameter
-- Works well for sparse data
-- Learning rate decreases monotonically
-- May stop learning too early
+- Adapts learning rate per parameter  
+- Works well for sparse data  
+- Learning rate decreases monotonically  
+- May stop learning too early  
+
 
 **Implementation:**
 ```python
@@ -411,7 +631,7 @@ def adagrad(params, gradient, grad_squared_sum, learning_rate, epsilon=1e-8):
     new_params = params - adaptive_lr * gradient
     return new_params, grad_squared_sum
 
-# Complete implementation from notebook:
+**Complete implementation from notebook:**
 elif opt_type == "AdaGrad":
     # AdaGrad is not explicitly implemented in the notebook
     # But conceptually it would accumulate squared gradients
@@ -423,20 +643,26 @@ elif opt_type == "AdaGrad":
     b -= (lr / (np.sqrt(sum_sq_db) + eps)) * db
 ```
 
-### 6. RMSprop (Root Mean Square Propagation)
+6. RMSprop (Root Mean Square Propagation)
 
 **Mathematical Formulation:**
-```
-E[g²]_t = γE[g²]_{t-1} + (1-γ)[∇ℓ(θ_t)]²
-θ_{t+1} = θ_t - η/√(E[g²]_t + ε) * ∇ℓ(θ_t)
-```
-where γ is the decay rate (typically 0.9).
+
+$$
+E[g^2]_t = \gamma E[g^2]_{t-1} + (1 - \gamma) [\nabla \ell(\theta_t)]^2
+$$
+
+$$
+\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{E[g^2]_t + \epsilon}} \, \nabla \ell(\theta_t)
+$$
+
+where $ \gamma $ is the decay rate (typically $0.9$) and $ \epsilon $ is a small constant to prevent division by zero.
 
 **Characteristics:**
-- Addresses AdaGrad's aggressive learning rate reduction
-- Maintains moving average of squared gradients
-- Good for non-stationary objectives
-- Empirically effective for RNNs
+- Addresses AdaGrad's aggressive learning rate reduction  
+- Maintains moving average of squared gradients  
+- Good for non-stationary objectives  
+- Empirically effective for RNNs  
+
 
 **Implementation:**
 ```python
@@ -449,7 +675,7 @@ def rmsprop(params, gradient, grad_squared_avg, learning_rate, decay_rate=0.9, e
     new_params = params - adaptive_lr * gradient
     return new_params, grad_squared_avg
 
-# Complete implementation from notebook:
+**Complete implementation from notebook:**
 elif opt_type == "RMSprop":
     # RMSprop is not explicitly implemented in the notebook
     # But conceptually it would use exponential moving average of squared gradients
@@ -461,41 +687,58 @@ elif opt_type == "RMSprop":
     b -= (lr / (np.sqrt(avg_sq_db) + eps)) * db
 ```
 
-### 7. Adam (Adaptive Moment Estimation)
+7. Adam (Adaptive Moment Estimation)
 
 **Mathematical Formulation:**
 
-Adam maintains two moving averages - the first moment (mean) and second moment (uncentered variance) of the gradients:
+Adam maintains two moving averages — the first moment (mean) and second moment (uncentered variance) of the gradients.
+
+---
 
 **Step 1: Update biased moments**
-```
-m_t = β₁m_{t-1} + (1-β₁)∇ℓ(θ_t)        # First moment (mean)
-v_t = β₂v_{t-1} + (1-β₂)[∇ℓ(θ_t)]²     # Second moment (uncentered variance)
-```
+
+$$
+m_t = \beta_1 m_{t-1} + (1 - \beta_1) \nabla \ell(\theta_t) \quad \text{(first moment / mean)}
+$$
+
+$$
+v_t = \beta_2 v_{t-1} + (1 - \beta_2) [\nabla \ell(\theta_t)]^2 \quad \text{(second moment / uncentered variance)}
+$$
+
+---
 
 **Step 2: Apply bias correction**
-```
-m̂_t = m_t / (1 - β₁^t)                # Bias-corrected first moment
-v̂_t = v_t / (1 - β₂^t)                # Bias-corrected second moment
-```
+
+$$
+\hat{m}_t = \frac{m_t}{1 - \beta_1^t} \quad \text{(bias-corrected first moment)}
+$$
+
+$$
+\hat{v}_t = \frac{v_t}{1 - \beta_2^t} \quad \text{(bias-corrected second moment)}
+$$
+
+---
 
 **Step 3: Update parameters**
-```
-θ_{t+1} = θ_t - η * m̂_t / (√v̂_t + ε)
-```
 
-where:
-- β₁ ≈ 0.9 (controls decay rate for first moment)
-- β₂ ≈ 0.999 (controls decay rate for second moment)
-- ε ≈ 1e-8 (small constant to prevent division by zero)
-- η is the learning rate
+$$
+\theta_{t+1} = \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
+$$
+
+where:  
+- $\beta_1 \approx 0.9$ (decay rate for first moment)  
+- $\beta_2 \approx 0.999$ (decay rate for second moment)  
+- $\epsilon \approx 10^{-8}$ (small constant to prevent division by zero)  
+- $\eta$ is the learning rate  
+
+---
 
 **Characteristics:**
-- Combines momentum and adaptive learning rates
-- Bias correction for early iterations
-- Computationally efficient
-- Well-calibrated for most problems
-- Default choice for many applications
+- Combines momentum and adaptive learning rates  
+- Bias correction for early iterations  
+- Computationally efficient  
+- Well-calibrated for most problems  
+- Default choice for many applications  
 
 **Implementation:**
 ```python
@@ -510,7 +753,7 @@ def adam(params, gradient, m, v, t, learning_rate=0.001, beta1=0.9, beta2=0.999,
     new_params = params - learning_rate * m_hat / (np.sqrt(v_hat) + epsilon)
     return new_params, m, v
 
-# Complete implementation from notebook:
+**Complete implementation from notebook:**
 elif opt_type == "Adam":
     dw, db, _ = get_gradients(xi, yi, w, b)
     t += 1
@@ -529,19 +772,24 @@ elif opt_type == "Adam":
     b -= lr * m_b_hat / (np.sqrt(v_b_hat) + eps)
 ```
 
-### 8. AdamW (Adam with Weight Decay)
+8. AdamW (Adam with Weight Decay)
 
 **Mathematical Formulation:**
-```
-θ_{t+1} = θ_t - η * (m̂_t / (√v̂_t + ε) + λθ_t)
-```
-where λ is the weight decay coefficient.
+
+$$
+\theta_{t+1} = \theta_t - \eta \left( \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} + \lambda \theta_t \right)
+$$
+
+where $ \lambda $ is the weight decay coefficient.
+
+---
 
 **Characteristics:**
-- Decouples weight decay from gradient updates
-- Better generalization than standard Adam
-- More principled regularization
-- Recommended for training with weight decay
+- Decouples weight decay from gradient updates  
+- Better generalization than standard Adam  
+- More principled regularization  
+- Recommended for training with weight decay  
+
 
 **Implementation:**
 ```python
@@ -558,8 +806,8 @@ def adamw(params, gradient, m, v, t, learning_rate=0.001, beta1=0.9, beta2=0.999
     new_params = params - param_update - learning_rate * weight_decay * params
     return new_params, m, v
 
-# Complete implementation from notebook:
-# AdamW is not explicitly implemented in the notebook, but conceptually:
+**Complete implementation from notebook:**
+**AdamW is not explicitly implemented in the notebook, but conceptually:**
 elif opt_type == "AdamW":
     dw, db, _ = get_gradients(xi, yi, w, b)
     t += 1
@@ -594,32 +842,32 @@ elif opt_type == "AdamW":
 
 ## Practical Implementation Tips
 
-### 1. Learning Rate Selection
-- **SGD:** Start with η = 0.01 to 0.1
-- **Adam:** Start with η = 0.001 (default)
-- **Tune on a logarithmic scale:** 0.1, 0.01, 0.001, 0.0001
+1. Learning Rate Selection
+- **SGD:** Start with $\eta = 0.01$ to $0.1$  
+- **Adam:** Start with $\eta = 0.001$ (default)  
+- **Tune on a logarithmic scale:** $0.1, 0.01, 0.001, 0.0001$  
 
-### 2. Hyperparameter Tuning
-- **Momentum (β):** 0.9 is standard, try 0.95 for faster convergence
-- **Adam β₁:** 0.9 (standard), β₂: 0.999 (standard)
-- **Batch size:** 32, 64, 128, 256 (powers of 2 work well on GPUs)
+2. Hyperparameter Tuning
+- **Momentum ($\beta$):** 0.9 is standard, try 0.95 for faster convergence  
+- **Adam:** $\beta_1 = 0.9$ (standard), $\beta_2 = 0.999$ (standard)  
+- **Batch size:** 32, 64, 128, 256 (powers of 2 work well on GPUs)  
 
-### 3. Convergence Monitoring
-- Track both training and validation loss
-- Monitor gradient norms to detect vanishing/exploding gradients
-- Use learning rate scheduling (decay, warm restarts)
+3. Convergence Monitoring
+- Track both training and validation loss  
+- Monitor gradient norms to detect vanishing/exploding gradients  
+- Use learning rate scheduling (decay, warm restarts)  
 
-### 4. Advanced Techniques
-- **Learning Rate Scheduling:** Reduce learning rate when loss plateaus
-- **Gradient Clipping:** Prevent exploding gradients in RNNs
-- **Warm Restarts:** Periodically reset learning rate for better convergence
-- **Cyclical Learning Rates:** Oscillate between bounds for faster convergence
+4. Advanced Techniques
+- **Learning Rate Scheduling:** Reduce learning rate when loss plateaus  
+- **Gradient Clipping:** Prevent exploding gradients in RNNs  
+- **Warm Restarts:** Periodically reset learning rate for better convergence  
+- **Cyclical Learning Rates:** Oscillate between bounds for faster convergence  
 
 ## Visualizing Optimization: Graph Analysis
 
-### Simple Dataset Visualization
+**Simple Dataset Visualization**
 
-#### Data Distribution (Simple Case)
+1. **Data Distribution (Simple Case)**
 <img src="../../assets/images/stochastic-gradient-descent-image/1 DataDistribution.png" alt="Data Distribution 1" width="600" height="200">
 
 **Dataset Overview:**
@@ -628,7 +876,7 @@ elif opt_type == "AdamW":
 - 7 students who passed (label 1)
 - Minimal overlap between classes, making classification relatively straightforward
 
-#### Loss Curve Comparison (Simple Case)
+2. **Loss Curve Comparison (Simple Case)**
 <img src="../../assets/images/stochastic-gradient-descent-image/1%20LossCurve.png" alt="Loss Curve 1" width="600" height="400">
 
 **Visual Analysis:**
@@ -661,7 +909,7 @@ elif opt_type == "AdamW":
   - **Mechanism:** Adapts learning rate per parameter based on gradient history
   - **Trade-off:** Optimal balance of speed and stability
 
-#### 3D Optimization Trajectories (Simple Case)
+3. **3D Optimization Trajectories (Simple Case)**
 <img src="../../assets/images/stochastic-gradient-descent-image/1%203d.png" alt="3D Optimization Trajectories 1" width="600" height="400">
 
 **Geometric Interpretation:**
@@ -682,7 +930,7 @@ elif opt_type == "AdamW":
   - **Intuition:** Adapts step size based on gradient history
   - **Visualization:** Like a skilled climber taking the most efficient route
 
-#### SGD Stability Analysis (Simple Case)
+4. **SGD Stability Analysis (Simple Case)**
 <img src="../../assets/images/stochastic-gradient-descent-image/1%20SGDStability.png" alt="SGD Stability & Trajectory 1" width="800" height="400">
 
 **Left Panel - Loss Stability:**
@@ -702,7 +950,7 @@ elif opt_type == "AdamW":
 **Note on Optimal Values at (w,b) = (0,0):**
 In the simple dataset visualization, the optimal values appear at (w,b) = (0,0) because the synthetic dataset was designed with balanced classes and centered features. When the data is normalized or centered around zero, the optimal linear classifier often has parameters close to zero initially. However, in real-world datasets like the complex example shown later, the optimal parameters will be at different values (e.g., w=5.10, b=-0.03 in the complex case) depending on the actual data distribution and relationships.
 
-#### Final Classification Result (Simple Case)
+5. **Final Classification Result (Simple Case)**
 <img src="../../assets/images/stochastic-gradient-descent-image/1%20Final.png" alt="Final Classification 1" width="600" height="400">
 
 **Visual Components:**
@@ -724,9 +972,9 @@ In the simple dataset visualization, the optimal values appear at (w,b) = (0,0) 
 **Implementation Details:**
 The trajectories shown in the 3D visualization were generated using the `run_optimizer` function from the notebook, which records the path taken by each optimizer through the parameter space (w, b). The function starts from the same initial point (-2.0, -2.0) and tracks how each optimizer navigates the loss landscape differently.
 
-### Complex Dataset Visualization
+**Complex Dataset Visualization**
 
-#### Data Distribution (Complex Case)
+1. **Data Distribution (Complex Case)**
 <img src="../../assets/images/stochastic-gradient-descent-image/2%20DataDistribution.png" alt="Data Distribution 2" width="600" height="200">
 
 **Dataset Overview:**
@@ -736,7 +984,7 @@ The trajectories shown in the 3D visualization were generated using the `run_opt
 - 20 "messy" points that don't follow clear pattern
 - More challenging classification task due to overlapping regions
 
-#### Loss Curve Comparison (Complex Case)
+2. **Loss Curve Comparison (Complex Case)**
 <img src="../../assets/images/stochastic-gradient-descent-image/2%20LossCurve.png" alt="Loss Curve 2" width="600" height="400">
 
 **Visual Analysis:**
@@ -765,7 +1013,7 @@ The trajectories shown in the 3D visualization were generated using the `run_opt
   - **Advantage:** Combines SGD speed with reduced noise
   - **Result:** Stable, efficient convergence
 
-#### 3D Optimization Trajectories (Complex Case)
+3. **3D Optimization Trajectories (Complex Case)**
 <img src="../../assets/images/stochastic-gradient-descent-image/2%203d.png" alt="3D Optimization Trajectories 2" width="600" height="400">
 
 **Landscape Characteristics:**
@@ -786,7 +1034,7 @@ The trajectories shown in the 3D visualization were generated using the `run_opt
   - **Behavior:** Adapts step size based on gradient magnitude
   - **Advantage:** Efficient navigation of complex landscape
 
-#### SGD Stability Analysis (Complex Case)
+4. **SGD Stability Analysis (Complex Case)**
 <img src="../../assets/images/stochastic-gradient-descent-image/2%20SGDStability.png" alt="SGD Stability & Trajectory 2" width="800" height="400">
 
 **Left Panel - Loss Stability:**
@@ -800,7 +1048,7 @@ The trajectories shown in the 3D visualization were generated using the `run_opt
 - **Pattern:** More complex zig-zag pattern due to challenging landscape
 - **Convergence:** Still approaches optimum despite complex path
 
-#### Final Classification Result (Complex Case)
+5. **Final Classification Result (Complex Case)**
 <img src="../../assets/images/stochastic-gradient-descent-image/2%20Final.png" alt="Final Classification 2" width="600" height="400">
 
 **Visual Components:**
@@ -818,7 +1066,7 @@ The trajectories shown in the 3D visualization were generated using the `run_opt
 **Implementation Details:**
 Similar to the simple case, these trajectories were generated using the `run_optimizer` function from the notebook. The complex dataset presents more challenges due to overlapping classes and increased noise, which is reflected in the more complex optimization paths observed in the visualizations.
 
-### Key Visual Insights
+**Key Visual Insights**
 
 1. **Optimizer Comparison:**
    - SGD: Fast but noisy
@@ -837,7 +1085,7 @@ Similar to the simple case, these trajectories were generated using the `run_opt
 
 ## Practical Implementation Tips and Best Practices
 
-### 1. Learning Rate Selection and Scheduling
+1. Learning Rate Selection and Scheduling
 
 **Initial Learning Rate:**
 - Start with common values: 0.1, 0.01, 0.001, 0.0001
@@ -850,7 +1098,7 @@ Similar to the simple case, these trajectories were generated using the `run_opt
 - **Cosine Annealing:** Smoothly oscillate between LR bounds
 - **Cyclical Learning Rates:** Cycle between bounds to escape local minima
 
-### 2. Batch Size Selection
+2. Batch Size Selection
 
 **Trade-offs:**
 - **Small batches (1-32):** More updates per epoch, higher variance, better generalization
@@ -863,7 +1111,7 @@ Similar to the simple case, these trajectories were generated using the `run_opt
 - **Learning Rate Scaling:** When increasing batch size, proportionally increase the learning rate (Linear Scaling Rule: if batch size increases by factor k, learning rate should also increase by factor k)
 - **Hardware Optimization:** GPUs and CPUs are designed with architectures that process data in parallel blocks, often powers of 2, maximizing utilization of parallel processing units
 
-### 3. Data Preprocessing and Normalization
+3. Data Preprocessing and Normalization
 
 **Feature Scaling:**
 - **Normalization:** Scale features to have zero mean and unit variance
@@ -872,7 +1120,7 @@ Similar to the simple case, these trajectories were generated using the `run_opt
 
 **Implementation:**
 ```python
-# Example of data preprocessing
+**Example of data preprocessing**
 from sklearn.preprocessing import StandardScaler
 
 scaler = StandardScaler()
@@ -885,7 +1133,7 @@ X_normalized = scaler.fit_transform(X)
 - Improves convergence speed
 - Prevents features with larger scales from dominating
 
-### 4. Initialization Strategies
+4. Initialization Strategies
 
 **Weight Initialization:**
 - **Xavier/Glorot Initialization:** Designed for sigmoid and tanh activation functions
@@ -896,21 +1144,26 @@ X_normalized = scaler.fit_transform(X)
 ```python
 import numpy as np
 
-# Xavier/Glorot initialization
+**Xavier/Glorot initialization**
 def xavier_init(fan_in, fan_out):
     limit = np.sqrt(6.0 / (fan_in + fan_out))
     return np.random.uniform(-limit, limit, (fan_out, fan_in))
 
-# He initialization
+**He initialization**
 def he_init(fan_in):
     return np.random.normal(0, np.sqrt(2.0 / fan_in), (fan_in,))
 ```
 
-### 5. Gradient Checking and Debugging
+5. Gradient Checking and Debugging
 
 **Gradient Checking:**
-- **Numerical Verification:** Compare analytical gradients with numerical approximations
-- **Formula:** ∂f/∂x ≈ [f(x+ε) - f(x-ε)] / (2ε)
+- **Numerical Verification:** Compare analytical gradients with numerical approximations  
+- **Formula:** 
+
+$$
+\frac{\partial f}{\partial x} \approx \frac{f(x + \epsilon) - f(x - \epsilon)}{2 \epsilon}
+$$
+
 
 **Implementation:**
 ```python
@@ -940,7 +1193,7 @@ def gradient_check(func, params, gradients, epsilon=1e-5):
 - **Visualize Gradients:** Plot gradient distributions to understand learning dynamics
 - **Loss Monitoring:** Track both training and validation loss to detect overfitting
 
-### 3. Gradient Monitoring and Debugging
+3. Gradient Monitoring and Debugging
 
 **Monitor:**
 - Gradient norms: watch for vanishing (< 1e-8) or exploding (> 100) gradients
@@ -952,7 +1205,7 @@ def gradient_check(func, params, gradients, epsilon=1e-5):
 - Gradient checking: verify analytical gradients with numerical gradients
 - Learning rate reduction: if loss increases, reduce learning rate
 
-### 4. Optimizer Selection Guidelines
+4. Optimizer Selection Guidelines
 
 **When to Use Each Optimizer:**
 - **SGD:** When you need good generalization, have time to tune hyperparameters
@@ -961,7 +1214,7 @@ def gradient_check(func, params, gradients, epsilon=1e-5):
 - **AdamW:** When using weight decay (recommended over standard Adam)
 - **RMSprop:** For non-stationary problems, RNN training
 
-### 5. Advanced Techniques
+5. Advanced Techniques
 
 **Learning Rate Warmup:**
 - Start with small learning rate and gradually increase for first few epochs
@@ -975,7 +1228,7 @@ def gradient_check(func, params, gradients, epsilon=1e-5):
 - Use 16-bit floating point for faster training with minimal accuracy loss
 - Requires gradient scaling to prevent underflow
 
-### 6. Convergence Diagnostics
+6. Convergence Diagnostics
 
 **Signs of Good Training:**
 - Smooth decrease in training loss
@@ -989,7 +1242,7 @@ def gradient_check(func, params, gradients, epsilon=1e-5):
 - **Loss becomes NaN:** Reduce learning rate, check for exploding gradients
 - **Overfitting:** Add regularization, reduce model size, increase data
 
-### 7. Memory and Computational Efficiency
+7. Memory and Computational Efficiency
 
 **Memory Optimization:**
 - Use appropriate batch sizes for your GPU memory
@@ -1001,7 +1254,7 @@ def gradient_check(func, params, gradients, epsilon=1e-5):
 - Use data loaders with multiple workers
 - Consider distributed training for very large datasets
 
-# **Key Takeaways**
+**Key Takeaways**
 
 - The Core Trade-off:
     - SGD trades precision for speed.
@@ -1020,31 +1273,52 @@ def gradient_check(func, params, gradients, epsilon=1e-5):
 
 ## Summary of Mathematical Foundations
 
-### The Four Pillars of SGD Validity
+**The Four Pillars of SGD Validity**
 
-1. **Unbiased Estimation:** E[∇ℓ(θ; ξ)] = ∇R(θ)
-   - Single sample gradients point in the right direction on average
-   - Foundation of SGD's mathematical legitimacy
+1. **Unbiased Estimation:** 
 
-2. **Mini-Batch Unbiasedness:** E[g(θ)] = ∇R(θ) where g(θ) is mini-batch gradient
-   - Allows practical implementation with reduced variance
-   - Enables efficient computation through vectorization
+$$
+\mathbb{E}[\nabla \ell(\theta; \xi)] = \nabla R(\theta)
+$$
 
-3. **Variance Scaling:** Var[g(θ)] = σ²(θ)/m
-   - Explains the zig-zag behavior of SGD
-   - Quantifies the trade-off between batch size and noise
+- Single sample gradients point in the right direction on average  
+- Foundation of SGD's mathematical legitimacy  
 
-4. **Convergence Conditions:** ∑ηₜ=∞ and ∑ηₜ²<∞ (Robbins-Monro)
-   - Guarantees convergence with proper learning rate decay
-   - Explains why constant learning rates cause oscillation
+2. **Mini-Batch Unbiasedness:** 
+
+$$
+\mathbb{E}[g(\theta)] = \nabla R(\theta), \quad \text{where $g(\theta)$ is the mini-batch gradient}
+$$
+
+- Allows practical implementation with reduced variance  
+- Enables efficient computation through vectorization  
+
+3. **Variance Scaling:** 
+
+$$
+\operatorname{Var}[g(\theta)] = \frac{\sigma^2(\theta)}{m}
+$$
+
+- Explains the zig-zag behavior of SGD  
+- Quantifies the trade-off between batch size and noise  
+
+4. **Convergence Conditions (Robbins–Monro):** 
+
+$$
+\sum_t \eta_t = \infty, \quad \sum_t \eta_t^2 < \infty
+$$
+
+- Guarantees convergence with proper learning rate decay  
+- Explains why constant learning rates cause oscillation  
+
 
 These theoretical foundations, combined with practical implementation techniques, make SGD and its variants the cornerstone of modern deep learning optimization.
 
-## Additional Resources and Content
+**Additional Resources and Content**
 
-## Complete Implementation from Notebook
+**Complete Implementation from Notebook**
 
-The following is the complete implementation of the optimizers as shown in the notebook:
+The following is the complete implementation of the optimizers in the notebook:
 
 **Helper Functions:**
 ```python
@@ -1212,7 +1486,7 @@ def run_optimizer(opt_type, steps=50, lr=0.5):
 
 ## Questions and Answers from Presentation
 
-### 1. Is the loss curve always convex, if no then how does SGD works for those kind of loss curve because in the image i see its only convex
+1. Is the loss curve always convex, if no then how does SGD works for those kind of loss curve because in the image i see its only convex
 
 **Answer:** No, the loss curve is not always convex. In fact, in most real-world machine learning problems, especially deep learning with neural networks, the loss surfaces are highly non-convex with multiple local minima, saddle points, and complex geometric structures.
 
@@ -1230,7 +1504,7 @@ def run_optimizer(opt_type, steps=50, lr=0.5):
 
 The images in this document show convex surfaces for simplicity and to illustrate the basic concepts clearly, but real-world applications often involve much more complex loss landscapes.
 
-### 2. How are batch sizes determined, why should batch size be multiple of 2 like 2 4 8 16 ??
+2. How are batch sizes determined, why should batch size be multiple of 2 like 2 4 8 16 ??
 
 **Answer:** Batch size selection involves several important considerations:
 
@@ -1257,19 +1531,20 @@ The images in this document show convex surfaces for simplicity and to illustrat
 
 - **CUDA Cores:** GPUs have CUDA cores arranged in warps (groups of 32 threads on NVIDIA GPUs), and batch sizes that are multiples of 32 can better utilize this architecture.
 
-### 3. What is the statistical explanation of the expectation (CLI was answer maybe if not correct it)
+3. What is the statistical explanation of the expectation (CLI was answer maybe if not correct it)
 
 **Answer:** The expectation in SGD has a clear statistical interpretation that forms the foundation of why SGD works:
 
 **Statistical Foundation:**
-```
-E[∇ℓ(θ; ξ)] = ∇R(θ)
-```
 
-Where:
-- ξ represents a randomly sampled data point from the true data distribution D
-- ∇ℓ(θ; ξ) is the gradient computed on a single sample
-- ∇R(θ) is the true gradient computed on the entire dataset (expected risk)
+$$
+\mathbb{E}[\nabla \ell(\theta; \xi)] = \nabla R(\theta)
+$$
+
+Where:  
+- $\xi$ represents a randomly sampled data point from the true data distribution $D$  
+- $\nabla \ell(\theta; \xi)$ is the gradient computed on a single sample  
+- $\nabla R(\theta)$ is the true gradient computed on the entire dataset (expected risk)  
 
 **Statistical Explanation:**
 
@@ -1282,13 +1557,15 @@ Where:
 4. **Monte Carlo Estimation:** SGD can be viewed as a Monte Carlo method where we estimate the expected value (the full gradient) by sampling from the distribution of possible gradients.
 
 **Mathematical Justification:**
-```
-∇R(θ) = ∇E[ℓ(θ; (x,y))] = E[∇ℓ(θ; (x,y))]
-```
+
+$$
+\nabla R(\theta) = \nabla \mathbb{E}[\ell(\theta; (x, y))] = \mathbb{E}[\nabla \ell(\theta; (x, y))]
+$$
+
 
 This equality follows from the interchangeability of expectation and differentiation under mild regularity conditions, which is a fundamental result in probability theory.
 
-### 4. How is SGD an unbiased estimate in simple terms?
+4. How is SGD an unbiased estimate in simple terms?
 
 **Answer:** SGD is an unbiased estimate because, on average, it points in the correct direction toward minimizing the loss function. Here's a simple explanation:
 
