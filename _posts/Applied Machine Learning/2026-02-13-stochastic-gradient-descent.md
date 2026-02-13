@@ -456,376 +456,376 @@ Optimizers are the algorithms or methods used to change the attributes of your n
 
 1. Batch Gradient Descent (BGD)
 
-**Mathematical Formulation:**
+    **Mathematical Formulation:**
 
-$$
-\theta_{t+1} 
-= \theta_t - \eta \nabla R(\theta_t) 
-= \theta_t - \eta \frac{1}{n} \sum_{i=1}^{n} \nabla \ell(\theta_t; x_i, y_i)
-$$
+    $$
+    \theta_{t+1} 
+    = \theta_t - \eta \nabla R(\theta_t) 
+    = \theta_t - \eta \frac{1}{n} \sum_{i=1}^{n} \nabla \ell(\theta_t; x_i, y_i)
+    $$
 
-**Characteristics:**
-- Uses the entire dataset for each update
-- Computationally expensive but stable
-- Converges smoothly to local minimum
-- Memory intensive for large datasets
+    **Characteristics:**
+    - Uses the entire dataset for each update
+    - Computationally expensive but stable
+    - Converges smoothly to local minimum
+    - Memory intensive for large datasets
 
-**Implementation:**
+    **Implementation:**
 
-```python
-def batch_gradient_descent(params, gradients, learning_rate):
-    new_params = params - learning_rate * gradients
-    return new_params
-```
+    ```python
+    def batch_gradient_descent(params, gradients, learning_rate):
+        new_params = params - learning_rate * gradients
+        return new_params
+    ```
 
 2. Stochastic Gradient Descent (SGD)
-**Mathematical Formulation:**
+    **Mathematical Formulation:**
 
-$$
-\theta_{t+1} 
-= \theta_t - \eta \nabla \ell(\theta_t; x_i, y_i),
-\quad \text{where } (x_i, y_i) \text{ is randomly selected}
-$$
+    $$
+    \theta_{t+1} 
+    = \theta_t - \eta \nabla \ell(\theta_t; x_i, y_i),
+    \quad \text{where } (x_i, y_i) \text{ is randomly selected}
+    $$
 
-**Characteristics:**
-- Uses a single sample per update
-- Fast computation but high variance
-- Can escape local minima due to noise
-- Requires careful learning rate tuning
+    **Characteristics:**
+    - Uses a single sample per update
+    - Fast computation but high variance
+    - Can escape local minima due to noise
+    - Requires careful learning rate tuning
 
-**Implementation:**
+    **Implementation:**
 
-```python
-def sgd(params, gradient, learning_rate):
-    new_params = params - learning_rate * gradient
-    return new_params
-```
+    ```python
+    def sgd(params, gradient, learning_rate):
+        new_params = params - learning_rate * gradient
+        return new_params
+    ```
 
 
 3. SGD with Momentum
 
-**Mathematical Formulation:**
+    **Mathematical Formulation:**
 
-$$
-v_{t+1} = \beta v_t + (1 - \beta)\nabla \ell(\theta_t)
-$$
+    $$
+    v_{t+1} = \beta v_t + (1 - \beta)\nabla \ell(\theta_t)
+    $$
 
-$$
-\theta_{t+1} = \theta_t - \eta v_{t+1}
-$$
+    $$
+    \theta_{t+1} = \theta_t - \eta v_{t+1}
+    $$
 
-where  
-- $v_t$ is the velocity (momentum term)  
-- $\beta$ is the momentum coefficient (typically $0.9$)  
-- $\eta$ is the learning rate  
+    where  
+    - $v_t$ is the velocity (momentum term)  
+    - $\beta$ is the momentum coefficient (typically $0.9$)  
+    - $\eta$ is the learning rate  
 
-**Characteristics:**
-- Accumulates past gradients with exponential decay  
-- Reduces oscillations in high-curvature directions  
-- Accelerates convergence in consistent gradient directions  
-- Helps overcome local minima and saddle points  
+    **Characteristics:**
+    - Accumulates past gradients with exponential decay  
+    - Reduces oscillations in high-curvature directions  
+    - Accelerates convergence in consistent gradient directions  
+    - Helps overcome local minima and saddle points  
 
 
-**Implementation:**
-```python
-def sgd_momentum(params, gradient, velocity, learning_rate, momentum=0.9):
-    # Update velocity: accumulate gradient with exponential decay
-    velocity = momentum * velocity + (1 - momentum) * gradient
-    # Update parameters using accumulated velocity
-    new_params = params - learning_rate * velocity
-    return new_params, velocity
+    **Implementation:**
+    ```python
+    def sgd_momentum(params, gradient, velocity, learning_rate, momentum=0.9):
+        # Update velocity: accumulate gradient with exponential decay
+        velocity = momentum * velocity + (1 - momentum) * gradient
+        # Update parameters using accumulated velocity
+        new_params = params - learning_rate * velocity
+        return new_params, velocity
 
-**Alternative implementation (equivalent but more commonly used in practice):**
-def sgd_momentum_alt(params, gradient, velocity, learning_rate, momentum=0.9):
-    # Standard momentum: velocity accumulates gradient directly
-    velocity = momentum * velocity + gradient
-    # Update parameters using scaled velocity
-    new_params = params - learning_rate * velocity
-    return new_params, velocity
-```
+    **Alternative implementation (equivalent but more commonly used in practice):**
+    def sgd_momentum_alt(params, gradient, velocity, learning_rate, momentum=0.9):
+        # Standard momentum: velocity accumulates gradient directly
+        velocity = momentum * velocity + gradient
+        # Update parameters using scaled velocity
+        new_params = params - learning_rate * velocity
+        return new_params, velocity
+    ```
 
-**Complete Implementation from Notebook:**
-Based on the actual implementation in the notebook:
-```python
-elif opt_type == "Momentum":
-    dw, db, _ = get_gradients(xi, yi, w, b)
-    beta = 0.9
-    vel_w = beta * vel_w + (1-beta) * dw  # Accumulate gradient in velocity
-    vel_b = beta * vel_b + (1-beta) * db
-    w -= lr * vel_w  # Update parameters using velocity
-    b -= lr * vel_b
-```
+    **Complete Implementation from Notebook:**
+    Based on the actual implementation in the notebook:
+    ```python
+    elif opt_type == "Momentum":
+        dw, db, _ = get_gradients(xi, yi, w, b)
+        beta = 0.9
+        vel_w = beta * vel_w + (1-beta) * dw  # Accumulate gradient in velocity
+        vel_b = beta * vel_b + (1-beta) * db
+        w -= lr * vel_w  # Update parameters using velocity
+        b -= lr * vel_b
+    ```
 
 4. Nesterov Accelerated Gradient (NAG)
 
-**Mathematical Formulation:**
+    **Mathematical Formulation:**
 
-$$
-v_{t+1} = \beta v_t + \nabla \ell(\theta_t - \beta v_t)
-$$
+    $$
+    v_{t+1} = \beta v_t + \nabla \ell(\theta_t - \beta v_t)
+    $$
 
-$$
-\theta_{t+1} = \theta_t - \eta v_{t+1}
-$$
+    $$
+    \theta_{t+1} = \theta_t - \eta v_{t+1}
+    $$
 
-**Characteristics:**
-- "Look-ahead" property improves convergence  
-- Better theoretical convergence rates  
-- More stable than standard momentum  
-- Anticipates the gradient at the next position  
+    **Characteristics:**
+    - "Look-ahead" property improves convergence  
+    - Better theoretical convergence rates  
+    - More stable than standard momentum  
+    - Anticipates the gradient at the next position  
 
 
-**Implementation:**
-```python
-def nag(params, gradient, velocity, learning_rate, momentum=0.9):
-    # Compute gradient at look-ahead position
-    lookahead_params = params - momentum * velocity
-    lookahead_gradient = compute_gradient(lookahead_params)  # Pseudocode
-    
-    # Update velocity using look-ahead gradient
-    velocity = momentum * velocity + lookahead_gradient
-    # Update parameters using velocity
-    new_params = params - learning_rate * velocity
-    return new_params, velocity
+    **Implementation:**
+    ```python
+    def nag(params, gradient, velocity, learning_rate, momentum=0.9):
+        # Compute gradient at look-ahead position
+        lookahead_params = params - momentum * velocity
+        lookahead_gradient = compute_gradient(lookahead_params)  # Pseudocode
+        
+        # Update velocity using look-ahead gradient
+        velocity = momentum * velocity + lookahead_gradient
+        # Update parameters using velocity
+        new_params = params - learning_rate * velocity
+        return new_params, velocity
 
-**Complete implementation from notebook:**
-elif opt_type == "NAG":
-    # NAG is not explicitly implemented in the notebook, but conceptually:
-    # Compute gradient at position adjusted by previous velocity
-    dw_nag, db_nag, _ = get_gradients(xi, yi, w - beta*vel_w, b - beta*vel_b)
-    vel_w = beta * vel_w + dw_nag
-    vel_b = beta * vel_b + db_nag
-    w -= lr * vel_w
-    b -= lr * vel_b
-```
+    **Complete implementation from notebook:**
+    elif opt_type == "NAG":
+        # NAG is not explicitly implemented in the notebook, but conceptually:
+        # Compute gradient at position adjusted by previous velocity
+        dw_nag, db_nag, _ = get_gradients(xi, yi, w - beta*vel_w, b - beta*vel_b)
+        vel_w = beta * vel_w + dw_nag
+        vel_b = beta * vel_b + db_nag
+        w -= lr * vel_w
+        b -= lr * vel_b
+    ```
 
 5. AdaGrad (Adaptive Gradient)
 
-**Mathematical Formulation:**
+    **Mathematical Formulation:**
 
-$$
-G_t = G_{t-1} + [\nabla \ell(\theta_t)]^2 \quad \text{(element-wise square)}
-$$
+    $$
+    G_t = G_{t-1} + [\nabla \ell(\theta_t)]^2 \quad \text{(element-wise square)}
+    $$
 
-$$
-\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{G_t + \epsilon}} \, \nabla \ell(\theta_t)
-$$
+    $$
+    \theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{G_t + \epsilon}} \, \nabla \ell(\theta_t)
+    $$
 
-where $ \epsilon $ is a small constant to prevent division by zero.
+    where $ \epsilon $ is a small constant to prevent division by zero.
 
-**Characteristics:**
-- Adapts learning rate per parameter  
-- Works well for sparse data  
-- Learning rate decreases monotonically  
-- May stop learning too early  
+    **Characteristics:**
+    - Adapts learning rate per parameter  
+    - Works well for sparse data  
+    - Learning rate decreases monotonically  
+    - May stop learning too early  
 
 
-**Implementation:**
-```python
-def adagrad(params, gradient, grad_squared_sum, learning_rate, epsilon=1e-8):
-    # Accumulate squared gradients
-    grad_squared_sum = grad_squared_sum + gradient ** 2
-    # Adapt learning rate per parameter
-    adaptive_lr = learning_rate / (np.sqrt(grad_squared_sum) + epsilon)
-    # Update parameters
-    new_params = params - adaptive_lr * gradient
-    return new_params, grad_squared_sum
+    **Implementation:**
+    ```python
+    def adagrad(params, gradient, grad_squared_sum, learning_rate, epsilon=1e-8):
+        # Accumulate squared gradients
+        grad_squared_sum = grad_squared_sum + gradient ** 2
+        # Adapt learning rate per parameter
+        adaptive_lr = learning_rate / (np.sqrt(grad_squared_sum) + epsilon)
+        # Update parameters
+        new_params = params - adaptive_lr * gradient
+        return new_params, grad_squared_sum
 
-**Complete implementation from notebook:**
-elif opt_type == "AdaGrad":
-    # AdaGrad is not explicitly implemented in the notebook
-    # But conceptually it would accumulate squared gradients
-    dw, db, _ = get_gradients(xi, yi, w, b)
-    sum_sq_dw += dw ** 2  # Accumulate squared gradients
-    sum_sq_db += db ** 2
-    # Adapt learning rate per parameter
-    w -= (lr / (np.sqrt(sum_sq_dw) + eps)) * dw
-    b -= (lr / (np.sqrt(sum_sq_db) + eps)) * db
-```
+    **Complete implementation from notebook:**
+    elif opt_type == "AdaGrad":
+        # AdaGrad is not explicitly implemented in the notebook
+        # But conceptually it would accumulate squared gradients
+        dw, db, _ = get_gradients(xi, yi, w, b)
+        sum_sq_dw += dw ** 2  # Accumulate squared gradients
+        sum_sq_db += db ** 2
+        # Adapt learning rate per parameter
+        w -= (lr / (np.sqrt(sum_sq_dw) + eps)) * dw
+        b -= (lr / (np.sqrt(sum_sq_db) + eps)) * db
+    ```
 
 6. RMSprop (Root Mean Square Propagation)
 
-**Mathematical Formulation:**
+    **Mathematical Formulation:**
 
-$$
-E[g^2]_t = \gamma E[g^2]_{t-1} + (1 - \gamma) [\nabla \ell(\theta_t)]^2
-$$
+    $$
+    E[g^2]_t = \gamma E[g^2]_{t-1} + (1 - \gamma) [\nabla \ell(\theta_t)]^2
+    $$
 
-$$
-\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{E[g^2]_t + \epsilon}} \, \nabla \ell(\theta_t)
-$$
+    $$
+    \theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{E[g^2]_t + \epsilon}} \, \nabla \ell(\theta_t)
+    $$
 
-where $ \gamma $ is the decay rate (typically $0.9$) and $ \epsilon $ is a small constant to prevent division by zero.
+    where $ \gamma $ is the decay rate (typically $0.9$) and $ \epsilon $ is a small constant to prevent division by zero.
 
-**Characteristics:**
-- Addresses AdaGrad's aggressive learning rate reduction  
-- Maintains moving average of squared gradients  
-- Good for non-stationary objectives  
-- Empirically effective for RNNs  
+    **Characteristics:**
+    - Addresses AdaGrad's aggressive learning rate reduction  
+    - Maintains moving average of squared gradients  
+    - Good for non-stationary objectives  
+    - Empirically effective for RNNs  
 
 
-**Implementation:**
-```python
-def rmsprop(params, gradient, grad_squared_avg, learning_rate, decay_rate=0.9, epsilon=1e-8):
-    # Update moving average of squared gradients
-    grad_squared_avg = decay_rate * grad_squared_avg + (1 - decay_rate) * (gradient ** 2)
-    # Adapt learning rate per parameter
-    adaptive_lr = learning_rate / (np.sqrt(grad_squared_avg) + epsilon)
-    # Update parameters
-    new_params = params - adaptive_lr * gradient
-    return new_params, grad_squared_avg
+    **Implementation:**
+    ```python
+    def rmsprop(params, gradient, grad_squared_avg, learning_rate, decay_rate=0.9, epsilon=1e-8):
+        # Update moving average of squared gradients
+        grad_squared_avg = decay_rate * grad_squared_avg + (1 - decay_rate) * (gradient ** 2)
+        # Adapt learning rate per parameter
+        adaptive_lr = learning_rate / (np.sqrt(grad_squared_avg) + epsilon)
+        # Update parameters
+        new_params = params - adaptive_lr * gradient
+        return new_params, grad_squared_avg
 
-**Complete implementation from notebook:**
-elif opt_type == "RMSprop":
-    # RMSprop is not explicitly implemented in the notebook
-    # But conceptually it would use exponential moving average of squared gradients
-    dw, db, _ = get_gradients(xi, yi, w, b)
-    avg_sq_dw = gamma * avg_sq_dw + (1 - gamma) * (dw ** 2)  # Moving average of squared gradients
-    avg_sq_db = gamma * avg_sq_db + (1 - gamma) * (db ** 2)
-    # Adapt learning rate per parameter
-    w -= (lr / (np.sqrt(avg_sq_dw) + eps)) * dw
-    b -= (lr / (np.sqrt(avg_sq_db) + eps)) * db
-```
+    **Complete implementation from notebook:**
+    elif opt_type == "RMSprop":
+        # RMSprop is not explicitly implemented in the notebook
+        # But conceptually it would use exponential moving average of squared gradients
+        dw, db, _ = get_gradients(xi, yi, w, b)
+        avg_sq_dw = gamma * avg_sq_dw + (1 - gamma) * (dw ** 2)  # Moving average of squared gradients
+        avg_sq_db = gamma * avg_sq_db + (1 - gamma) * (db ** 2)
+        # Adapt learning rate per parameter
+        w -= (lr / (np.sqrt(avg_sq_dw) + eps)) * dw
+        b -= (lr / (np.sqrt(avg_sq_db) + eps)) * db
+    ```
 
 7. Adam (Adaptive Moment Estimation)
 
-**Mathematical Formulation:**
+    **Mathematical Formulation:**
 
-Adam maintains two moving averages — the first moment (mean) and second moment (uncentered variance) of the gradients.
+    Adam maintains two moving averages — the first moment (mean) and second moment (uncentered variance) of the gradients.
 
----
+    ---
 
-**Step 1: Update biased moments**
+    **Step 1: Update biased moments**
 
-$$
-m_t = \beta_1 m_{t-1} + (1 - \beta_1) \nabla \ell(\theta_t) \quad \text{(first moment / mean)}
-$$
+    $$
+    m_t = \beta_1 m_{t-1} + (1 - \beta_1) \nabla \ell(\theta_t) \quad \text{(first moment / mean)}
+    $$
 
-$$
-v_t = \beta_2 v_{t-1} + (1 - \beta_2) [\nabla \ell(\theta_t)]^2 \quad \text{(second moment / uncentered variance)}
-$$
+    $$
+    v_t = \beta_2 v_{t-1} + (1 - \beta_2) [\nabla \ell(\theta_t)]^2 \quad \text{(second moment / uncentered variance)}
+    $$
 
----
+    ---
 
-**Step 2: Apply bias correction**
+    **Step 2: Apply bias correction**
 
-$$
-\hat{m}_t = \frac{m_t}{1 - \beta_1^t} \quad \text{(bias-corrected first moment)}
-$$
+    $$
+    \hat{m}_t = \frac{m_t}{1 - \beta_1^t} \quad \text{(bias-corrected first moment)}
+    $$
 
-$$
-\hat{v}_t = \frac{v_t}{1 - \beta_2^t} \quad \text{(bias-corrected second moment)}
-$$
+    $$
+    \hat{v}_t = \frac{v_t}{1 - \beta_2^t} \quad \text{(bias-corrected second moment)}
+    $$
 
----
+    ---
 
-**Step 3: Update parameters**
+    **Step 3: Update parameters**
 
-$$
-\theta_{t+1} = \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
-$$
+    $$
+    \theta_{t+1} = \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
+    $$
 
-where:  
-- $\beta_1 \approx 0.9$ (decay rate for first moment)  
-- $\beta_2 \approx 0.999$ (decay rate for second moment)  
-- $\epsilon \approx 10^{-8}$ (small constant to prevent division by zero)  
-- $\eta$ is the learning rate  
+    where:  
+    - $\beta_1 \approx 0.9$ (decay rate for first moment)  
+    - $\beta_2 \approx 0.999$ (decay rate for second moment)  
+    - $\epsilon \approx 10^{-8}$ (small constant to prevent division by zero)  
+    - $\eta$ is the learning rate  
 
----
+    ---
 
-**Characteristics:**
-- Combines momentum and adaptive learning rates  
-- Bias correction for early iterations  
-- Computationally efficient  
-- Well-calibrated for most problems  
-- Default choice for many applications  
+    **Characteristics:**
+    - Combines momentum and adaptive learning rates  
+    - Bias correction for early iterations  
+    - Computationally efficient  
+    - Well-calibrated for most problems  
+    - Default choice for many applications  
 
-**Implementation:**
-```python
-def adam(params, gradient, m, v, t, learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-8):
-    m = beta1 * m + (1 - beta1) * gradient
-    v = beta2 * v + (1 - beta2) * (gradient ** 2)
+    **Implementation:**
+    ```python
+    def adam(params, gradient, m, v, t, learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-8):
+        m = beta1 * m + (1 - beta1) * gradient
+        v = beta2 * v + (1 - beta2) * (gradient ** 2)
 
-    # Bias correction
-    m_hat = m / (1 - beta1 ** t)
-    v_hat = v / (1 - beta2 ** t)
+        # Bias correction
+        m_hat = m / (1 - beta1 ** t)
+        v_hat = v / (1 - beta2 ** t)
 
-    new_params = params - learning_rate * m_hat / (np.sqrt(v_hat) + epsilon)
-    return new_params, m, v
+        new_params = params - learning_rate * m_hat / (np.sqrt(v_hat) + epsilon)
+        return new_params, m, v
 
-**Complete implementation from notebook:**
-elif opt_type == "Adam":
-    dw, db, _ = get_gradients(xi, yi, w, b)
-    t += 1
-    beta1, beta2, eps = 0.9, 0.999, 1e-8
-    m_w = beta1*m_w + (1-beta1)*dw
-    m_b = beta1*m_b + (1-beta1)*db
-    v_w = beta2*v_w + (1-beta2)*(dw**2)
-    v_b = beta2*v_b + (1-beta2)*(db**2)
+    **Complete implementation from notebook:**
+    elif opt_type == "Adam":
+        dw, db, _ = get_gradients(xi, yi, w, b)
+        t += 1
+        beta1, beta2, eps = 0.9, 0.999, 1e-8
+        m_w = beta1*m_w + (1-beta1)*dw
+        m_b = beta1*m_b + (1-beta1)*db
+        v_w = beta2*v_w + (1-beta2)*(dw**2)
+        v_b = beta2*v_b + (1-beta2)*(db**2)
 
-    m_w_hat = m_w / (1 - beta1**t)
-    m_b_hat = m_b / (1 - beta1**t)
-    v_w_hat = v_w / (1 - beta2**t)
-    v_b_hat = v_b / (1 - beta2**t)
+        m_w_hat = m_w / (1 - beta1**t)
+        m_b_hat = m_b / (1 - beta1**t)
+        v_w_hat = v_w / (1 - beta2**t)
+        v_b_hat = v_b / (1 - beta2**t)
 
-    w -= lr * m_w_hat / (np.sqrt(v_w_hat) + eps)
-    b -= lr * m_b_hat / (np.sqrt(v_b_hat) + eps)
-```
+        w -= lr * m_w_hat / (np.sqrt(v_w_hat) + eps)
+        b -= lr * m_b_hat / (np.sqrt(v_b_hat) + eps)
+    ```
 
 8. AdamW (Adam with Weight Decay)
 
-**Mathematical Formulation:**
+    **Mathematical Formulation:**
 
-$$
-\theta_{t+1} = \theta_t - \eta \left( \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} + \lambda \theta_t \right)
-$$
+    $$
+    \theta_{t+1} = \theta_t - \eta \left( \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} + \lambda \theta_t \right)
+    $$
 
-where $ \lambda $ is the weight decay coefficient.
+    where $ \lambda $ is the weight decay coefficient.
 
----
+    ---
 
-**Characteristics:**
-- Decouples weight decay from gradient updates  
-- Better generalization than standard Adam  
-- More principled regularization  
-- Recommended for training with weight decay  
+    **Characteristics:**
+    - Decouples weight decay from gradient updates  
+    - Better generalization than standard Adam  
+    - More principled regularization  
+    - Recommended for training with weight decay  
 
 
-**Implementation:**
-```python
-def adamw(params, gradient, m, v, t, learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-8, weight_decay=1e-4):
-    m = beta1 * m + (1 - beta1) * gradient
-    v = beta2 * v + (1 - beta2) * (gradient ** 2)
+    **Implementation:**
+    ```python
+    def adamw(params, gradient, m, v, t, learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-8, weight_decay=1e-4):
+        m = beta1 * m + (1 - beta1) * gradient
+        v = beta2 * v + (1 - beta2) * (gradient ** 2)
 
-    # Bias correction
-    m_hat = m / (1 - beta1 ** t)
-    v_hat = v / (1 - beta2 ** t)
+        # Bias correction
+        m_hat = m / (1 - beta1 ** t)
+        v_hat = v / (1 - beta2 ** t)
 
-    # Apply weight decay separately from gradient update
-    param_update = learning_rate * m_hat / (np.sqrt(v_hat) + epsilon)
-    new_params = params - param_update - learning_rate * weight_decay * params
-    return new_params, m, v
+        # Apply weight decay separately from gradient update
+        param_update = learning_rate * m_hat / (np.sqrt(v_hat) + epsilon)
+        new_params = params - param_update - learning_rate * weight_decay * params
+        return new_params, m, v
 
-**Complete implementation from notebook:**
-**AdamW is not explicitly implemented in the notebook, but conceptually:**
-elif opt_type == "AdamW":
-    dw, db, _ = get_gradients(xi, yi, w, b)
-    t += 1
-    beta1, beta2, eps, wd = 0.9, 0.999, 1e-8, 1e-4
-    m_w = beta1*m_w + (1-beta1)*dw
-    m_b = beta1*m_b + (1-beta1)*db
-    v_w = beta2*v_w + (1-beta2)*(dw**2)
-    v_b = beta2*v_b + (1-beta2)*(db**2)
+    **Complete implementation from notebook:**
+    **AdamW is not explicitly implemented in the notebook, but conceptually:**
+    elif opt_type == "AdamW":
+        dw, db, _ = get_gradients(xi, yi, w, b)
+        t += 1
+        beta1, beta2, eps, wd = 0.9, 0.999, 1e-8, 1e-4
+        m_w = beta1*m_w + (1-beta1)*dw
+        m_b = beta1*m_b + (1-beta1)*db
+        v_w = beta2*v_w + (1-beta2)*(dw**2)
+        v_b = beta2*v_b + (1-beta2)*(db**2)
 
-    m_w_hat = m_w / (1 - beta1**t)
-    m_b_hat = m_b / (1 - beta1**t)
-    v_w_hat = v_w / (1 - beta2**t)
-    v_b_hat = v_b / (1 - beta2**t)
+        m_w_hat = m_w / (1 - beta1**t)
+        m_b_hat = m_b / (1 - beta1**t)
+        v_w_hat = v_w / (1 - beta2**t)
+        v_b_hat = v_b / (1 - beta2**t)
 
-    # Apply weight decay separately
-    w -= lr * (m_w_hat / (np.sqrt(v_w_hat) + eps)) + lr * wd * w
-    b -= lr * (m_b_hat / (np.sqrt(v_b_hat) + eps)) + lr * wd * b
-```
+        # Apply weight decay separately
+        w -= lr * (m_w_hat / (np.sqrt(v_w_hat) + eps)) + lr * wd * w
+        b -= lr * (m_b_hat / (np.sqrt(v_b_hat) + eps)) + lr * wd * b
+    ```
 
 ## Optimizer Comparison Summary
 
@@ -868,106 +868,106 @@ elif opt_type == "AdamW":
 **Simple Dataset Visualization**
 
 1. **Data Distribution (Simple Case)**
-<img src="../../assets/images/stochastic-gradient-descent-image/1 DataDistribution.png" alt="Data Distribution 1" width="600" height="200">
+    <img src="../../assets/images/stochastic-gradient-descent-image/1 DataDistribution.png" alt="Data Distribution 1" width="600" height="200">
 
-**Dataset Overview:**
-- 13 total data points with clear separation
-- 6 students who failed (label 0)
-- 7 students who passed (label 1)
-- Minimal overlap between classes, making classification relatively straightforward
+    **Dataset Overview:**
+    - 13 total data points with clear separation
+    - 6 students who failed (label 0)
+    - 7 students who passed (label 1)
+    - Minimal overlap between classes, making classification relatively straightforward
 
 2. **Loss Curve Comparison (Simple Case)**
-<img src="../../assets/images/stochastic-gradient-descent-image/1%20LossCurve.png" alt="Loss Curve 1" width="600" height="400">
+    <img src="../../assets/images/stochastic-gradient-descent-image/1%20LossCurve.png" alt="Loss Curve 1" width="600" height="400">
 
-**Visual Analysis:**
-- **Y-axis:** Binary Cross-Entropy Loss (measures prediction accuracy)
-- **X-axis:** Training iterations/epochs
-- **Goal:** All algorithms minimize the difference between predictions and actual labels
+    **Visual Analysis:**
+    - **Y-axis:** Binary Cross-Entropy Loss (measures prediction accuracy)
+    - **X-axis:** Training iterations/epochs
+    - **Goal:** All algorithms minimize the difference between predictions and actual labels
 
-**Optimizer Performance Breakdown:**
-- **Blue Line (Gradient Descent - GD):**
-  - **Visual Pattern:** Smooth, gradual decline
-  - **Intuition:** Like a careful hiker who calculates the exact path before each step
-  - **Mechanism:** Processes all 13 samples before updating parameters
-  - **Trade-off:** Reliable but slow convergence
+    **Optimizer Performance Breakdown:**
+    - **Blue Line (Gradient Descent - GD):**
+        - **Visual Pattern:** Smooth, gradual decline
+        - **Intuition:** Like a careful hiker who calculates the exact path before each step
+        - **Mechanism:** Processes all 13 samples before updating parameters
+        - **Trade-off:** Reliable but slow convergence
 
-- **Orange Dashed Line (SGD):**
-  - **Visual Pattern:** Steeper initial drop with visible noise/jitter
-  - **Intuition:** Like a runner who adjusts direction after each step
-  - **Mechanism:** Updates parameters after each sample
-  - **Trade-off:** Faster initial learning with more volatile path
+    - **Orange Dashed Line (SGD):**
+        - **Visual Pattern:** Steeper initial drop with visible noise/jitter
+        - **Intuition:** Like a runner who adjusts direction after each step
+        - **Mechanism:** Updates parameters after each sample
+        - **Trade-off:** Faster initial learning with more volatile path
 
-- **Green Line (SGD + Momentum):**
-  - **Visual Pattern:** Smooth, rapid decline
-  - **Intuition:** Like a boulder gaining momentum down a hill
-  - **Mechanism:** Uses past gradients to smooth current updates
-  - **Trade-off:** Combines speed of SGD with stability of GD
+    - **Green Line (SGD + Momentum):**
+        - **Visual Pattern:** Smooth, rapid decline
+        - **Intuition:** Like a boulder gaining momentum down a hill
+        - **Mechanism:** Uses past gradients to smooth current updates
+        - **Trade-off:** Combines speed of SGD with stability of GD
 
-- **Red Dot-Dash Line (Adam):**
-  - **Visual Pattern:** Sharp, rapid decline to near-zero loss
-  - **Intuition:** Like a smart navigator using multiple data sources
-  - **Mechanism:** Adapts learning rate per parameter based on gradient history
-  - **Trade-off:** Optimal balance of speed and stability
+    - **Red Dot-Dash Line (Adam):**
+        - **Visual Pattern:** Sharp, rapid decline to near-zero loss
+        - **Intuition:** Like a smart navigator using multiple data sources
+        - **Mechanism:** Adapts learning rate per parameter based on gradient history
+        - **Trade-off:** Optimal balance of speed and stability
 
 3. **3D Optimization Trajectories (Simple Case)**
-<img src="../../assets/images/stochastic-gradient-descent-image/1%203d.png" alt="3D Optimization Trajectories 1" width="600" height="400">
+    <img src="../../assets/images/stochastic-gradient-descent-image/1%203d.png" alt="3D Optimization Trajectories 1" width="600" height="400">
 
-**Geometric Interpretation:**
-- **Surface:** Error landscape with parameters (w, b) as x,y coordinates
-- **Z-axis:** Loss value at each parameter combination
-- **Shape:** Convex bowl (single global minimum)
+    **Geometric Interpretation:**
+    - **Surface:** Error landscape with parameters (w, b) as x,y coordinates
+    - **Z-axis:** Loss value at each parameter combination
+    - **Shape:** Convex bowl (single global minimum)
 
-**Path Analysis:**
-- **Blue Line (GD):** Direct, straight-line path to minimum
-  - **Intuition:** Always moves in direction of true gradient
-  - **Visualization:** Like a ball rolling directly downhill
+    **Path Analysis:**
+    - **Blue Line (GD):** Direct, straight-line path to minimum
+        - **Intuition:** Always moves in direction of true gradient
+        - **Visualization:** Like a ball rolling directly downhill
 
-- **Orange Line (SGD):** Jagged, zig-zagging path
-  - **Intuition:** Noisy gradient estimates cause direction changes
-  - **Visualization:** Like a person stumbling downhill with imperfect compass
+    - **Orange Line (SGD):** Jagged, zig-zagging path
+        - **Intuition:** Noisy gradient estimates cause direction changes
+        - **Visualization:** Like a person stumbling downhill with imperfect compass
 
-- **Red Dotted Line (Adam):** Direct, efficient path
-  - **Intuition:** Adapts step size based on gradient history
-  - **Visualization:** Like a skilled climber taking the most efficient route
+    - **Red Dotted Line (Adam):** Direct, efficient path
+        - **Intuition:** Adapts step size based on gradient history
+        - **Visualization:** Like a skilled climber taking the most efficient route
 
 4. **SGD Stability Analysis (Simple Case)**
-<img src="../../assets/images/stochastic-gradient-descent-image/1%20SGDStability.png" alt="SGD Stability & Trajectory 1" width="800" height="400">
+    <img src="../../assets/images/stochastic-gradient-descent-image/1%20SGDStability.png" alt="SGD Stability & Trajectory 1" width="800" height="400">
 
-**Left Panel - Loss Stability:**
-- **Orange Line:** Shows small fluctuations around decreasing trend
-- **Intuition:** Individual samples provide noisy estimates of true gradient
-- **Implication:** SGD never perfectly settles due to ongoing variance
+    **Left Panel - Loss Stability:**
+    - **Orange Line:** Shows small fluctuations around decreasing trend
+    - **Intuition:** Individual samples provide noisy estimates of true gradient
+    - **Implication:** SGD never perfectly settles due to ongoing variance
 
-**Right Panel - Parameter Trajectory:**
-- **Red Diamond:** Optimal parameter values (w*, b*)
-- **Orange Dots:** SGD parameter updates over time
-- **Pattern:** Zig-zag path toward optimal point
-- **Learning Rate Effect:**
-  - Too high: Dots would spiral outward (divergence)
-  - Too low: Dots would approach slowly (slow convergence)
-  - Optimal: Dots spiral inward (stable convergence)
+    **Right Panel - Parameter Trajectory:**
+    - **Red Diamond:** Optimal parameter values (w*, b*)
+    - **Orange Dots:** SGD parameter updates over time
+    - **Pattern:** Zig-zag path toward optimal point
+    - **Learning Rate Effect:**
+        - Too high: Dots would spiral outward (divergence)
+        - Too low: Dots would approach slowly (slow convergence)
+        - Optimal: Dots spiral inward (stable convergence)
 
-**Note on Optimal Values at (w,b) = (0,0):**
-In the simple dataset visualization, the optimal values appear at (w,b) = (0,0) because the synthetic dataset was designed with balanced classes and centered features. When the data is normalized or centered around zero, the optimal linear classifier often has parameters close to zero initially. However, in real-world datasets like the complex example shown later, the optimal parameters will be at different values (e.g., w=5.10, b=-0.03 in the complex case) depending on the actual data distribution and relationships.
+    **Note on Optimal Values at (w,b) = (0,0):**
+    In the simple dataset visualization, the optimal values appear at (w,b) = (0,0) because the synthetic dataset was designed with balanced classes and centered features. When the data is normalized or centered around zero, the optimal linear classifier often has parameters close to zero initially. However, in real-world datasets like the complex example shown later, the optimal parameters will be at different values (e.g., w=5.10, b=-0.03 in the complex case) depending on the actual data distribution and relationships.
 
 5. **Final Classification Result (Simple Case)**
-<img src="../../assets/images/stochastic-gradient-descent-image/1%20Final.png" alt="Final Classification 1" width="600" height="400">
+    <img src="../../assets/images/stochastic-gradient-descent-image/1%20Final.png" alt="Final Classification 1" width="600" height="400">
 
-**Visual Components:**
-- **Red Dots:** Students who failed (study hours 1-4)
-- **Blue Dots:** Students who passed (study hours 5-10)
-- **Green Sigmoid Curve:** Model's probability prediction function
-- **Purple Dashed Line:** Decision boundary (50% probability threshold)
+    **Visual Components:**
+    - **Red Dots:** Students who failed (study hours 1-4)
+    - **Blue Dots:** Students who passed (study hours 5-10)
+    - **Green Sigmoid Curve:** Model's probability prediction function
+    - **Purple Dashed Line:** Decision boundary (50% probability threshold)
 
-**Important Note on Data Preprocessing:**
-- **Data Normalization:** The input features (study hours) were normalized/standardized before training
-- **Model Assumptions:** The logistic regression assumes linear relationship between features and log-odds
-- **Scale Sensitivity:** Without normalization, features with larger scales would dominate the learning process
+    **Important Note on Data Preprocessing:**
+    - **Data Normalization:** The input features (study hours) were normalized/standardized before training
+    - **Model Assumptions:** The logistic regression assumes linear relationship between features and log-odds
+    - **Scale Sensitivity:** Without normalization, features with larger scales would dominate the learning process
 
-**Interpretation:**
-- Model successfully learned that ~5 hours of study is the threshold for passing
-- Sigmoid curve shows confidence: near 0% for <3 hours, near 100% for >7 hours
-- Decision boundary effectively separates classes
+    **Interpretation:**
+    - Model successfully learned that ~5 hours of study is the threshold for passing
+    - Sigmoid curve shows confidence: near 0% for <3 hours, near 100% for >7 hours
+    - Decision boundary effectively separates classes
 
 **Implementation Details:**
 The trajectories shown in the 3D visualization were generated using the `run_optimizer` function from the notebook, which records the path taken by each optimizer through the parameter space (w, b). The function starts from the same initial point (-2.0, -2.0) and tracks how each optimizer navigates the loss landscape differently.
@@ -975,96 +975,96 @@ The trajectories shown in the 3D visualization were generated using the `run_opt
 **Complex Dataset Visualization**
 
 1. **Data Distribution (Complex Case)**
-<img src="../../assets/images/stochastic-gradient-descent-image/2%20DataDistribution.png" alt="Data Distribution 2" width="600" height="200">
+    <img src="../../assets/images/stochastic-gradient-descent-image/2%20DataDistribution.png" alt="Data Distribution 2" width="600" height="200">
 
-**Dataset Overview:**
-- 100 total data points with significant overlap
-- 40 students who failed (label 0)
-- 40 students who passed (label 1)
-- 20 "messy" points that don't follow clear pattern
-- More challenging classification task due to overlapping regions
+    **Dataset Overview:**
+    - 100 total data points with significant overlap
+    - 40 students who failed (label 0)
+    - 40 students who passed (label 1)
+    - 20 "messy" points that don't follow clear pattern
+    - More challenging classification task due to overlapping regions
 
 2. **Loss Curve Comparison (Complex Case)**
-<img src="../../assets/images/stochastic-gradient-descent-image/2%20LossCurve.png" alt="Loss Curve 2" width="600" height="400">
+    <img src="../../assets/images/stochastic-gradient-descent-image/2%20LossCurve.png" alt="Loss Curve 2" width="600" height="400">
 
-**Visual Analysis:**
-- **Y-axis:** Binary Cross-Entropy Loss
-- **X-axis:** Training epochs
-- **Goal:** Compare convergence speed across optimizers on complex data
+    **Visual Analysis:**
+    - **Y-axis:** Binary Cross-Entropy Loss
+    - **X-axis:** Training epochs
+    - **Goal:** Compare convergence speed across optimizers on complex data
 
-**Optimizer Behavior on Complex Data:**
-- **Blue Line (GD - Batch):** Slow, steady convergence
-  - **Pattern:** Smooth curve with gradual improvement
-  - **Challenge:** Computational cost increases significantly with dataset size
-  - **Result:** Eventually reaches good solution but slowly
+    **Optimizer Behavior on Complex Data:**
+    - **Blue Line (GD - Batch):** Slow, steady convergence
+        - **Pattern:** Smooth curve with gradual improvement
+        - **Challenge:** Computational cost increases significantly with dataset size
+        - **Result:** Eventually reaches good solution but slowly
 
-- **Orange Dashed Line (SGD):** Fast initial drop with persistent noise
-  - **Pattern:** Rapid early improvement, then oscillates around minimum
-  - **Challenge:** Noise from individual samples prevents perfect convergence
-  - **Advantage:** Many updates per epoch lead to faster initial learning
+    - **Orange Dashed Line (SGD):** Fast initial drop with persistent noise
+        - **Pattern:** Rapid early improvement, then oscillates around minimum
+        - **Challenge:** Noise from individual samples prevents perfect convergence
+        - **Advantage:** Many updates per epoch lead to faster initial learning
 
-- **Red Dot-Dash Line (Adam):** Fast convergence with occasional spikes
-  - **Pattern:** Rapid improvement with occasional instability
-  - **Challenge:** Adaptive learning rates can cause overshooting
-  - **Advantage:** Generally fastest convergence to good solution
+    - **Red Dot-Dash Line (Adam):** Fast convergence with occasional spikes
+        - **Pattern:** Rapid improvement with occasional instability
+        - **Challenge:** Adaptive learning rates can cause overshooting
+        - **Advantage:** Generally fastest convergence to good solution
 
-- **Green Line (Momentum):** Balanced approach with smooth convergence
-  - **Pattern:** Fast improvement with minimal oscillation
-  - **Advantage:** Combines SGD speed with reduced noise
-  - **Result:** Stable, efficient convergence
+    - **Green Line (Momentum):** Balanced approach with smooth convergence
+        - **Pattern:** Fast improvement with minimal oscillation
+        - **Advantage:** Combines SGD speed with reduced noise
+        - **Result:** Stable, efficient convergence
 
 3. **3D Optimization Trajectories (Complex Case)**
-<img src="../../assets/images/stochastic-gradient-descent-image/2%203d.png" alt="3D Optimization Trajectories 2" width="600" height="400">
+    <img src="../../assets/images/stochastic-gradient-descent-image/2%203d.png" alt="3D Optimization Trajectories 2" width="600" height="400">
 
-**Landscape Characteristics:**
-- **Surface:** More complex error surface with varying curvature
-- **Shape:** Steep walls with relatively flat valley floor
-- **Challenge:** Different optimization challenges than simple case
+    **Landscape Characteristics:**
+    - **Surface:** More complex error surface with varying curvature
+    - **Shape:** Steep walls with relatively flat valley floor
+    - **Challenge:** Different optimization challenges than simple case
 
-**Path Analysis:**
-- **Blue Path (GD):** Smooth but potentially inefficient path
-  - **Behavior:** Follows steepest descent but may zig-zag in valleys
-  - **Challenge:** Fixed step size may be inefficient in flat regions
+    **Path Analysis:**
+    - **Blue Path (GD):** Smooth but potentially inefficient path
+        - **Behavior:** Follows steepest descent but may zig-zag in valleys
+        - **Challenge:** Fixed step size may be inefficient in flat regions
 
-- **Orange Path (SGD):** Highly erratic path due to noise
-  - **Behavior:** Random bouncing due to single-sample gradients
-  - **Challenge:** Noise can cause inefficient movement
+    - **Orange Path (SGD):** Highly erratic path due to noise
+        - **Behavior:** Random bouncing due to single-sample gradients
+        - **Challenge:** Noise can cause inefficient movement
 
-- **Red Path (Adam):** More direct path to minimum
-  - **Behavior:** Adapts step size based on gradient magnitude
-  - **Advantage:** Efficient navigation of complex landscape
+    - **Red Path (Adam):** More direct path to minimum
+        - **Behavior:** Adapts step size based on gradient magnitude
+        - **Advantage:** Efficient navigation of complex landscape
 
 4. **SGD Stability Analysis (Complex Case)**
-<img src="../../assets/images/stochastic-gradient-descent-image/2%20SGDStability.png" alt="SGD Stability & Trajectory 2" width="800" height="400">
+    <img src="../../assets/images/stochastic-gradient-descent-image/2%20SGDStability.png" alt="SGD Stability & Trajectory 2" width="800" height="400">
 
-**Left Panel - Loss Stability:**
-- **Pattern:** More pronounced fluctuations due to complex data
-- **Intuition:** Complex data creates more variable gradient estimates
-- **Observation:** Loss may temporarily increase as SGD encounters outliers
+    **Left Panel - Loss Stability:**
+    - **Pattern:** More pronounced fluctuations due to complex data
+    - **Intuition:** Complex data creates more variable gradient estimates
+    - **Observation:** Loss may temporarily increase as SGD encounters outliers
 
-**Right Panel - Parameter Trajectory:**
-- **Red Diamond:** Optimal parameter values
-- **Orange Dots:** SGD parameter updates
-- **Pattern:** More complex zig-zag pattern due to challenging landscape
-- **Convergence:** Still approaches optimum despite complex path
+    **Right Panel - Parameter Trajectory:**
+    - **Red Diamond:** Optimal parameter values
+    - **Orange Dots:** SGD parameter updates
+    - **Pattern:** More complex zig-zag pattern due to challenging landscape
+    - **Convergence:** Still approaches optimum despite complex path
 
 5. **Final Classification Result (Complex Case)**
-<img src="../../assets/images/stochastic-gradient-descent-image/2%20Final.png" alt="Final Classification 2" width="600" height="400">
+    <img src="../../assets/images/stochastic-gradient-descent-image/2%20Final.png" alt="Final Classification 2" width="600" height="400">
 
-**Visual Components:**
-- **Red Circles:** Students who failed
-- **Blue Circles:** Students who passed
-- **Green Sigmoid Curve:** Final probability prediction
-- **Purple Dashed Line:** Decision boundary
+    **Visual Components:**
+    - **Red Circles:** Students who failed
+    - **Blue Circles:** Students who passed
+    - **Green Sigmoid Curve:** Final probability prediction
+    - **Purple Dashed Line:** Decision boundary
 
-**Analysis:**
-- **Parameters Achieved:** w=5.10, b=-0.03
-- **Curve Steepness:** High weight (5.10) indicates sharp transition
-- **Boundary Position:** At x=5.36 hours, representing decision threshold
-- **Performance:** Despite complex data, model achieved good separation
+    **Analysis:**
+    - **Parameters Achieved:** w=5.10, b=-0.03
+    - **Curve Steepness:** High weight (5.10) indicates sharp transition
+    - **Boundary Position:** At x=5.36 hours, representing decision threshold
+    - **Performance:** Despite complex data, model achieved good separation
 
-**Implementation Details:**
-Similar to the simple case, these trajectories were generated using the `run_optimizer` function from the notebook. The complex dataset presents more challenges due to overlapping classes and increased noise, which is reflected in the more complex optimization paths observed in the visualizations.
+    **Implementation Details:**
+    Similar to the simple case, these trajectories were generated using the `run_optimizer` function from the notebook. The complex dataset presents more challenges due to overlapping classes and increased noise, which is reflected in the more complex optimization paths observed in the visualizations.
 
 **Key Visual Insights**
 
@@ -1087,172 +1087,172 @@ Similar to the simple case, these trajectories were generated using the `run_opt
 
 1. Learning Rate Selection and Scheduling
 
-**Initial Learning Rate:**
-- Start with common values: 0.1, 0.01, 0.001, 0.0001
-- Use learning rate range test: train with exponentially increasing LR and find the range where loss decreases
-- For SGD: Try 0.01-0.1; for Adam: try 0.001 (default)
+    **Initial Learning Rate:**
+    - Start with common values: 0.1, 0.01, 0.001, 0.0001
+    - Use learning rate range test: train with exponentially increasing LR and find the range where loss decreases
+    - For SGD: Try 0.01-0.1; for Adam: try 0.001 (default)
 
-**Learning Rate Scheduling:**
-- **Step Decay:** Reduce LR by factor of 0.1-0.5 every few epochs when loss plateaus
-- **Exponential Decay:** LR = LR₀ × 0.95^epoch
-- **Cosine Annealing:** Smoothly oscillate between LR bounds
-- **Cyclical Learning Rates:** Cycle between bounds to escape local minima
+    **Learning Rate Scheduling:**
+    - **Step Decay:** Reduce LR by factor of 0.1-0.5 every few epochs when loss plateaus
+    - **Exponential Decay:** LR = LR₀ × 0.95^epoch
+    - **Cosine Annealing:** Smoothly oscillate between LR bounds
+    - **Cyclical Learning Rates:** Cycle between bounds to escape local minima
 
 2. Batch Size Selection
 
-**Trade-offs:**
-- **Small batches (1-32):** More updates per epoch, higher variance, better generalization
-- **Medium batches (64-256):** Good balance between gradient quality and computational efficiency
-- **Large batches (512+):** More stable gradients but may require more sophisticated learning rate scheduling
+    **Trade-offs:**
+    - **Small batches (1-32):** More updates per epoch, higher variance, better generalization
+    - **Medium batches (64-256):** Good balance between gradient quality and computational efficiency
+    - **Large batches (512+):** More stable gradients but may require more sophisticated learning rate scheduling
 
-**Best Practices:**
-- **Powers of 2:** Use batch sizes that are powers of 2 (32, 64, 128, 256, 512) for computational efficiency
-- **Memory Constraints:** Choose the largest batch size that fits in your available memory
-- **Learning Rate Scaling:** When increasing batch size, proportionally increase the learning rate (Linear Scaling Rule: if batch size increases by factor k, learning rate should also increase by factor k)
-- **Hardware Optimization:** GPUs and CPUs are designed with architectures that process data in parallel blocks, often powers of 2, maximizing utilization of parallel processing units
+    **Best Practices:**
+    - **Powers of 2:** Use batch sizes that are powers of 2 (32, 64, 128, 256, 512) for computational efficiency
+    - **Memory Constraints:** Choose the largest batch size that fits in your available memory
+    - **Learning Rate Scaling:** When increasing batch size, proportionally increase the learning rate (Linear Scaling Rule: if batch size increases by factor k, learning rate should also increase by factor k)
+    - **Hardware Optimization:** GPUs and CPUs are designed with architectures that process data in parallel blocks, often powers of 2, maximizing utilization of parallel processing units
 
 3. Data Preprocessing and Normalization
 
-**Feature Scaling:**
-- **Normalization:** Scale features to have zero mean and unit variance
-- **Standardization:** Transform features to have similar scales
-- **Min-Max Scaling:** Scale features to a fixed range (e.g., [0,1])
+    **Feature Scaling:**
+    - **Normalization:** Scale features to have zero mean and unit variance
+    - **Standardization:** Transform features to have similar scales
+    - **Min-Max Scaling:** Scale features to a fixed range (e.g., [0,1])
 
-**Implementation:**
-```python
-**Example of data preprocessing**
-from sklearn.preprocessing import StandardScaler
+    **Implementation:**
+    ```python
+    **Example of data preprocessing**
+    from sklearn.preprocessing import StandardScaler
 
-scaler = StandardScaler()
-X_normalized = scaler.fit_transform(X)
-```
+    scaler = StandardScaler()
+    X_normalized = scaler.fit_transform(X)
+    ```
 
-**Benefits:**
-- Ensures consistent scale across dimensions
-- Helps with gradient computation
-- Improves convergence speed
-- Prevents features with larger scales from dominating
+    **Benefits:**
+    - Ensures consistent scale across dimensions
+    - Helps with gradient computation
+    - Improves convergence speed
+    - Prevents features with larger scales from dominating
 
 4. Initialization Strategies
 
-**Weight Initialization:**
-- **Xavier/Glorot Initialization:** Designed for sigmoid and tanh activation functions
-- **He Initialization:** Designed for ReLU activation functions
-- **Random Initialization:** Breaks symmetry by initializing with small random values
+    **Weight Initialization:**
+    - **Xavier/Glorot Initialization:** Designed for sigmoid and tanh activation functions
+    - **He Initialization:** Designed for ReLU activation functions
+    - **Random Initialization:** Breaks symmetry by initializing with small random values
 
-**Implementation:**
-```python
-import numpy as np
+    **Implementation:**
+    ```python
+    import numpy as np
 
-**Xavier/Glorot initialization**
-def xavier_init(fan_in, fan_out):
-    limit = np.sqrt(6.0 / (fan_in + fan_out))
-    return np.random.uniform(-limit, limit, (fan_out, fan_in))
+    **Xavier/Glorot initialization**
+    def xavier_init(fan_in, fan_out):
+        limit = np.sqrt(6.0 / (fan_in + fan_out))
+        return np.random.uniform(-limit, limit, (fan_out, fan_in))
 
-**He initialization**
-def he_init(fan_in):
-    return np.random.normal(0, np.sqrt(2.0 / fan_in), (fan_in,))
-```
+    **He initialization**
+    def he_init(fan_in):
+        return np.random.normal(0, np.sqrt(2.0 / fan_in), (fan_in,))
+    ```
 
 5. Gradient Checking and Debugging
 
-**Gradient Checking:**
-- **Numerical Verification:** Compare analytical gradients with numerical approximations  
-- **Formula:** 
+    **Gradient Checking:**
+    - **Numerical Verification:** Compare analytical gradients with numerical approximations  
+    - **Formula:** 
 
-$$
-\frac{\partial f}{\partial x} \approx \frac{f(x + \epsilon) - f(x - \epsilon)}{2 \epsilon}
-$$
+    $$
+    \frac{\partial f}{\partial x} \approx \frac{f(x + \epsilon) - f(x - \epsilon)}{2 \epsilon}
+    $$
 
 
-**Implementation:**
-```python
-def gradient_check(func, params, gradients, epsilon=1e-5):
-    """Check gradients using numerical approximation"""
-    for i in range(len(params)):
-        # Compute numerical gradient
-        params_plus = params.copy()
-        params_minus = params.copy()
-        
-        params_plus[i] += epsilon
-        params_minus[i] -= epsilon
-        
-        loss_plus = func(params_plus)
-        loss_minus = func(params_minus)
-        
-        numerical_grad = (loss_plus - loss_minus) / (2 * epsilon)
-        
-        # Compare with analytical gradient
-        diff = abs(numerical_grad - gradients[i])
-        if diff > 1e-5:
-            print(f"Gradient mismatch at index {i}: {numerical_grad} vs {gradients[i]}")
-```
+    **Implementation:**
+    ```python
+    def gradient_check(func, params, gradients, epsilon=1e-5):
+        """Check gradients using numerical approximation"""
+        for i in range(len(params)):
+            # Compute numerical gradient
+            params_plus = params.copy()
+            params_minus = params.copy()
+            
+            params_plus[i] += epsilon
+            params_minus[i] -= epsilon
+            
+            loss_plus = func(params_plus)
+            loss_minus = func(params_minus)
+            
+            numerical_grad = (loss_plus - loss_minus) / (2 * epsilon)
+            
+            # Compare with analytical gradient
+            diff = abs(numerical_grad - gradients[i])
+            if diff > 1e-5:
+                print(f"Gradient mismatch at index {i}: {numerical_grad} vs {gradients[i]}")
+    ```
 
-**Monitoring:**
-- **Track Gradient Norms:** Monitor gradient norms to detect vanishing or exploding gradients
-- **Visualize Gradients:** Plot gradient distributions to understand learning dynamics
-- **Loss Monitoring:** Track both training and validation loss to detect overfitting
+    **Monitoring:**
+    - **Track Gradient Norms:** Monitor gradient norms to detect vanishing or exploding gradients
+    - **Visualize Gradients:** Plot gradient distributions to understand learning dynamics
+    - **Loss Monitoring:** Track both training and validation loss to detect overfitting
 
 3. Gradient Monitoring and Debugging
 
-**Monitor:**
-- Gradient norms: watch for vanishing (< 1e-8) or exploding (> 100) gradients
-- Parameter updates: should be ~1% of parameter values
-- Loss values: watch for NaN or infinite values
+    **Monitor:**
+    - Gradient norms: watch for vanishing (< 1e-8) or exploding (> 100) gradients
+    - Parameter updates: should be ~1% of parameter values
+    - Loss values: watch for NaN or infinite values
 
-**Debugging Techniques:**
-- Gradient clipping: cap gradient norms to prevent exploding gradients
-- Gradient checking: verify analytical gradients with numerical gradients
-- Learning rate reduction: if loss increases, reduce learning rate
+    **Debugging Techniques:**
+    - Gradient clipping: cap gradient norms to prevent exploding gradients
+    - Gradient checking: verify analytical gradients with numerical gradients
+    - Learning rate reduction: if loss increases, reduce learning rate
 
 4. Optimizer Selection Guidelines
 
-**When to Use Each Optimizer:**
-- **SGD:** When you need good generalization, have time to tune hyperparameters
-- **SGD + Momentum:** When you want faster convergence than SGD
-- **Adam:** Default choice for most problems, especially when tuning time is limited
-- **AdamW:** When using weight decay (recommended over standard Adam)
-- **RMSprop:** For non-stationary problems, RNN training
+    **When to Use Each Optimizer:**
+    - **SGD:** When you need good generalization, have time to tune hyperparameters
+    - **SGD + Momentum:** When you want faster convergence than SGD
+    - **Adam:** Default choice for most problems, especially when tuning time is limited
+    - **AdamW:** When using weight decay (recommended over standard Adam)
+    - **RMSprop:** For non-stationary problems, RNN training
 
 5. Advanced Techniques
 
-**Learning Rate Warmup:**
-- Start with small learning rate and gradually increase for first few epochs
-- Particularly important for large batch sizes and transformer models
+    **Learning Rate Warmup:**
+    - Start with small learning rate and gradually increase for first few epochs
+    - Particularly important for large batch sizes and transformer models
 
-**Gradient Accumulation:**
-- Simulate large batch training with limited memory
-- Accumulate gradients over multiple mini-batches before update
+    **Gradient Accumulation:**
+    - Simulate large batch training with limited memory
+    - Accumulate gradients over multiple mini-batches before update
 
-**Mixed Precision Training:**
-- Use 16-bit floating point for faster training with minimal accuracy loss
-- Requires gradient scaling to prevent underflow
+    **Mixed Precision Training:**
+    - Use 16-bit floating point for faster training with minimal accuracy loss
+    - Requires gradient scaling to prevent underflow
 
 6. Convergence Diagnostics
 
-**Signs of Good Training:**
-- Smooth decrease in training loss
-- Validation loss follows training loss (no overfitting)
-- Gradients remain in reasonable range
-- Model generalizes well to test set
+    **Signs of Good Training:**
+    - Smooth decrease in training loss
+    - Validation loss follows training loss (no overfitting)
+    - Gradients remain in reasonable range
+    - Model generalizes well to test set
 
-**Common Problems and Solutions:**
-- **Loss doesn't decrease:** Increase learning rate, check implementation
-- **Loss oscillates wildly:** Decrease learning rate
-- **Loss becomes NaN:** Reduce learning rate, check for exploding gradients
-- **Overfitting:** Add regularization, reduce model size, increase data
+    **Common Problems and Solutions:**
+    - **Loss doesn't decrease:** Increase learning rate, check implementation
+    - **Loss oscillates wildly:** Decrease learning rate
+    - **Loss becomes NaN:** Reduce learning rate, check for exploding gradients
+    - **Overfitting:** Add regularization, reduce model size, increase data
 
 7. Memory and Computational Efficiency
 
-**Memory Optimization:**
-- Use appropriate batch sizes for your GPU memory
-- Consider gradient checkpointing for very deep networks
-- Use mixed precision training to reduce memory usage
+    **Memory Optimization:**
+    - Use appropriate batch sizes for your GPU memory
+    - Consider gradient checkpointing for very deep networks
+    - Use mixed precision training to reduce memory usage
 
-**Computational Optimization:**
-- Enable CUDA optimizations if using GPUs
-- Use data loaders with multiple workers
-- Consider distributed training for very large datasets
+    **Computational Optimization:**
+    - Enable CUDA optimizations if using GPUs
+    - Use data loaders with multiple workers
+    - Consider distributed training for very large datasets
 
 **Key Takeaways**
 
@@ -1277,39 +1277,39 @@ def gradient_check(func, params, gradients, epsilon=1e-5):
 
 1. **Unbiased Estimation:** 
 
-$$
-\mathbb{E}[\nabla \ell(\theta; \xi)] = \nabla R(\theta)
-$$
+    $$
+    \mathbb{E}[\nabla \ell(\theta; \xi)] = \nabla R(\theta)
+    $$
 
-- Single sample gradients point in the right direction on average  
-- Foundation of SGD's mathematical legitimacy  
+    - Single sample gradients point in the right direction on average  
+    - Foundation of SGD's mathematical legitimacy  
 
 2. **Mini-Batch Unbiasedness:** 
 
-$$
-\mathbb{E}[g(\theta)] = \nabla R(\theta), \quad \text{where $g(\theta)$ is the mini-batch gradient}
-$$
+    $$
+    \mathbb{E}[g(\theta)] = \nabla R(\theta), \quad \text{where $g(\theta)$ is the mini-batch gradient}
+    $$
 
-- Allows practical implementation with reduced variance  
-- Enables efficient computation through vectorization  
+    - Allows practical implementation with reduced variance  
+    - Enables efficient computation through vectorization  
 
 3. **Variance Scaling:** 
 
-$$
-\operatorname{Var}[g(\theta)] = \frac{\sigma^2(\theta)}{m}
-$$
+    $$
+    \operatorname{Var}[g(\theta)] = \frac{\sigma^2(\theta)}{m}
+    $$
 
-- Explains the zig-zag behavior of SGD  
-- Quantifies the trade-off between batch size and noise  
+    - Explains the zig-zag behavior of SGD  
+    - Quantifies the trade-off between batch size and noise  
 
 4. **Convergence Conditions (Robbins–Monro):** 
 
-$$
-\sum_t \eta_t = \infty, \quad \sum_t \eta_t^2 < \infty
-$$
+    $$
+    \sum_t \eta_t = \infty, \quad \sum_t \eta_t^2 < \infty
+    $$
 
-- Guarantees convergence with proper learning rate decay  
-- Explains why constant learning rates cause oscillation  
+    - Guarantees convergence with proper learning rate decay  
+    - Explains why constant learning rates cause oscillation  
 
 
 These theoretical foundations, combined with practical implementation techniques, make SGD and its variants the cornerstone of modern deep learning optimization.
@@ -1488,106 +1488,106 @@ def run_optimizer(opt_type, steps=50, lr=0.5):
 
 1. Is the loss curve always convex, if no then how does SGD works for those kind of loss curve because in the image i see its only convex
 
-**Answer:** No, the loss curve is not always convex. In fact, in most real-world machine learning problems, especially deep learning with neural networks, the loss surfaces are highly non-convex with multiple local minima, saddle points, and complex geometric structures.
+    **Answer:** No, the loss curve is not always convex. In fact, in most real-world machine learning problems, especially deep learning with neural networks, the loss surfaces are highly non-convex with multiple local minima, saddle points, and complex geometric structures.
 
-**How SGD works with non-convex loss surfaces:**
+    **How SGD works with non-convex loss surfaces:**
 
-- **Local Minima Escape:** The inherent noise in SGD (due to using single samples or small batches) can actually be beneficial for non-convex optimization. The stochastic nature allows the algorithm to potentially escape shallow local minima by "jumping out" of them due to the variance in gradient estimates.
+    - **Local Minima Escape:** The inherent noise in SGD (due to using single samples or small batches) can actually be beneficial for non-convex optimization. The stochastic nature allows the algorithm to potentially escape shallow local minima by "jumping out" of them due to the variance in gradient estimates.
 
-- **Saddle Points:** In high-dimensional spaces, saddle points are more common than local minima. The noise in SGD can help escape these saddle points by providing perturbations in different directions.
+    - **Saddle Points:** In high-dimensional spaces, saddle points are more common than local minima. The noise in SGD can help escape these saddle points by providing perturbations in different directions.
 
-- **Implicit Regularization:** SGD has been shown to have implicit regularization properties that help it find solutions that generalize well, even in non-convex landscapes.
+    - **Implicit Regularization:** SGD has been shown to have implicit regularization properties that help it find solutions that generalize well, even in non-convex landscapes.
 
-- **Theoretical Support:** While the theoretical analysis is more complex for non-convex functions, SGD can still converge to stationary points (points where gradient is zero) under appropriate conditions, including proper learning rate scheduling.
+    - **Theoretical Support:** While the theoretical analysis is more complex for non-convex functions, SGD can still converge to stationary points (points where gradient is zero) under appropriate conditions, including proper learning rate scheduling.
 
-- **Practical Success:** Despite the non-convex nature of neural network loss functions, SGD and its variants have proven remarkably successful in practice, suggesting they find good enough solutions even if not global minima.
+    - **Practical Success:** Despite the non-convex nature of neural network loss functions, SGD and its variants have proven remarkably successful in practice, suggesting they find good enough solutions even if not global minima.
 
-The images in this document show convex surfaces for simplicity and to illustrate the basic concepts clearly, but real-world applications often involve much more complex loss landscapes.
+    The images in this document show convex surfaces for simplicity and to illustrate the basic concepts clearly, but real-world applications often involve much more complex loss landscapes.
 
 2. How are batch sizes determined, why should batch size be multiple of 2 like 2 4 8 16 ??
 
-**Answer:** Batch size selection involves several important considerations:
+    **Answer:** Batch size selection involves several important considerations:
 
-**Factors determining batch size:**
+    **Factors determining batch size:**
 
-1. **Memory Constraints:** Larger batches require more memory to store activations, gradients, and intermediate computations. The batch size is often limited by available GPU/CPU memory.
+    1. **Memory Constraints:** Larger batches require more memory to store activations, gradients, and intermediate computations. The batch size is often limited by available GPU/CPU memory.
 
-2. **Computational Efficiency:** Modern hardware (especially GPUs) are optimized for parallel processing. Powers of 2 (16, 32, 64, 128, 256, 512) align well with the parallel architecture of GPUs, making computations more efficient.
+    2. **Computational Efficiency:** Modern hardware (especially GPUs) are optimized for parallel processing. Powers of 2 (16, 32, 64, 128, 256, 512) align well with the parallel architecture of GPUs, making computations more efficient.
 
-3. **Gradient Quality Trade-off:**
-   - **Small batches (1-32):** Higher variance in gradient estimates, more noise, but more frequent updates and potentially better generalization
-   - **Medium batches (64-256):** Good balance between gradient quality and computational efficiency
-   - **Large batches (512+):** More stable gradients but may require more sophisticated learning rate scheduling
+    3. **Gradient Quality Trade-off:**
+    - **Small batches (1-32):** Higher variance in gradient estimates, more noise, but more frequent updates and potentially better generalization
+    - **Medium batches (64-256):** Good balance between gradient quality and computational efficiency
+    - **Large batches (512+):** More stable gradients but may require more sophisticated learning rate scheduling
 
-4. **Learning Rate Scaling:** When increasing batch size, it's often beneficial to proportionally increase the learning rate (Linear Scaling Rule: if batch size increases by factor k, learning rate should also increase by factor k).
+    4. **Learning Rate Scaling:** When increasing batch size, it's often beneficial to proportionally increase the learning rate (Linear Scaling Rule: if batch size increases by factor k, learning rate should also increase by factor k).
 
-**Why powers of 2:**
+    **Why powers of 2:**
 
-- **Hardware Optimization:** GPUs and CPUs are designed with architectures that process data in parallel blocks, often powers of 2. Using batch sizes that are powers of 2 maximizes the utilization of these parallel processing units.
+    - **Hardware Optimization:** GPUs and CPUs are designed with architectures that process data in parallel blocks, often powers of 2. Using batch sizes that are powers of 2 maximizes the utilization of these parallel processing units.
 
-- **Memory Alignment:** Memory is organized in ways that favor operations on data structures with sizes that are powers of 2, leading to more efficient memory access patterns.
+    - **Memory Alignment:** Memory is organized in ways that favor operations on data structures with sizes that are powers of 2, leading to more efficient memory access patterns.
 
-- **Tensor Operations:** Deep learning frameworks optimize tensor operations for sizes that are powers of 2, as these operations are fundamental to neural network computations.
+    - **Tensor Operations:** Deep learning frameworks optimize tensor operations for sizes that are powers of 2, as these operations are fundamental to neural network computations.
 
-- **CUDA Cores:** GPUs have CUDA cores arranged in warps (groups of 32 threads on NVIDIA GPUs), and batch sizes that are multiples of 32 can better utilize this architecture.
+    - **CUDA Cores:** GPUs have CUDA cores arranged in warps (groups of 32 threads on NVIDIA GPUs), and batch sizes that are multiples of 32 can better utilize this architecture.
 
 3. What is the statistical explanation of the expectation (CLI was answer maybe if not correct it)
 
-**Answer:** The expectation in SGD has a clear statistical interpretation that forms the foundation of why SGD works:
+    **Answer:** The expectation in SGD has a clear statistical interpretation that forms the foundation of why SGD works:
 
-**Statistical Foundation:**
+    **Statistical Foundation:**
 
-$$
-\mathbb{E}[\nabla \ell(\theta; \xi)] = \nabla R(\theta)
-$$
+    $$
+    \mathbb{E}[\nabla \ell(\theta; \xi)] = \nabla R(\theta)
+    $$
 
-Where:  
-- $\xi$ represents a randomly sampled data point from the true data distribution $D$  
-- $\nabla \ell(\theta; \xi)$ is the gradient computed on a single sample  
-- $\nabla R(\theta)$ is the true gradient computed on the entire dataset (expected risk)  
+    Where:  
+    - $\xi$ represents a randomly sampled data point from the true data distribution $D$  
+    - $\nabla \ell(\theta; \xi)$ is the gradient computed on a single sample  
+    - $\nabla R(\theta)$ is the true gradient computed on the entire dataset (expected risk)  
 
-**Statistical Explanation:**
+    **Statistical Explanation:**
 
-1. **Unbiased Estimator:** The gradient computed on a single randomly selected sample is an unbiased estimator of the true gradient. This means that if we repeatedly sampled different data points and computed their gradients, the average of these gradients would converge to the true gradient.
+    1. **Unbiased Estimator:** The gradient computed on a single randomly selected sample is an unbiased estimator of the true gradient. This means that if we repeatedly sampled different data points and computed their gradients, the average of these gradients would converge to the true gradient.
 
-2. **Law of Large Numbers:** As we process more samples, the average of the sample gradients approaches the population gradient (the true gradient computed on the full dataset).
+    2. **Law of Large Numbers:** As we process more samples, the average of the sample gradients approaches the population gradient (the true gradient computed on the full dataset).
 
-3. **Sampling Theory:** SGD treats the full dataset gradient as a population parameter and the single-sample gradient as a sample statistic. The sample statistic is designed to be unbiased for the population parameter.
+    3. **Sampling Theory:** SGD treats the full dataset gradient as a population parameter and the single-sample gradient as a sample statistic. The sample statistic is designed to be unbiased for the population parameter.
 
-4. **Monte Carlo Estimation:** SGD can be viewed as a Monte Carlo method where we estimate the expected value (the full gradient) by sampling from the distribution of possible gradients.
+    4. **Monte Carlo Estimation:** SGD can be viewed as a Monte Carlo method where we estimate the expected value (the full gradient) by sampling from the distribution of possible gradients.
 
-**Mathematical Justification:**
+    **Mathematical Justification:**
 
-$$
-\nabla R(\theta) = \nabla \mathbb{E}[\ell(\theta; (x, y))] = \mathbb{E}[\nabla \ell(\theta; (x, y))]
-$$
+    $$
+    \nabla R(\theta) = \nabla \mathbb{E}[\ell(\theta; (x, y))] = \mathbb{E}[\nabla \ell(\theta; (x, y))]
+    $$
 
 
-This equality follows from the interchangeability of expectation and differentiation under mild regularity conditions, which is a fundamental result in probability theory.
+    This equality follows from the interchangeability of expectation and differentiation under mild regularity conditions, which is a fundamental result in probability theory.
 
-4. How is SGD an unbiased estimate in simple terms?
+4. How is SGD an unbiased estimate?
 
-**Answer:** SGD is an unbiased estimate because, on average, it points in the correct direction toward minimizing the loss function. Here's a simple explanation:
+    **Answer:** SGD is an unbiased estimate because, on average, it points in the correct direction toward minimizing the loss function. Here's a simple explanation:
 
-**Simple Analogy:**
-Imagine you're trying to find the lowest point in a hilly landscape while blindfolded. You can't see the entire landscape, but you can feel the slope at your current position.
+    **Simple Analogy:**
+    Imagine you're trying to find the lowest point in a hilly landscape while blindfolded. You can't see the entire landscape, but you can feel the slope at your current position.
 
-- **Full Gradient Descent:** You somehow get a perfect 3D map of the entire landscape and know exactly which direction leads to the lowest point globally.
-- **SGD:** You can only feel the slope at your current position (one random sample), which gives you a noisy estimate of the true direction.
+    - **Full Gradient Descent:** You somehow get a perfect 3D map of the entire landscape and know exactly which direction leads to the lowest point globally.
+    - **SGD:** You can only feel the slope at your current position (one random sample), which gives you a noisy estimate of the true direction.
 
-**Why it's unbiased:**
-1. **Single Sample Property:** When you compute the gradient using just one randomly selected data point, that gradient is a random variable.
+    **Why it's unbiased:**
+    1. **Single Sample Property:** When you compute the gradient using just one randomly selected data point, that gradient is a random variable.
 
-2. **Correct Average Direction:** If you took many random samples and computed their gradients, then averaged them, you would get the same result as computing the gradient on the entire dataset.
+    2. **Correct Average Direction:** If you took many random samples and computed their gradients, then averaged them, you would get the same result as computing the gradient on the entire dataset.
 
-3. **Mathematical Expression:**
-   ```
-   Average of single-sample gradients = Full dataset gradient
-   ```
+    3. **Mathematical Expression:**
+    ```
+    Average of single-sample gradients = Full dataset gradient
+    ```
 
-4. **Intuitive Understanding:** Think of it like asking random people for directions. Each person might give you slightly different directions due to their personal experience, but if you ask enough random people and average their directions, you'll get the correct direction on average.
+    4. **Intuitive Understanding:** Think of it like asking random people for directions. Each person might give you slightly different directions due to their personal experience, but if you ask enough random people and average their directions, you'll get the correct direction on average.
 
-**Key Point:** Individual SGD steps might be "wrong" (pointing in the wrong direction for that specific sample), but they are wrong in a balanced way - sometimes too high, sometimes too low, but on average exactly right. This is what makes SGD "unbiased" - it doesn't systematically overestimate or underestimate the true gradient direction.
+    **Key Point:** Individual SGD steps might be "wrong" (pointing in the wrong direction for that specific sample), but they are wrong in a balanced way - sometimes too high, sometimes too low, but on average exactly right. This is what makes SGD "unbiased" - it doesn't systematically overestimate or underestimate the true gradient direction.
 
 ## References
 - [GeeksforGeeks: ML Stochastic Gradient Descent](https://www.geeksforgeeks.org/machine-learning/ml-stochastic-gradient-descent-sgd/)
